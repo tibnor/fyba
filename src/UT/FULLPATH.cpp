@@ -160,7 +160,7 @@ char * _fullpath(char *buffer, const char *pathname, size_t maxlen) {
 AR-930423
 CH UT_FullPath                              Finn fullstendig filnavn
 CD ==================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Lag absolutt path navn fra relativt path navn.
 CD I tilleg tolker denne environment-variabler inn i filnavnet.
 CD Environment-varialen skrives i parantes.
@@ -191,13 +191,13 @@ SK_EntPnt_UT short  UT_FullPath(char *pszBuffer, const char *pszPath, size_t max
 	wchar_t  *pszOrgPath;
 #endif
 
-	/* Søk start- og sluttparantes */
+	/* SÂ¯k start- og sluttparantes */
 	UT_StrCopy(szFilnavn,pszPath,_MAX_PATH);
 	pszStart = strchr(szFilnavn,'(');
 	pszSlutt = strchr(szFilnavn,')');
 
-	/* Både start- og sluttparantes er funnet,
-      og starten er først i strengen */
+	/* BÃ‚de start- og sluttparantes er funnet,
+      og starten er fÂ¯rst i strengen */
    if (pszStart != NULL  &&  pszSlutt != NULL  &&  pszStart < pszSlutt) {
       *pszStart++ = '\0';
 		*pszSlutt++ = '\0';

@@ -28,7 +28,7 @@ CD Type            Navn     I/U    Forklaring
 CD -----------------------------------------------------------------------
 CD LC_POL_OMKR *    pPO      I/U    Peikar til polygonadministrasjonsblokka
 CD LC_BGR *         pBgr      I     Gruppenummer
-CD short           sRetning  I     Nøsteretning (LC_MED_DIG eller LC_MOT_DIG)
+CD short           sRetning  I     NÂ¯steretning (LC_MED_DIG eller LC_MOT_DIG)
 CD long            lSnr      I     Serienummer
 CD LC_POL_ELEMENT * pElement  R     Peker til innlagt element
 CD
@@ -136,7 +136,7 @@ SK_EntPnt_FYBA void LC_POL_FjernGruppeOmkrets(LC_POL_OMKR *pPO, LC_POL_ELEMENT *
 
 /*
 SJM-930921
-CH LC_POL_FrigiAlleOyer    Frigjer minne som er allokert til kjede av øyelement
+CH LC_POL_FrigiAlleOyer    Frigjer minne som er allokert til kjede av Â¯yelement
 CD =======================================================================
 CD Bruk:                           
 CD LC_OY_ADM  OyKjede;
@@ -145,9 +145,9 @@ CD
 CD parametere:
 CD Type       Navn     I/U    Forklaring
 CD -----------------------------------------------------------------------
-CD LC_OY_ADM *pOA      I/U    Peikar til øyadministrasjonsblokka
+CD LC_OY_ADM *pOA      I/U    Peikar til Â¯yadministrasjonsblokka
 CD
-CD Frigjer minne som er allokert til kjede av øy (i polygon) - element.
+CD Frigjer minne som er allokert til kjede av Â¯y (i polygon) - element.
 CD =======================================================================
 */
 SK_EntPnt_FYBA void LC_POL_FrigiAlleOyer(LC_OY_ADM *pOA)
@@ -156,7 +156,7 @@ SK_EntPnt_FYBA void LC_POL_FrigiAlleOyer(LC_OY_ADM *pOA)
 
   pOE = pOA->pForsteOE;
 
-  /* Frigir omkretsen av hver øy */
+  /* Frigir omkretsen av hver Â¯y */
   while(pOE != NULL) {
     LC_POL_FrigiOmkrets(&(pOE->PO));
 	 pNesteOE = pOE->pNesteOE;
@@ -170,7 +170,7 @@ SK_EntPnt_FYBA void LC_POL_FrigiAlleOyer(LC_OY_ADM *pOA)
 
 /*
 SJM-931003
-CH LC_POL_FjernOy                    Fjernar ei oy frå kjede av øyelement
+CH LC_POL_FjernOy                    Fjernar ei oy frÃ‚ kjede av Â¯yelement
 CD =======================================================================
 CD Bruk:
 CD LC_OY_ADM  OyKjede;
@@ -179,10 +179,10 @@ CD
 CD parametere:
 CD Type           Navn     I/U    Forklaring
 CD -----------------------------------------------------------------------
-CD LC_OY_ADM     *pOA      I/U    Peikar til øyadministrasjonsblokka
+CD LC_OY_ADM     *pOA      I/U    Peikar til Â¯yadministrasjonsblokka
 CD LC_OY_ELEMENT *pOE      I/U    Peikar til kjede av oyar
 CD
-CD Frigjer minne som er allokert til kjede av øy (i polygon) - element.
+CD Frigjer minne som er allokert til kjede av Â¯y (i polygon) - element.
 CD =======================================================================
 */
 SK_EntPnt_FYBA void LC_POL_FjernOy(LC_OY_ADM *pOA,LC_OY_ELEMENT *pOE)
@@ -190,7 +190,7 @@ SK_EntPnt_FYBA void LC_POL_FjernOy(LC_OY_ADM *pOA,LC_OY_ELEMENT *pOE)
    /* UT_FPRINTF(stderr,"LC_POL_FjernOy: Kallar LC_POL_Frigi()\n"); */
    LC_POL_FrigiOmkrets(&(pOE->PO));
 
-   /* Frigir øykjeda */
+   /* Frigir Â¯ykjeda */
    if (pOE->pForrigeOE != NULL) {
       pOE->pForrigeOE->pNesteOE = pOE->pNesteOE;
    } else {
@@ -217,10 +217,10 @@ CD
 CD Parametere:
 CD Type         Navn     I/U    Forklaring
 CD -----------------------------------------------------------------------
-CD LC_OY_ADM   *pOyKjede I/U    Peikar til kjede av øyelement
+CD LC_OY_ADM   *pOyKjede I/U    Peikar til kjede av Â¯yelement
 CD LC_POL_OMKR *pPO       I     Peikar til polygonadministrasjonsblokka
 CD
-CD Legg til eit element i kjeden av øyar (i polygon) - element.
+CD Legg til eit element i kjeden av Â¯yar (i polygon) - element.
 CD =======================================================================
 */
 SK_EntPnt_FYBA void LC_POL_LeggTilOy(LC_OY_ADM *pOA,LC_POL_OMKR *pPO)
@@ -242,7 +242,7 @@ SK_EntPnt_FYBA void LC_POL_LeggTilOy(LC_OY_ADM *pOA,LC_POL_OMKR *pPO)
   pOA->pSisteOE = pOE;
   /* *********************************************
   UT_FPRINTF(stderr,"LC_POL_LeggTilOy: Aktuell OE %p\n",pOE);
-  UT_FPRINTF(stderr,"LC_POL_LeggTilOy: OA->førsteOE %p\n" ,pOA->pForsteOE);
+  UT_FPRINTF(stderr,"LC_POL_LeggTilOy: OA->fÂ¯rsteOE %p\n" ,pOA->pForsteOE);
   UT_FPRINTF(stderr,"LC_POL_LeggTilOy: SisteOE->nesteOE %p\n",pOA->pSisteOE->pNesteOE);
   UT_FPRINTF(stderr,"LC_POL_LeggTilOy: SisteOE %p\n",pOA->pSisteOE);
    ********************************************* */
@@ -284,8 +284,8 @@ SK_EntPnt_FYBA void LC_POL_FrigiOmkrets(LC_POL_OMKR *pPO)
 AR-931208
 CH LC_POL_FrigiPolygon            Frigi minne som er allokert til polygon
 CD =======================================================================
-CD Formål:
-CD Frigir minne som er allokert til polygon. (Både omkrets og hull.)
+CD FormÃ‚l:
+CD Frigir minne som er allokert til polygon. (BÃ‚de omkrets og hull.)
 CD
 CD Parametere:
 CD Type        Navn     I/U    Forklaring
@@ -299,7 +299,7 @@ CD =======================================================================
 */
 SK_EntPnt_FYBA void LC_POL_FrigiPolygon(LC_POLYGON *pPolygon)
 {
-   /* Frigir øy-kjeden */
+   /* Frigir Â¯y-kjeden */
    LC_POL_FrigiAlleOyer(&(pPolygon->OyOA));
 
    /* Frigir omkretsen */
@@ -332,7 +332,7 @@ SK_EntPnt_FYBA void LC_POL_InitOmkrets(LC_POL_OMKR *pPO)
 
 /*
 SJM-930921 
-CH LC_POL_InitOy                                      Initierer øy-kjeden
+CH LC_POL_InitOy                                      Initierer Â¯y-kjeden
 CD =======================================================================
 CD Bruk:
 CD LC_OY_ADM  OyKjede;
@@ -341,9 +341,9 @@ CD
 CD parametere:
 CD Type       Navn     I/U    Forklaring
 CD -----------------------------------------------------------------------
-CD LC_OY_ADM *pOA      I/U    Peikar til øyadministrasjonsblokka
+CD LC_OY_ADM *pOA      I/U    Peikar til Â¯yadministrasjonsblokka
 CD
-CD Initierer øy-kjeden.
+CD Initierer Â¯y-kjeden.
 CD =======================================================================
 */
 SK_EntPnt_FYBA void LC_POL_InitOy(LC_OY_ADM *pOA)
@@ -357,7 +357,7 @@ SK_EntPnt_FYBA void LC_POL_InitOy(LC_OY_ADM *pOA)
 AR-931208
 CH LC_POL_InitPolygon                          Initierer polygon-struktur
 CD =======================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Initierer polygon-struktur.
 CD
 CD Parametere:
@@ -381,7 +381,7 @@ SK_EntPnt_FYBA void LC_POL_InitPolygon(LC_POLYGON *pPolygon)
 AR-931208
 CH LC_POL_PutRef                            Legger inn referanser i GINFO
 CD =======================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Legger inn referanser i GINFO, ut fra beskrivelse i struktur.
 CD
 CD Parametere:
@@ -396,7 +396,7 @@ CD =======================================================================
 */
 SK_EntPnt_FYBA short LC_POL_PutRef(LC_POLYGON *pPolygon)
 {
-   #define MAX_LEN  66   /* Ginfolinjen skrives ut når den er lengre en 70 tegn */
+   #define MAX_LEN  66   /* Ginfolinjen skrives ut nÃ‚r den er lengre en 70 tegn */
    LC_POL_ELEMENT *pPE;
    LC_OY_ELEMENT *pOE;
    short gilin;
@@ -412,16 +412,16 @@ SK_EntPnt_FYBA short LC_POL_PutRef(LC_POLYGON *pPolygon)
 
          /* Gammel type referanse er funnet */
          if (strncmp(ginfo,".. ",3) == 0) {
-            if (ledig_linje == -1) {        /* Første linje med referanse */
+            if (ledig_linje == -1) {        /* FÂ¯rste linje med referanse */
                ledig_linje = gilin;
             }
 
          /* Ny type referanse er funnet */
          } else if (strncmp(ginfo,"..REF ",6) == 0) {
-            if (ledig_linje == -1) {        /* Første linje med referanse */
+            if (ledig_linje == -1) {        /* FÂ¯rste linje med referanse */
                ledig_linje = gilin;
             }
-            /* Søk over resten av referansene */
+            /* SÂ¯k over resten av referansene */
             for (gilin++; gilin <= Sys.pGrInfo->ngi; gilin++) {
                ginfo = LX_GetGi(gilin);
                if (strncmp(ginfo,"..",2) == 0) { /* Annen GINFO er funnet */
@@ -494,7 +494,7 @@ SK_EntPnt_FYBA short LC_POL_PutRef(LC_POLYGON *pPolygon)
          }
 
 
-         /* Legger ut øyer */
+         /* Legger ut Â¯yer */
          for (pOE = pPolygon->OyOA.pForsteOE; pOE != NULL; pOE = pOE->pNesteOE) {
             /* Strengen er full, skriver ut */
             if(strlen(temp) >= (MAX_LEN-2)) {
@@ -522,7 +522,7 @@ SK_EntPnt_FYBA short LC_POL_PutRef(LC_POLYGON *pPolygon)
             *cp++ = '(';
             *cp = '\0';
 
-            /* Legger ut elementa i øyane */
+            /* Legger ut elementa i Â¯yane */
             for (pPE = pOE->PO.pForstePE; pPE != NULL; pPE = pPE->pNestePE) {
 
                /* Strengen er full, skriver ut */
@@ -593,7 +593,7 @@ SK_EntPnt_FYBA short LC_POL_PutRef(LC_POLYGON *pPolygon)
 AR-931212
 CH LC_POL_GetRef                        Hent referanser for flate fra GINFO
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Henter referanser fra GINFO til struktur.
 CD
 CD Parametre:
@@ -622,12 +622,12 @@ CD       Behandle ytre avgrensing
 CD       .
 CD    }
 CD
-CD    . Øyer .
+CD    . Ã˜yer .
 CD    for (pOE = Polygon.OyOA.pForsteOE; pOE != NULL; pOE = pOE->pNesteOE) {
 CD       for (pPE = pOE->PO.pForstePE; pPE != NULL; pPE = pPE->pNestePE) {
 CD          gnavn = LC_RxGr(&pPE->Bgr,LES_OPTIMALT,&ngi,&nko,&info);
 CD          .
-CD          Behandle indre avgrensing (øy)           
+CD          Behandle indre avgrensing (Â¯y)           
 CD          .
 CD       }
 CD    }
@@ -712,30 +712,30 @@ SK_EntPnt_FYBA void LC_POL_GetRef(LC_POLYGON *pPolygon)
                   }
 
 
-               } else if (*gp == '(') {                     /* Start øy */
+               } else if (*gp == '(') {                     /* Start Â¯y */
 
                   if (sOy == UT_FALSE) {
                      LC_POL_InitOmkrets(&OyPO);
                      sOy = UT_TRUE;
 
                   } else {
-                     /* Øy i øy er ikke lovlig */
+                     /* Ã˜y i Â¯y er ikke lovlig */
                      LC_Error(56,"(LC_POL_GetRef)",Sys.GrId.pFil->pszNavn);
-                     UT_FPRINTF(stderr,"Øy i øy i gruppe \"%s : %s\"\n",Sys.GrId.pFil->pszNavn,LX_GetGi(1));
+                     UT_FPRINTF(stderr,"Ã˜y i Â¯y i gruppe \"%s : %s\"\n",Sys.GrId.pFil->pszNavn,LX_GetGi(1));
                      Sys.GrId.pFil->usDataFeil |= LC_DATAFEIL_REF;
                   }
                   gp++;
 
-               } else if (*gp == ')') {                     /* Slutt øy */
+               } else if (*gp == ')') {                     /* Slutt Â¯y */
 
                   if (sOy == UT_TRUE) {
                      LC_POL_LeggTilOy(&(pPolygon->OyOA),&OyPO);
                      sOy = UT_FALSE;
 
                   } else {
-                     /* Øy i øy er ikke lovlig */
+                     /* Ã˜y i Â¯y er ikke lovlig */
                      LC_Error(56,"(LC_POL_GetRef)",Sys.GrId.pFil->pszNavn);
-                     UT_FPRINTF(stderr,"Øy i øy i gruppe \"%s : %s\"\n",Sys.GrId.pFil->pszNavn,LX_GetGi(1));
+                     UT_FPRINTF(stderr,"Ã˜y i Â¯y i gruppe \"%s : %s\"\n",Sys.GrId.pFil->pszNavn,LX_GetGi(1));
                      Sys.GrId.pFil->usDataFeil |= LC_DATAFEIL_REF;
                   }
                   gp++;
@@ -758,7 +758,7 @@ SK_EntPnt_FYBA void LC_POL_GetRef(LC_POLYGON *pPolygon)
 AR-931212
 CH LC_POL_GetRefOmkrets               Hent referanser for omkretsen av flate
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Henter referanser fra GINFO til struktur.
 CD Rutinen initierer strukturen pPO, men frigir ikke eventuellt gammelt innhold.
 CD
@@ -822,7 +822,7 @@ SK_EntPnt_FYBA void LC_POL_GetRefOmkrets(LC_POL_OMKR *pPO)
                      Sys.GrId.pFil->usDataFeil |= LC_DATAFEIL_REF;
                   }
 
-               /* Start øy */
+               /* Start Â¯y */
                } else if (*gp == '(') {
                   sFerdig = UT_TRUE;
                   gp++;
@@ -869,7 +869,7 @@ SK_EntPnt_FYBA short LC_POL_TestBrukt(LC_POLYGON *pPolygon,LC_BGR *pBgr)
       }
    }
 
-   /* Sjekk øyene */
+   /* Sjekk Â¯yene */
    for (pOE = pPolygon->OyOA.pForsteOE; pOE != NULL; pOE = pOE->pNesteOE) {
       for (pPE = pOE->PO.pForstePE; pPE != NULL; pPE = pPE->pNestePE) {
          if (memcmp(pBgr,&pPE->Bgr, sizeof(LC_BGR)) == 0) {
@@ -886,7 +886,7 @@ SK_EntPnt_FYBA short LC_POL_TestBrukt(LC_POLYGON *pPolygon,LC_BGR *pBgr)
 AR:2009-03-04
 CH LC_POL_PTst                                                   Polygontest
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Sjekker om gitt punkt ligger innenfor polygon angitt av pPolygon.
 CD Forutsetter at pPolygon danner et lukket polygon.
 CD Skifter ikke aktuell gruppe.
@@ -897,7 +897,7 @@ CD --------------------------------------------------------------------------
 CD double  a        i    Punkt som skal sjekkes
 CD double  n        i
 CD short   ist      r    status: UT_FALSE = punktet er utenfor flaten
-CD                               UT_TRUE = punktet ligger inne på flaten
+CD                               UT_TRUE = punktet ligger inne pÃ‚ flaten
 CD
 CD Bruk:
 CD .
@@ -912,7 +912,7 @@ SK_EntPnt_FYBA short LC_POL_PTst(LC_POLYGON *pPolygon,double a,double n)
    LC_OY_ELEMENT * pOE;
    short sAntSkjaer;
    LC_BGR Flate = Sys.GrId;      /* Husk gruppenummer for flaten */
-   short inni = UT_FALSE;   /* Returverdi: 1 = inne på flaten, 0 = utenfor  */
+   short inni = UT_FALSE;   /* Returverdi: 1 = inne pÃ‚ flaten, 0 = utenfor  */
    
 
    // Har ytre avgrensning? 
@@ -921,7 +921,7 @@ SK_EntPnt_FYBA short LC_POL_PTst(LC_POLYGON *pPolygon,double a,double n)
 
    double dEnhet = pPolygon->HovedPO.pForstePE->Bgr.pFil->TransPar.dEnhet;
 
-   // Pluss på et lite tillegg for å unngå treff på node
+   // Pluss pÃ‚ et lite tillegg for Ã‚ unngÃ‚ treff pÃ‚ node
    a += dEnhet / 1000.0;
    n += dEnhet / 1000.0;
 
@@ -935,14 +935,14 @@ SK_EntPnt_FYBA short LC_POL_PTst(LC_POLYGON *pPolygon,double a,double n)
       // Sjekk om punktet er innenfor
       inni = ((sAntSkjaer % 2) == 1)?  1 : 0;
       
-      // ----- Behandler indre avgrensing (øy)
+      // ----- Behandler indre avgrensing (Â¯y)
       for (pOE = pPolygon->OyOA.pForsteOE;  inni && (pOE != NULL);  pOE = pOE->pNesteOE) {
-         // Behandler en øy
+         // Behandler en Â¯y
          sAntSkjaer = 0;
          for (pPE = pOE->PO.pForstePE; pPE != NULL; pPE = pPE->pNestePE) {
             sAntSkjaer += LR_PTstGruppe(&pPE->Bgr,a,n);
          }
-         // Sjekk om punktet er inni øya
+         // Sjekk om punktet er inni Â¯ya
          inni = ((sAntSkjaer % 2) == 1)?  UT_FALSE : UT_TRUE;
       }
      
@@ -958,7 +958,7 @@ SK_EntPnt_FYBA short LC_POL_PTst(LC_POLYGON *pPolygon,double a,double n)
 AR-931213
 CH LC_POL_PTstOmkrets              Sjekk om punkt ligger inni polygonomkrets
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Sjekker om gitt punkt ligger innenfor yttergrensen for polygon angitt
 CD av struktur.
 CD Forutsetter at tabellen danner et lukket polygon
@@ -971,7 +971,7 @@ CD LC_POL_OMKR  *pPO    I/U  Peker til beskrivelse av omkretsen
 CD double        a      i    Punkt som skal sjekkes
 CD double        n      i
 CD short         ist    r    status: UT_FALSE = punktet er utenfor flaten
-CD                                   UT_TRUE  = punktet ligger inne på flaten
+CD                                   UT_TRUE  = punktet ligger inne pÃ‚ flaten
 CD
 CD Bruk:
 CD ist = LC_POL_PTstOmkrets(pPO,a,n);
@@ -993,17 +993,17 @@ SK_EntPnt_FYBA short LC_POL_PTstOmkrets(LC_POL_OMKR *pPO,double a,double n)
 
    double dEnhet = pPO->pForstePE->Bgr.pFil->TransPar.dEnhet;
 
-   // Pluss på et lite tillegg for å unngå treff på node
+   // Pluss pÃ‚ et lite tillegg for Ã‚ unngÃ‚ treff pÃ‚ node
    a += dEnhet / 1000.0;
    n += dEnhet / 1000.0;
 
    /*
-    * Sjekk omkretsen ved å beregne antall skjæringer mellom omkretsen
-    * og en linje fra "test-punktet" til "uendelig øst".
+    * Sjekk omkretsen ved Ã‚ beregne antall skjÃŠringer mellom omkretsen
+    * og en linje fra "test-punktet" til "uendelig Â¯st".
     */
 
    for (pPE = pPO->pForstePE; pPE != NULL; pPE = pPE->pNestePE) {
-      /* Beregn skjæringer med denne gruppen */
+      /* Beregn skjÃŠringer med denne gruppen */
       sAntSkjaer += LR_PTstGruppe(&pPE->Bgr,a,n);
    }
 
@@ -1012,20 +1012,20 @@ SK_EntPnt_FYBA short LC_POL_PTstOmkrets(LC_POL_OMKR *pPO,double a,double n)
 
    /*
     * Sjekk om punktet er innenfor omkretsen.
-    * (Inni hvis antall skjæringspunkt er oddetall.)
+    * (Inni hvis antall skjÃŠringspunkt er oddetall.)
     */
    return  ((sAntSkjaer % 2) == 1)?  UT_TRUE : UT_FALSE;
 }
  
 
 /*
-JAØ-20061130
-CH LC_POL_OmkretsSkjaering        Finner antall skjæringer med polygonomkrets
+JAÃ˜-20061130
+CH LC_POL_OmkretsSkjaering        Finner antall skjÃŠringer med polygonomkrets
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Sjekker om gitt punkt ligger innenfor yttergrensen for polygon angitt
 CD av struktur. Egentlig kopi av LC_POL_PTstOmkrets, men returnerer antall 
-CD skjæringer istedet for inni/utenfor. 
+CD skjÃŠringer istedet for inni/utenfor. 
 CD Forutsetter at tabellen danner et lukket polygon
 CD Skifter ikke aktuell gruppe.
 CD
@@ -1035,7 +1035,7 @@ CD --------------------------------------------------------------------------
 CD LC_POL_OMKR  *pPO    I/U  Peker til beskrivelse av omkretsen
 CD double        a      i    Punkt som skal sjekkes
 CD double        n      i
-CD short         ist    r    Antall skjæringer med omkrets fra pkt til "uendelig" øst
+CD short         ist    r    Antall skjÃŠringer med omkrets fra pkt til "uendelig" Â¯st
 CD
 CD Bruk:
 CD ist = LC_POL_PTstOmkrets(pPO,a,n);
@@ -1057,17 +1057,17 @@ SK_EntPnt_FYBA short LC_POL_OmkretsSkjaering(LC_POL_OMKR *pPO,double a,double n)
 
    double dEnhet = pPO->pForstePE->Bgr.pFil->TransPar.dEnhet;
 
-   // Pluss på et lite tillegg for å unngå treff på node
+   // Pluss pÃ‚ et lite tillegg for Ã‚ unngÃ‚ treff pÃ‚ node
    a += dEnhet / 1000.0;
    n += dEnhet / 1000.0;
 
    /*
-    * Sjekk omkretsen ved å beregne antall skjæringer mellom omkretsen
-    * og en linje fra "test-punktet" til "uendelig øst".
+    * Sjekk omkretsen ved Ã‚ beregne antall skjÃŠringer mellom omkretsen
+    * og en linje fra "test-punktet" til "uendelig Â¯st".
     */
 
    for (pPE = pPO->pForstePE; pPE != NULL; pPE = pPE->pNestePE) {
-      /* Beregn skjæringer med denne gruppen */
+      /* Beregn skjÃŠringer med denne gruppen */
       sAntSkjaer += LR_PTstGruppe(&pPE->Bgr,a,n);
    }
   

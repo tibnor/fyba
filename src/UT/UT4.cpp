@@ -17,7 +17,7 @@
 
 /**************************************************************************
 *                                                                         *
-*       RUTINER FOR Å HANDTERE FLAG-TABELL                                *
+*       RUTINER FOR Ã… HANDTERE FLAG-TABELL                                *
 *                                                                         *
 ***************************************************************************/
 
@@ -25,7 +25,7 @@
 OJ-920309
 CH UT_InitFlag
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Opprette og nullstille flag-tabell.
 CD
 CD Parametre:
@@ -55,8 +55,8 @@ SK_EntPnt_UT unsigned long *UT_InitFlag(short sNlin)
 OJ-920309
 CH UT_CloseFlag
 CD ==========================================================================
-CD Formål:
-CD Frigjøre minne brukt til flagging av brukte linjer.
+CD FormÃ‚l:
+CD FrigjÂ¯re minne brukt til flagging av brukte linjer.
 CD
 CD Parametre:
 CD Type        Navn      I/U   Forklaring
@@ -77,7 +77,7 @@ SK_EntPnt_UT void UT_CloseFlag(unsigned long *plFlag)
 OJ-920309
 CH UT_SetFlag                                 Flagger brukt linje.
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Legg inn merke i linje tabell.
 CD
 CD Parametre:
@@ -97,7 +97,7 @@ SK_EntPnt_UT bool UT_SetFlag(unsigned long *plFlag,short sLine)
 
    // char szErrMsg[80];
 
-        /* Maksimalt: antall long * 32 - 1 for bit 0 i første */
+        /* Maksimalt: antall long * 32 - 1 for bit 0 i fÂ¯rste */
    /*
    if (sLine >= (short)*plFlag){
       UT_SNPRINTF(szErrMsg,80,"For mange -linjer %hd, maksimalt: %hd",sLine,(short)*plFlag-1);
@@ -122,7 +122,7 @@ SK_EntPnt_UT bool UT_SetFlag(unsigned long *plFlag,short sLine)
 OJ-920309
 CH UT_GetFlag                                 Flagger brukt -linje.
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Teste merke i linje tabell.
 CD
 CD Parametre:
@@ -139,7 +139,7 @@ SK_EntPnt_UT short UT_GetFlag(unsigned long *plFlag,short sLine)
 {
    char szErrMsg[80];
 
-        /* Maksimalt: antall long * 32 - 1 for bit 0 i første */
+        /* Maksimalt: antall long * 32 - 1 for bit 0 i fÂ¯rste */
    if (sLine >= (short)*plFlag){
       UT_SNPRINTF(szErrMsg,80,"For mange -linjer %hd, maksimalt: %hd",sLine,(short)*plFlag-1);
    }

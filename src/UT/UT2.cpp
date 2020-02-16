@@ -40,7 +40,7 @@ static char  VT_StrWord (char str[], short ii, short *iu, char *sep, short mw,
 SK_EntPnt_UT char *UT_GetToken (char *str, short *tl)
 {
 	 char *ptr;
-                                /* Hopp fram til første ikkje-blanke */
+                                /* Hopp fram til fÂ¯rste ikkje-blanke */
 	 while (UT_IsSpace(*str)) ++str;
                 /* Hopp evt. forbi eitt komma el. punktum og blanke etter det */
     if (*str == ',' || *str == '.') {
@@ -82,7 +82,7 @@ SK_EntPnt_UT char UT_StrToken (char str[], short ii, short *iu, short mt, char t
     mt--;
 
     
-    /* Hopp fram til første ikkje-blanke */
+    /* Hopp fram til fÂ¯rste ikkje-blanke */
     while (UT_IsSpace(str[ii])) ii++;
 	
     /* Hopp evt. forbi eitt komma eller semikolon og blanke etter det */
@@ -115,7 +115,7 @@ SK_EntPnt_UT char UT_StrToken (char str[], short ii, short *iu, short mt, char t
         if (str[ii]) ii++;
     
 
-    /* Token går fram til ',' , ';' , 'Space' el '\0' */
+    /* Token gÃ‚r fram til ',' , ';' , 'Space' el '\0' */
     } else {
         for (it = 0; (!UT_IsSpace(str[ii]) && str[ii] != ',' && str[ii] != ';' && str[ii] != '\0'); ii++) {
 				if (it < mt) token[it++] = str[ii];
@@ -265,7 +265,7 @@ static char VT_StrWord (char *str, short ii, short *iu, char *sep, short mw,
 
                             /* Korrigerer max strenglengde (AR) */
     mw--;
-                            /* Hopp fram til første ikkje-blanke */
+                            /* Hopp fram til fÂ¯rste ikkje-blanke */
     while (UT_IsSpace(str[ii]))  ii++;
                             /* Hopp evt. forbi eitt komma og blanke etter det */
     if (strchr (sep,',')) {
@@ -278,7 +278,7 @@ static char VT_StrWord (char *str, short ii, short *iu, char *sep, short mw,
 		  word[0] = '\0';
 		  ch = '\0';
 
-									 /* Ordet går fram til separator-teikn */
+									 /* Ordet gÃ‚r fram til separator-teikn */
     } else {
         for (iw = 0; !strchr (sep,str[ii]); ii++) {
             if (iw < mw) word[iw++] = str[ii];
@@ -380,7 +380,7 @@ SK_EntPnt_UT char *UT_strtok(char *strToken,const char *strDelimit,char **contex
 GL.06.03.89
 CH  UT_StrCopy                    Kopiere streng med overflyttest
 CD  ==============================================================
-CD  Kopierer en streng med max ant tegn. Legger på \0 på slutten.
+CD  Kopierer en streng med max ant tegn. Legger pÃ‚ \0 pÃ‚ slutten.
 CD
 CD  PARAMETERLISTE:
 CD  Navn     Type       I/U  Merknad
@@ -405,7 +405,7 @@ SK_EntPnt_UT void UT_StrCopy (char *dst, const char *src, int maxlen)
 T.H.10.08.96
 CH  UT_StrCat                               Konkatinerer streng
 CD  ==============================================================
-CD  Koncatinerer en streng med max ant tegn. Legger på \0 på slutten.
+CD  Koncatinerer en streng med max ant tegn. Legger pÃ‚ \0 pÃ‚ slutten.
 CD
 CD  PARAMETERLISTE:
 CD  Navn     Type    I/U  Merknad
@@ -570,7 +570,7 @@ SK_EntPnt_UT char *UT_ClrTrailsp(char *str)
 
    if (*str != '\0')
    {
-      // Fjern blanke på slutten
+      // Fjern blanke pÃ‚ slutten
       cp = strchr(str,'\0');
       --cp;
       while ( cp >= str && UT_IsSpace(*cp) )
@@ -592,10 +592,10 @@ SK_EntPnt_UT char *UT_ClrExtrasp(char *str)
    char *cp,*tp;
    short sSp = UT_TRUE;
 
-   /* Fjern blanke på slutten */
+   /* Fjern blanke pÃ‚ slutten */
    UT_ClrTrailsp(str);
 
-   /* Fjern ledende blanke og overflødige blanke inni strengen */
+   /* Fjern ledende blanke og overflÂ¯dige blanke inni strengen */
    cp = tp = str;
 
    while (*cp != '\0') {
@@ -618,7 +618,7 @@ SK_EntPnt_UT char *UT_ClrExtrasp(char *str)
 AR-890312
 CH UT_IsSpace                                           Test om mellomromstegn
 CD =============================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Sjekker om et tegn er mellomromstegn (ascii 0x09-0x0d eller 0x20)
 CD
 CD Parametre:
@@ -676,7 +676,7 @@ SK_EntPnt_UT int UT_IsPrint (int ch)
 {
     if (isprint (ch))              return UT_TRUE;
     else if (ch == 0)              return UT_FALSE;
-    else if (strchr ("ÆØÅæøå",ch)) return UT_TRUE;
+    else if (strchr ("âˆ†Ã˜Ã…ÃŠÂ¯Ã‚",ch)) return UT_TRUE;
     else                           return UT_FALSE;
 }
 
@@ -688,7 +688,7 @@ SK_EntPnt_UT int UT_IsLower (int ch)
 {
     if (islower (ch))           return UT_TRUE;
     else if (ch == 0)           return UT_FALSE;
-    else if (strchr ("æøåáäèïñö",ch)) return UT_TRUE;
+    else if (strchr ("ÃŠÂ¯Ã‚Â·â€°Ã‹Ã”Ã’Ë†",ch)) return UT_TRUE;
     else                        return UT_FALSE;
 }
 
@@ -703,16 +703,17 @@ SK_EntPnt_UT int UT_ToLower (int ch)
 
     } else {
         switch (ch) {
-            case 'Æ' : ch = 'æ'; break;
-            case 'Ø' : ch = 'ø'; break;
-            case 'Å' : ch = 'å'; break;
+            case 0x2206 : ch = 0x00CA; break;
+            case 0x00D8 : ch = 0x00AF; break;
+                /*
+            case 'Ã…' : ch = 'Ã‚'; break;
 
-            case 'Á' : ch = 'á'; break; // á - SK-fonter + standardfonter
-            case 'Ä' : ch = 'ä'; break; // ä - SK-fonter + standardfonter
-            case 'È' : ch = 'è'; break; // Samisk c - SK-fonter og è - standardfonter
-            case 'Ï' : ch = 'ï'; break; // ï - SK-fonter + standardfonter
-            case 'Ñ' : ch = 'ñ'; break; // Samisk n(aksent) - SK-fonter og ñ - standardfonter
-            case 'Ö' : ch = 'ö'; break; // ö - SK-fonter + standardfonter
+            case 'Â¡' : ch = 'Â·'; break; // Â· - SK-fonter + standardfonter
+            case 'Æ’' : ch = 'â€°'; break; // â€° - SK-fonter + standardfonter
+            case 'Â»' : ch = 'Ã‹'; break; // Samisk c - SK-fonter og Ã‹ - standardfonter
+            case 'Å“' : ch = 'Ã”'; break; // Ã” - SK-fonter + standardfonter
+            case 'â€”' : ch = 'Ã’'; break; // Samisk n(aksent) - SK-fonter og Ã’ - standardfonter
+            case 'Ã·' : ch = 'Ë†'; break; // Ë† - SK-fonter + standardfonter*/
 
             case 0x010C : ch = 0x010D; break; // Samisk c - utvidede standardfonter
             case 0x0110 : ch = 0x0111; break; // Samisk d - utvidede standardfonter
@@ -748,7 +749,7 @@ SK_EntPnt_UT int UT_IsUpper (int ch)
 {
     if (isupper (ch))           return UT_TRUE;
     else if (ch == 0)           return UT_FALSE;
-    else if (strchr ("ÆØÅÁÄÈÏÑÖ",ch)) return UT_TRUE;
+    else if (strchr ("âˆ†Ã˜Ã…Â¡Æ’Â»Å“â€”Ã·",ch)) return UT_TRUE;
     else                        return UT_FALSE;
 }
 
@@ -763,17 +764,17 @@ SK_EntPnt_UT int UT_ToUpper (int ch)
 
     } else {
         switch (ch) {
-            case 'æ' : ch = 'Æ'; break;
-            case 'ø' : ch = 'Ø'; break;
-            case 'å' : ch = 'Å'; break;
+            case 0x00CA : ch = 0x2206; break;
+            case 0x00AF : ch = 0x00D8; break;
+           /* case 'Ã‚' : ch = 'Ã…'; break;
          
-            case 'á' : ch = 'Á'; break; // á - SK-fonter + standardfonter
-            case 'ä' : ch = 'Ä'; break; // ä - SK-fonter + standardfonter
-            case 'è' : ch = 'È'; break; // Samisk c - SK-fonter og è - standardfonter
-            case 'ï' : ch = 'Ï'; break; // ï - SK-fonter + standardfonter
-            case 'ñ' : ch = 'Ñ'; break; // Samisk n(aksent) - SK-fonter og ñ - standardfonter
-            case 'ö' : ch = 'Ö'; break; // ö - SK-fonter + standardfonter
-
+            case 'Â·' : ch = 'Â¡'; break; // Â· - SK-fonter + standardfonter
+            case 'â€°' : ch = 'Æ’'; break; // â€° - SK-fonter + standardfonter
+            case 'Ã‹' : ch = 'Â»'; break; // Samisk c - SK-fonter og Ã‹ - standardfonter
+            case 'Ã”' : ch = 'Å“'; break; // Ã” - SK-fonter + standardfonter
+            case 'Ã’' : ch = 'â€”'; break; // Samisk n(aksent) - SK-fonter og Ã’ - standardfonter
+            case 'Ë†' : ch = 'Ã·'; break; // Ë† - SK-fonter + standardfonter
+*/
             case 0x010D : ch = 0x010C; break; // Samisk c - utvidede standardfonter
             case 0x0111 : ch = 0x0110; break; // Samisk d - utvidede standardfonter
             case 0x014B : ch = 0x014A; break; // Samisk n(lav) - utvidede standardfonter
@@ -831,30 +832,30 @@ SK_EntPnt_UT short UT_AtoS (char str[], short *s)
     short len,sif;
 
     ok = UT_FALSE;
-                                    /* Finn første siffer != 0 */
+                                    /* Finn fÂ¯rste siffer != 0 */
     /*; for (sif=0; str[sif]<'1' || str[sif]>'9'; sif++); */ 
-    /* Rettet AR-940623 for å handtere streng uten siffer 1-9 */
+    /* Rettet AR-940623 for Ã‚ handtere streng uten siffer 1-9 */
     for (sif=0; (str[sif]<'1' || str[sif]>'9') && str[sif]!='\0' ; sif++);
-                                    /* Lengde på sifferstrengen */
+                                    /* Lengde pÃ‚ sifferstrengen */
     slen = (short)strlen(str);
     len = slen - sif;
                                     /* Viss <5 siffer: ok */
     if (len < 5) ok = UT_TRUE;
-                                    /* Viss 5 siffer: u.s. dei 4 første */
+                                    /* Viss 5 siffer: u.s. dei 4 fÂ¯rste */
     else if (len == 5) {
         sif = (short)str[--slen];
         str[slen] = '\0';
         *s = (short)abs(atoi(str));
         if (*s < 3276) ok = UT_TRUE;
-                                    /* På grensa for lovleg verdi, sjekk det 5. */
+                                    /* PÃ‚ grensa for lovleg verdi, sjekk det 5. */
         else if (*s == 3276) {
             if (sif <= '7') ok = UT_TRUE;
             else if (sif == '8') {
-                                    /* Neg. tal kan ha 1 større abs.verdi */
+                                    /* Neg. tal kan ha 1 stÂ¯rre abs.verdi */
                 if (atoi(str) < 0) ok = UT_TRUE;
             }
         }
-                                    /* Sett tilbake det lånte sifferet */
+                                    /* Sett tilbake det lÃ‚nte sifferet */
         str[slen++] = (char)sif;
     }
     if (ok) *s = (short)atoi(str);
@@ -872,31 +873,31 @@ SK_EntPnt_UT short UT_AtoL (char str[], long *_long)
     register short len,sif;
 
     ok = UT_FALSE;
-                                    /* Finn første siffer != 0 */
+                                    /* Finn fÂ¯rste siffer != 0 */
     /*; for (sif=0; str[sif]<'1' || str[sif]>'9'; sif++); */ 
-    /* Rettet AR-940623 for å handtere streng uten siffer 1-9 */
+    /* Rettet AR-940623 for Ã‚ handtere streng uten siffer 1-9 */
     for (sif=0; (str[sif]<'1' || str[sif]>'9') && str[sif]!='\0' ; sif++);
 
-                                    /* Lengde på sifferstrengen */
+                                    /* Lengde pÃ‚ sifferstrengen */
     slen = (short)strlen(str);
     len = slen - sif;
                                     /* Viss <10 siffer: ok */
     if (len < 10) ok = UT_TRUE;
-                                    /* Viss 10 siffer: u.s. dei 9 første */
+                                    /* Viss 10 siffer: u.s. dei 9 fÂ¯rste */
     else if (len == 10) {
         sif = (short)str[--slen];
         str[slen] = '\0';
         *_long = labs (atol (str));
         if (*_long < 214748364) ok = UT_TRUE;
-                                    /* På grensa for lovleg verdi, sjekk det 10. */
+                                    /* PÃ‚ grensa for lovleg verdi, sjekk det 10. */
         else if (*_long == 214748364) {
             if (sif <= '7') ok = UT_TRUE;
             else if (sif == '8') {
-                                    /* Neg. tal kan ha 1 større abs.verdi */
+                                    /* Neg. tal kan ha 1 stÂ¯rre abs.verdi */
                 if (atol(str) < 0) ok = UT_TRUE;
             }
         }
-                                    /* Sett tilbake det lånte sifferet */
+                                    /* Sett tilbake det lÃ‚nte sifferet */
         str[slen++] = (char)sif;
     }
     if (ok) *_long = atol (str);
@@ -914,7 +915,7 @@ SK_EntPnt_UT short UT_AtoL (char str[], long *_long)
 SK_EntPnt_UT short UT_AtoD (char *str, char decpt, double *dbl)
 {
     char *kompos;
-                                    /* Pass på desimalkomma */
+                                    /* Pass pÃ‚ desimalkomma */
     if (decpt == ',') {
         kompos = strchr (str,',');
         if (kompos) *kompos = '.';
@@ -1019,7 +1020,7 @@ static short VT_JustStr (char ztr[], short mstr, char str[])
 #ifdef LINUX
         strncpy (str,ztr,mstr+1);
 #else
-        strcpy_s (str,mstr+1,ztr); // Må bruke mstr+1 fordi det er trukket fra en i den verdien som kommer inn
+        strcpy_s (str,mstr+1,ztr); // MÃ‚ bruke mstr+1 fordi det er trukket fra en i den verdien som kommer inn
 #endif
         ok = UT_TRUE;
     }
@@ -1053,7 +1054,7 @@ SK_EntPnt_UT void UT_JustStr (char justmode, char fill, short lstr, char *str)
       }
 
       switch (justmode) {
-         case '>' :                      /* Høgrepakking */
+         case '>' :                      /* HÂ¯grepakking */
             for (pc = pc2, qc = str+lstr-1; pc >= pc1; pc--) {
                if (!UT_IsSpace(*pc) && *pc != fill) {
                   *qc-- = *pc;
@@ -1061,7 +1062,7 @@ SK_EntPnt_UT void UT_JustStr (char justmode, char fill, short lstr, char *str)
             }
             while (qc >= str) *qc-- = fill;
             break;
-         case '/' :                      /* Høgrejustering */
+         case '/' :                      /* HÂ¯grejustering */
             for (pc = pc2, qc = str+lstr-1; pc >= pc1; pc--)
                *qc-- = *pc;
             while (qc >= str) *qc-- = fill;
@@ -1086,7 +1087,7 @@ SK_EntPnt_UT void UT_JustStr (char justmode, char fill, short lstr, char *str)
 AR-890113 LS-890915
 CH UT_Ascii7to8                                          Konverter til PC-ASCII
 CD =============================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Konverterer en streng fra ND-7-bits norsk ASCII til PC-8-bits norsk ASCII.
 CD
 CD Parametre:
@@ -1131,7 +1132,7 @@ SK_EntPnt_UT unsigned char *UT_Ascii7to8(unsigned char *tx)
 AR-890113 LS-890915
 CH UT_Ascii8to7                                          Konverter til ND-ASCII
 CD =============================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Konverterer en streng fra PC-8-bits norsk ASCII til ND-7-bits norsk ASCII.
 CD
 CD Parametre:
@@ -1176,7 +1177,7 @@ SK_EntPnt_UT unsigned char *UT_Ascii8to7(unsigned char *tx)
 AR-920929
 CH UT_Ascii8toISO8859                                 Konverter til ISO8859-10
 CD =============================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Konverterer en streng fra PC-8-bits norsk ASCII til ISO8859-10.
 CD
 CD Parametre:
@@ -1223,7 +1224,7 @@ SK_EntPnt_UT unsigned char *UT_Ascii8toISO8859(unsigned char *tx)
 AR-920929
 CH UT_ISO8859toAscii8                                    Konverter til PC-ASCII
 CD =============================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Konverterer en streng fra ISO8859-10 til PC-8-bits norsk ASCII.
 CD
 CD Parametre:
@@ -1270,7 +1271,7 @@ SK_EntPnt_UT unsigned char *UT_ISO8859toAscii8(unsigned char *tx)
 AR-920929
 CH UT_Ascii7toISO8859                                 Konverter til ISO8859-10
 CD =============================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Konverterer en streng fra norsk 7-bits ASCII til ISO8859-10.
 CD
 CD Parametre:
@@ -1316,7 +1317,7 @@ SK_EntPnt_UT unsigned char *UT_Ascii7toISO8859(unsigned char *tx)
 AR-920929
 CH UT_ISO8859toAscii7                                    Konverter til ND-ASCII
 CD =============================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Konverterer en streng fra ISO8859-10 til norsk 7-bits ASCII.
 CD
 CD Parametre:
@@ -1363,7 +1364,7 @@ SK_EntPnt_UT unsigned char *UT_ISO8859toAscii7(unsigned char *tx)
 AR-890113
 CH UT_KonverterTegnsett                                   Konverter tegnsett
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Konverterer en streng fra et tegnsett til et annet.
 CD
 CD Parametre:
@@ -1452,17 +1453,17 @@ SK_EntPnt_UT unsigned char *UT_KonverterTegnsett(short sFraTegnsett,short sTilTe
 AR:2003-10-13
 CH UT_StrCmpi                                            Sammenlign strenger
 CD ==========================================================================
-CD Formål:
-CD Sammenligner to strenger uavhengig av store og små bokstaver.
-CD For sammenligning der det bare sjekkes på likhet fungerer den for norske bokstaver.
+CD FormÃ‚l:
+CD Sammenligner to strenger uavhengig av store og smÃ‚ bokstaver.
+CD For sammenligning der det bare sjekkes pÃ‚ likhet fungerer den for norske bokstaver.
 CD (Sammenligner bare karakterverdier.)
-CD For sortering må UT_StrColli brukes for å handtere norske bokstaver rett. 
+CD For sortering mÃ‚ UT_StrColli brukes for Ã‚ handtere norske bokstaver rett. 
 CD UT_StrCmpi er mye raskere enn UT_StrColli.
 CD
 CD Parametre:
 CD  Type    Navn         I/U   Forklaring
 CD -----------------------------------------------------------------------------
-CD  char   *pszTx1        i    Peker til første streng (avsluttet med '\0').
+CD  char   *pszTx1        i    Peker til fÂ¯rste streng (avsluttet med '\0').
 CD  char   *pszTx2        i    Peker til andre streng (avsluttet med '\0').
 CD  int     iStatus       r    Status, samme som strcmpi
 CD
@@ -1504,15 +1505,15 @@ SK_EntPnt_UT int UT_StrCmpi(const char *pszTx1, const char *pszTx2)
 PG:2010-10-21
 CH UT_StrColli                                            Sammenlign strenger
 CD ==========================================================================
-CD Formål:
-CD Sammenligner to strenger uavhengig av store og små bokstaver.
+CD FormÃ‚l:
+CD Sammenligner to strenger uavhengig av store og smÃ‚ bokstaver.
 CD Fungerer for norske bokstaver. Justerer for landskode (LC_COLLATE)
-CD Hvis det er bare er likhet det sjekkes på, bør heller den raskere UT_StrCmpi brukes.
+CD Hvis det er bare er likhet det sjekkes pÃ‚, bÂ¯r heller den raskere UT_StrCmpi brukes.
 CD
 CD Parametre:
 CD  Type    Navn         I/U   Forklaring
 CD -----------------------------------------------------------------------------
-CD  char   *pszTx1        i    Peker til første streng (avsluttet med '\0').
+CD  char   *pszTx1        i    Peker til fÂ¯rste streng (avsluttet med '\0').
 CD  char   *pszTx2        i    Peker til andre streng (avsluttet med '\0').
 CD  int     iStatus       r    Status, samme som strcmpi
 CD

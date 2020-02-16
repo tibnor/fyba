@@ -26,7 +26,7 @@ static struct {
 
 /*
 AR-900105
-CH LC_InitTabel                                           ≈pner tabellsystemet
+CH LC_InitTabel                                           Åpner tabellsystemet
 CD =============================================================================
 CD FormÂl:
 CD Initierer tabellsystemet og Âpner filen.
@@ -67,9 +67,9 @@ SK_EntPnt_FYBA short LC_InitTabel(long n_rec,short rec_len,void *buffer)
    if (fytab_open){                    /* Systemet er allerede i bruk */
       return -1;
    }
-                                       /* ≈pner tabellfilen */
+                                       /* Åpner tabellfilen */
    fytab.fpek = UT_OpenFile("fytabell.tmp","",UT_UPDATE,UT_UNKNOWN,&ierr);
-   if (ierr != UT_OK){                 /* ≈pningsfeil */
+   if (ierr != UT_OK){                 /* Åpningsfeil */
       return -1;
    }
 

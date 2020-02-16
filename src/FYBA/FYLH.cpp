@@ -3,9 +3,9 @@ CH FYLH        AR-900503                                  BIBLIOTEK
 CD =================================================================
 CD
 CD Eier.......: STATENS KARTVERK / FYSAK-prosjektet
-CD Ansvarlig..: Georg Langerak / Andreas Røstad
+CD Ansvarlig..: Georg Langerak / Andreas RÂ¯stad
 CD
-CD Rutiner for å handtere hodet på SOSI-filer når dette ligger
+CD Rutiner for Ã‚ handtere hodet pÃ‚ SOSI-filer nÃ‚r dette ligger
 CD som ginfo i RB.
 CD  ==============================================================
 */
@@ -26,30 +26,30 @@ extern LC_SYSTEMADM Sys;
 AR:2000-10-07
 CH LC_PutTransEx                                 Legger inn ..TRANSPAR i hodet
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Legger inn innholdet under ..TRANSPAR i ginfo i aktuell gruppe.
 CD OBS! Forutsetter at aktuell gruppe er et SOSI-filhode versjon 3.x.
 CD
-CD Må velge mellom KOORDSYS, TRANSSYS eller GEOSYS.
+CD MÃ‚ velge mellom KOORDSYS, TRANSSYS eller GEOSYS.
 CD Kun en av disse kan benyttes i filhodet. 
-CD KOORDSYS er den mest vanlige måte å definere referansesystem. 
+CD KOORDSYS er den mest vanlige mÃ‚te Ã‚ definere referansesystem. 
 CD 
 CD GEOKOORD skal benyttes for GEOSYS og for TRANSSYS 
 CD
-CD Må velge mellom VERT-DATUM eller VERT-INT.
-CD VERT-DATUM er den mest vanlige beskrivelsesmåten. 
+CD MÃ‚ velge mellom VERT-DATUM eller VERT-INT.
+CD VERT-DATUM er den mest vanlige beskrivelsesmÃ‚ten. 
 CD
-CD Følgende kompaktifisering brukes:
+CD FÂ¯lgende kompaktifisering brukes:
 CD     ..TRANSPAR 
 CD     ...KOORDSYS <SYSKODE> <DATUM> <PROJEK> 
 CD     ...TRANSSYS <TILSYS> <KONSTA1> <KONSTB1> <KONSTA2> <KONSTB2> <KONSTC1> <KONSTC2> 
 CD     ...GEOSYS <GEO-DATUM> <GEO-PROJ> <GEO-SONE> 
 CD     ...GEOKOORD <GEOKOORD> 
-CD     ...ORIGO-NØ <ORIGO-N> <ORIGO-Ø> 
+CD     ...ORIGO-NÃ˜ <ORIGO-N> <ORIGO-Ã˜>
 CD     ...ENHET <ENHET> 
 CD     ...ENHET-H <ENHET-H> 
 CD     ...ENHET-D <ENHET-D> 
-CD     ...VERT-DATUM <HØYDE-REF> <DYBDE-REF> <FRISEIL-REF> <HØYDE-TYPE> 
+CD     ...VERT-DATUM <HÃ˜YDE-REF> <DYBDE-REF> <FRISEIL-REF> <HÃ˜YDE-TYPE> 
 CD     ...VERT-INT <H-REF-INT> <D-REF-INT> <F-REF-INT> 
 CD     ...VERT-DELTA <V-DELTA-MIN> <V-DELTA-MAX>
 CD
@@ -58,12 +58,12 @@ CD Parametre:
 CD Type           Navn    I/U  Forklaring
 CD --------------------------------------------------------------------------
 CD unsigned short usMaske  i   Maske som styrer hvilke deler av TRANSPAR som brukt
-CD                             Følgende konstanter er definert:       
+CD                             FÂ¯lgende konstanter er definert:       
 CD                              LC_TR_KOORDSYS - Koordsys             
 CD                              LC_TR_TRANSSYS - Transsys             
 CD                              LC_TR_GEOSYS - Geosys                 
 CD                              LC_TR_GEOKOORD - Geokoord             
-CD                              LC_TR_ORIGO - Origo-nø                
+CD                              LC_TR_ORIGO - Origo-nÂ¯                
 CD                              LC_TR_ENHET - Enhet                   
 CD                              LC_TR_ENHETH - Enhet-h                
 CD                              LC_TR_ENHETD - Enhet-d                
@@ -115,7 +115,7 @@ SK_EntPnt_FYBA short LC_PutTransEx(unsigned short usMaske, LC_TRANSPAR * pTrans)
          i++;
          if (i <= ngi)  cp = LC_GetGi(i);
       } while ( i <= ngi  &&  cp[2] == '.' );
-      /* i peker nå til første linje etter hele ..TRANSPAR med undernivåer */
+      /* i peker nÃ‚ til fÂ¯rste linje etter hele ..TRANSPAR med undernivÃ‚er */
 
       LC_DelGiL(lin,(short)(i-lin));
    }
@@ -161,7 +161,7 @@ SK_EntPnt_FYBA short LC_PutTransEx(unsigned short usMaske, LC_TRANSPAR * pTrans)
 
    /* Origo */
    if ((usMaske & LC_TR_ORIGO) != 0) {
-      UT_SNPRINTF(szGiLin, LC_MAX_SOSI_LINJE_LEN, "...ORIGO-NØ %.0f  %.0f", pTrans->Origo.dNord, pTrans->Origo.dAust);
+      UT_SNPRINTF(szGiLin, LC_MAX_SOSI_LINJE_LEN, "...ORIGO-NÃ˜ %.0f  %.0f", pTrans->Origo.dNord, pTrans->Origo.dAust);
       LC_PutGi(LC_AppGiL(),szGiLin);
    }
 
@@ -220,19 +220,19 @@ SK_EntPnt_FYBA short LC_PutTransEx(unsigned short usMaske, LC_TRANSPAR * pTrans)
 AR-910920
 CH LC_PutTrans                                 Legger inn ..TRANSPAR i hodet
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Legger inn transformasjonsparametrene i ginfo i aktuell gruppe.
 CD Forutsetter at aktuell gruppe er et SOSI-filhode versjon 3.x.
 CD
 CD OBS! Denne rutinen opprettholdes bare for bakoverkompatibilitet.
-CD      For nye programmer bør LC_PutTransEx benyttes. LC_PutTransEx er
+CD      For nye programmer bÂ¯r LC_PutTransEx benyttes. LC_PutTransEx er
 CD      kompatibel med nye versjoner av SOSI.
 CD
 CD Parametre:
 CD Type     Navn      I/U   Forklaring
 CD --------------------------------------------------------------------------
 CD short    koosys     i    Koordinatsystem
-CD double   origo_a    i    Origo øst
+CD double   origo_a    i    Origo Â¯st
 CD double   origo_n    i    Origo nord
 CD double   enhet      i    Enhet
 CD double   enhet_h    i    Enhet-H
@@ -254,7 +254,7 @@ SK_EntPnt_FYBA short LC_PutTrans(short koosys,double origo_a,double origo_n,
            UT_SNPRINTF(c,80,"%d",koosys);
            ngi = LC_PutGP("...KOORDSYS",c,&i);
            UT_SNPRINTF(c,80," %.0f  %.0f",origo_n,origo_a);
-           ngi = LC_PutGP("...ORIGO-NØ",c,&i);
+           ngi = LC_PutGP("...ORIGO-NÃ˜",c,&i);
            linje_enhet = 2;              
            LC_GetGP("...ENHET",&linje_enhet,ngi);
            LC_PutGi(linje_enhet,LB_FormaterEnhet(c,80,"...ENHET",enhet));
@@ -318,17 +318,17 @@ SK_EntPnt_FYBA short LC_PutTrans(short koosys,double origo_a,double origo_n,
 AR:2000-10-07
 CH LC_GetTransEx                                 Henter ..TRANSPAR fra hodet
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Henter ut innholdet under ..TRANSPAR fra ginfo i aktuell gruppe.
 CD OBS! Forutsetter at aktuell gruppe er et SOSI-filhode.
 CD
-CD Må velge mellom KOORDSYS, TRANSSYS eller GEOSYS. Kun en av disse kan benyttes i filhodet. 
-CD KOORDSYS er den mest vanlige måte å definere referansesystem. 
+CD MÃ‚ velge mellom KOORDSYS, TRANSSYS eller GEOSYS. Kun en av disse kan benyttes i filhodet. 
+CD KOORDSYS er den mest vanlige mÃ‚te Ã‚ definere referansesystem. 
 CD 
 CD GEOKOORD skal benyttes for GEOSYS og for TRANSSYS 
 CD
-CD Må velge mellom VERT-DATUM eller VERT-INT.
-CD VERT-DATUM er den mest vanlige beskrivelsesmåten. 
+CD MÃ‚ velge mellom VERT-DATUM eller VERT-INT.
+CD VERT-DATUM er den mest vanlige beskrivelsesmÃ‚ten. 
 CD
 
 CD Parametre:
@@ -336,13 +336,13 @@ CD Type            Navn      I/U   Forklaring
 CD --------------------------------------------------------------------------
 CD unsigned short *pusMaske  iu   [Inn] Styrer hvilke deler av TRANSPAR som skal hentes
 CD                                [Ut]  Viser hvilke deler av TRANSPAR som er funnet/hentet.
-CD                                Følgende konstanter er definert:
+CD                                FÂ¯lgende konstanter er definert:
 CD                                  LC_TR_ALLT - Alle deler av ..TRANSPAR hentes
 CD                                  LC_TR_KOORDSYS - Koordsys
 CD                                  LC_TR_TRANSSYS - Transsys
 CD                                  LC_TR_GEOSYS - Geosys
 CD                                  LC_TR_GEOKOORD - Geokoord
-CD                                  LC_TR_ORIGO - Origo-nø
+CD                                  LC_TR_ORIGO - Origo-nÂ¯
 CD                                  LC_TR_ENHET - Enhet
 CD                                  LC_TR_ENHETH - Enhet-h
 CD                                  LC_TR_ENHETD - Enhet-d
@@ -456,7 +456,7 @@ SK_EntPnt_FYBA short LC_GetTransEx(unsigned short *pusMaske, LC_TRANSPAR * pTran
       //pTrans->dOrigoAust = 0.0;                           
       //pTrans->dOrigoNord = 0.0;                           
       lin = 2;
-      if ((cp = LC_GetGP("...ORIGO-NØ",&lin,ngi)) != NULL) {
+      if ((cp = LC_GetGP("...ORIGO-NÃ˜",&lin,ngi)) != NULL) {
          *pusMaske |= LC_TR_ORIGO;
          UT_StrDbl(cp,0,&itxi,'.',&pTrans->Origo.dNord);
          UT_StrDbl(cp,itxi,&itxi,'.',&pTrans->Origo.dAust);
@@ -568,12 +568,12 @@ GL-880427
 AR-910920
 CH LC_GetTrans                                     Finner ..TRANSPAR i hodet
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Henter ut transformasjonsparametrene fra ginfo i aktuell gruppe.
 CD Forutsetter at aktuell gruppe er et SOSI-filhode.
 CD
 CD OBS! Denne rutinen opprettholdes bare for bakoverkompatibilitet.
-CD      For nye programmer bør LC_GetTransEx benyttes. LC_GetTransEx er
+CD      For nye programmer bÂ¯r LC_GetTransEx benyttes. LC_GetTransEx er
 CD      kompatibel med nye versjoner av SOSI.
 CD
 CD
@@ -581,7 +581,7 @@ CD Parametre:
 CD Type     Navn      I/U   Forklaring
 CD --------------------------------------------------------------------------
 CD short   *koosys     u    Koordinatsystem
-CD double  *origo_a    u    Origo øst
+CD double  *origo_a    u    Origo Â¯st
 CD double  *origo_n    u    Origo nord
 CD double  *enhet      u    Enhet
 CD double  *enhet_h    u    ...ENHET-H
@@ -626,7 +626,7 @@ SK_EntPnt_FYBA short LC_GetTrans(short *koosys,double *origo_a,double *origo_n,d
                    *origo_a = 0.0;                            /* Origo */
                    *origo_n = 0.0;
                    lin = 2;
-                   cp = LC_GetGP("...ORIGO-NØ",&lin,ngi);
+                   cp = LC_GetGP("...ORIGO-NÃ˜",&lin,ngi);
                    if (cp == NULL) {
                        LC_Error(16,"(LC_GetTrans)","");
                        ist = UT_FALSE;
@@ -678,7 +678,7 @@ SK_EntPnt_FYBA short LC_GetTrans(short *koosys,double *origo_a,double *origo_n,d
 AR-920401
 CH LC_GetTegnsett                                            Finner tegnsett
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Finne tegnsett i ginfo i aktuell gruppe.
 CD OBS! Forutsetter at aktuell gruppe er et SOSI-filhode.
 CD
@@ -753,7 +753,7 @@ SK_EntPnt_FYBA short LC_GetTegnsett(short *psTegnsett)
 AR-920401
 CH LH_GetNgisLag                                           Finner NGIS-LAG
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Finne NGIS-LAG i ginfo i aktuell gruppe.
 CD OBS! Forutsetter at aktuell gruppe er et SOSI-filhode.
 CD
@@ -796,18 +796,18 @@ char* LH_GetNgisLag(void)
 
 /*
 AR-910920
-CH LC_PutOmr                                     Legger inn ..OMRÅDE i hodet
+CH LC_PutOmr                                     Legger inn ..OMRÃ…DE i hodet
 CD ==========================================================================
-CD Formål:
-CD Legger inn område i ginfo i aktuell gruppe.
-CD Hvis område ikke har noen utstrekning justeres
+CD FormÃ‚l:
+CD Legger inn omrÃ‚de i ginfo i aktuell gruppe.
+CD Hvis omrÃ‚de ikke har noen utstrekning justeres
 CD dette med 1 meter i hver retning. 
 CD OBS! Forutsetter at aktuell gruppe er et SOSI-filhode av ny type.
 CD
 CD Parametre:
 CD Type     Navn      I/U   Forklaring
 CD --------------------------------------------------------------------------
-CD double   nv_a       i    Område
+CD double   nv_a       i    OmrÃ‚de
 CD double   nv_n       i
 CD double   oh_a       i
 CD double   oh_n       i
@@ -835,7 +835,7 @@ SK_EntPnt_FYBA short LC_PutOmr(double nv_a,double nv_n,double oh_a,double oh_n)
            dOH_N = UT_RoundDD(ceil(oh_n));
            dOH_A = UT_RoundDD(ceil(oh_a));
 
-           // Hvis nødvendig justeres område
+           // Hvis nÂ¯dvendig justeres omrÃ‚de
            if (fabs(dOH_N-dNV_N) < 0.00000001) {
                dNV_N -= 1.0;
                dOH_N += 1.0;
@@ -846,10 +846,10 @@ SK_EntPnt_FYBA short LC_PutOmr(double nv_a,double nv_n,double oh_a,double oh_n)
            }
 
            UT_SNPRINTF( c,80, " %.0f  %.0f", dNV_N, dNV_A );
-           if (LC_PutGP("...MIN-NØ",c,&i)) {
+           if (LC_PutGP("...MIN-NÃ˜",c,&i)) {
 
                UT_SNPRINTF( c, 80, " %.0f  %.0f", dOH_N, dOH_A );
-               if (LC_PutGP("...MAX-NØ",c,&i)){
+               if (LC_PutGP("...MAX-NÃ˜",c,&i)){
                    ist = UT_TRUE;
                }
            }
@@ -868,16 +868,16 @@ SK_EntPnt_FYBA short LC_PutOmr(double nv_a,double nv_n,double oh_a,double oh_n)
 
 /*
 AR-910920
-CH LC_GetOmr                                         Finner ..OMRÅDE i hodet
+CH LC_GetOmr                                         Finner ..OMRÃ…DE i hodet
 CD ==========================================================================
-CD Formål:
-CD Henter ut område fra ginfo i aktuell gruppe.
+CD FormÃ‚l:
+CD Henter ut omrÃ‚de fra ginfo i aktuell gruppe.
 CD OBS! Forutsetter at aktuell gruppe er et SOSI-filhode.
 CD
 CD Parametre:
 CD Type     Navn      I/U   Forklaring
 CD --------------------------------------------------------------------------
-CD double  *nv_a       u    Område
+CD double  *nv_a       u    OmrÃ‚de
 CD double  *nv_n       u
 CD double  *oh_a       u
 CD double  *oh_n       u
@@ -899,7 +899,7 @@ SK_EntPnt_FYBA short LC_GetOmr(double *nv_a,double *nv_n,double *oh_a,double *oh
        if (Sys.pGrInfo->gnavn == L_HODE) {        /* Aktuell gruppe .HODE */
            LC_GetGrPara(&ngi,&nko,&info);
            lin=2;
-           if (LC_GetGP("..OMRÅDE",&lin,ngi) == NULL) { 
+           if (LC_GetGP("..OMRÃ…DE",&lin,ngi) == NULL) {
                LC_Error(7,"(LC_GetOmr)","");
                *nv_n = -9999999.0;
                *nv_a = -9999999.0;
@@ -907,9 +907,9 @@ SK_EntPnt_FYBA short LC_GetOmr(double *nv_a,double *nv_n,double *oh_a,double *oh
                *oh_a =  9999999.0;
                ist = UT_FALSE;
            } else {
-               /* Min-NØ */
+               /* Min-NÃ˜ */
                i = lin;
-               cp = LC_GetGP("...MIN-NØ",&i,ngi);
+               cp = LC_GetGP("...MIN-NÃ˜",&i,ngi);
                if (cp == NULL){
                   LC_Error(8,"(LC_GetOmr)","");
                   ist = UT_FALSE;
@@ -918,9 +918,9 @@ SK_EntPnt_FYBA short LC_GetOmr(double *nv_a,double *nv_n,double *oh_a,double *oh
                } else{
                    *nv_n = strtod(cp,&cp);
                    *nv_a = strtod(cp,&cp);
-                   /* Max-NØ */
+                   /* Max-NÃ˜ */
                    i = lin;
-                   cp = LC_GetGP("...MAX-NØ",&i,ngi);
+                   cp = LC_GetGP("...MAX-NÃ˜",&i,ngi);
                    if (cp == NULL){
                       LC_Error(9,"(LC_GetOmr)","");
                       ist = UT_FALSE;
@@ -952,7 +952,7 @@ SK_EntPnt_FYBA short LC_GetOmr(double *nv_a,double *nv_n,double *oh_a,double *oh
 AR-910920
 CH LC_NyttHode                                               Lager nytt hode
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Legger inn et standard SOSI-filhode i ginfo i aktuell gruppe.
 CD
 CD Parametre:
@@ -982,14 +982,14 @@ SK_EntPnt_FYBA void LC_NyttHode(void)
 
                                            /* Generer nytt hode */
        LC_PutGi(1,".HODE");
-       LC_PutGi(2,"..TEGNSETT ISO8859-10");
+       LC_PutGi(2,"..TEGNSETT UTF-8");
        LC_PutGi(3,"..TRANSPAR");
        LC_PutGi(4,"...KOORDSYS 0");
-       LC_PutGi(5,"...ORIGO-NØ  0  0");
+       LC_PutGi(5,"...ORIGO-NÃ˜  0  0");
        LC_PutGi(6,"...ENHET 0.01");
-       LC_PutGi(7,"..OMRÅDE");
-       LC_PutGi(8,"...MIN-NØ   -99999   -99999");
-       LC_PutGi(9,"...MAX-NØ  1999999  1999999");
+       LC_PutGi(7,"..OMRÃ…DE");
+       LC_PutGi(8,"...MIN-NÃ˜   -99999   -99999");
+       LC_PutGi(9,"...MAX-NÃ˜  1999999  1999999");
 
        //LC_PutGi(10,"..SOSI-VERSJON  3.0");
        UT_SNPRINTF(szTx,100,"..SOSI-VERSJON %.2f",((double)FYBA_SOSI_VERSJON)/100.0);
@@ -1004,7 +1004,7 @@ SK_EntPnt_FYBA void LC_NyttHode(void)
 AR-910920
 CH LC_TestHode                                             Tester SOSI-hodet
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Sjekker at ginfo i aktuell gruppe er et lovlig SOSI-filhode.
 CD
 CD Parametre:

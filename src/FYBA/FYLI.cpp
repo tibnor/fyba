@@ -106,10 +106,10 @@ short LI_TestIdx(char *szSosFil)
 
 /*
 AR-910929
-CH LI_OpenInit                              ≈pner og nullstiller indeksfilene
+CH LI_OpenInit                              Åpner og nullstiller indeksfilene
 CD ==========================================================================
 CD FormÂl:
-CD ≈pner indeksfilene og nullstiller tabellene.
+CD Åpner indeksfilene og nullstiller tabellene.
 CD
 CD Parametre:
 CD Type       Navn  I/U   Forklaring
@@ -158,7 +158,7 @@ short LI_OpenInit(LC_FILADM *pFil)
    UT_CreateDir(fil);
 
 
-   // ----- ≈pner indeksfilene
+   // ----- Åpner indeksfilene
 
    /* -------------- Adm ------------- */
    pF = LI_OpenAdm(pFil);
@@ -205,10 +205,10 @@ short LI_OpenInit(LC_FILADM *pFil)
 
 /*
 AR-910930
-CH LI_OpenRead                                   ≈pner og leser indeksfilene
+CH LI_OpenRead                                   Åpner og leser indeksfilene
 CD ==========================================================================
 CD FormÂl:
-CD ≈pner indeksfilene og leser inn tabellene.
+CD Åpner indeksfilene og leser inn tabellene.
 CD
 CD Parametre:
 CD Type       Navn  I/U Forklaring
@@ -436,7 +436,7 @@ void LI_Close(LC_FILADM *pFil,short s_stat)
    if (s_stat == SAVE_IDX  &&  pFil->pIdx != NULL  &&  *Sys.szIdxPath == '\0') {
 
       /* Gruppetabellen */
-      pF = LI_OpenGrt(pFil);     /* ≈pne og posisjoner */
+      pF = LI_OpenGrt(pFil);     /* Åpne og posisjoner */
       for (lGrNr=0; lGrNr<pFil->lAntGr; lGrNr++) {
 			if (fwrite(LI_GetGrt(pFil,lGrNr),sizeof (LC_GRTAB_LINJE),1,pF) != 1) {
             LC_Error(112,"(LI_Close)","");
@@ -446,7 +446,7 @@ void LI_Close(LC_FILADM *pFil,short s_stat)
       fclose(pF);
 
       /* Brukttabellen */
-      pF = LI_OpenBt(pFil);     /* ≈pne og posisjoner */
+      pF = LI_OpenBt(pFil);     /* Åpne og posisjoner */
       for (lGrNr=0; lGrNr<pFil->lAntGr; lGrNr++) {
          flag = LI_GetBt(pFil,lGrNr);
          if (fwrite(&flag,sizeof flag,1,pF) != 1) {
@@ -457,7 +457,7 @@ void LI_Close(LC_FILADM *pFil,short s_stat)
       fclose(pF);
 
       /*Serienummertabellen */
-      pF = LI_OpenSnr(pFil);     /* ≈pne og posisjoner */
+      pF = LI_OpenSnr(pFil);     /* Åpne og posisjoner */
       for (lSnr=0; lSnr<=pFil->lMaxSnr; lSnr++) {
          lGrNr = LI_GetSnr(pFil,lSnr);
          if (fwrite(&lGrNr,sizeof lGrNr,1,pF) != 1) {
@@ -468,7 +468,7 @@ void LI_Close(LC_FILADM *pFil,short s_stat)
       fclose(pF);
 
       /* Geografisk s¯ketabell */
-      pF = LI_OpenGeo(pFil);     /* ≈pne og posisjoner */
+      pF = LI_OpenGeo(pFil);     /* Åpne og posisjoner */
       for (lGrNr=0; lGrNr<pFil->lAntGr; lGrNr++) {
          pRL = LI_GetGeo(pFil,lGrNr);
 
@@ -506,10 +506,10 @@ void LI_Close(LC_FILADM *pFil,short s_stat)
 
 /*
 AR-910929
-CH LI_OpenIdxFil                                              ≈pne indeksfil
+CH LI_OpenIdxFil                                              Åpne indeksfil
 CD ==========================================================================
 CD FormÂl:
-CD ≈pner indeksfil pÂ rett katalog
+CD Åpner indeksfil pÂ rett katalog
 CD
 CD Parametre:
 CD Type        Navn    I/U   Forklaring
@@ -550,7 +550,7 @@ static FILE *LI_OpenIdxFil(LC_FILADM *pFil, const char *pszNavn, const char *psz
       UT_makepath(fil,drive1,dir1,pszNavn,pszType);
    }
 
-	// ≈ner filen
+	// Åner filen
    pF = UT_OpenFile(fil,"",UT_UPDATE,UT_UNKNOWN,&ierr);
    if (ierr != UT_OK){
       char szError[256];
@@ -569,7 +569,7 @@ static FILE *LI_OpenIdxFil(LC_FILADM *pFil, const char *pszNavn, const char *psz
 
 /*
 AR-910929
-CH LI_OpenAdm                                     ≈pne og posisjoner, Adm
+CH LI_OpenAdm                                     Åpne og posisjoner, Adm
 CD ==========================================================================
 CD FormÂl:
 CD Sjekker at rett Adm-fil er Âpen, og posisjoner
@@ -594,7 +594,7 @@ static FILE *LI_OpenAdm(LC_FILADM *pFil)
 
 /*
 AR-910929
-CH LI_OpenGrt                                     ≈pne og posisjoner, Grt
+CH LI_OpenGrt                                     Åpne og posisjoner, Grt
 CD ==========================================================================
 CD FormÂl:
 CD Sjekker at rett Grt-fil er Âpen, og posisjoner
@@ -619,7 +619,7 @@ static FILE *LI_OpenGrt(LC_FILADM *pFil)
 
 /*
 AR-910929
-CH LI_OpenGeo                                     ≈pne og posisjoner, Geo
+CH LI_OpenGeo                                     Åpne og posisjoner, Geo
 CD ==========================================================================
 CD FormÂl:
 CD Sjekker at rett Geo-fil er Âpen, og posisjoner
@@ -644,7 +644,7 @@ static FILE *LI_OpenGeo(LC_FILADM *pFil)
 
 /*
 AR-910929
-CH LI_OpenSnr                                     ≈pne og posisjoner, Snr
+CH LI_OpenSnr                                     Åpne og posisjoner, Snr
 CD ==========================================================================
 CD FormÂl:
 CD Sjekker at rett Snr-fil er Âpen, og posisjoner
@@ -669,10 +669,10 @@ static FILE *LI_OpenSnr(LC_FILADM *pFil)
 
 /*
 AR-910929
-CH LI_OpenBt                                     ≈pne og posisjoner, Bt
+CH LI_OpenBt                                     Åpne og posisjoner, Bt
 CD ==========================================================================
 CD FormÂl:
-CD ≈pne Bt-fil, og posisjoner
+CD Åpne Bt-fil, og posisjoner
 CD
 CD Parametre:
 CD Type       Navn  I/U   Forklaring
@@ -1377,7 +1377,7 @@ void LI_SaveAdm(LC_FILADM *pFil)
    FTID FilTid;
    FILE *pF;
 
-   /* ≈pner Adm-fil, og posisjonerer */
+   /* Åpner Adm-fil, og posisjonerer */
    pF = LI_OpenAdm(pFil);
 
    /* Filst¯rrelse for SOSI-filen */
@@ -1410,7 +1410,7 @@ AR-891120
 CH LI_ReadAdm                            Les globale variabler fra indeksfil
 CD ==========================================================================
 CD FormÂl:
-CD ≈pner Adm-filen, og henter "globale" variabler fra indeksfilen.
+CD Åpner Adm-filen, og henter "globale" variabler fra indeksfilen.
 CD
 CD Parametre: ingen
 CD Type       Navn   I/U   Forklaring
@@ -1444,7 +1444,7 @@ static short LI_ReadAdm(LC_FILADM *pFil)
    short  sStatus = UT_OK;         
 
 
-   /* ≈pner Adm-fil, og posisjonerer */
+   /* Åpner Adm-fil, og posisjonerer */
    pF = LI_OpenAdm(pFil);
 
    /* Tar vare pÂ div. adm som ikke mÂ bli overskrevet av adm fra filen */
@@ -1593,7 +1593,7 @@ void LI_WriteRb(LC_FILADM *pFil, UT_INT64 n64FilPos,
    short sSkrivefeil = UT_FALSE;
    FILE *pF;
 
-   /* ≈pner RB-fil, og posisjonerer */
+   /* Åpner RB-fil, og posisjonerer */
    LI_OpenRb(pFil,n64FilPos,SKRIV);
    pF = pFil->pBase->pfRb;
 
@@ -1605,7 +1605,7 @@ void LI_WriteRb(LC_FILADM *pFil, UT_INT64 n64FilPos,
    }
 
    if (lNko > 0) {
-      /* ÿst koordinat */
+      /* Øst koordinat */
       if (fwrite(pdAust,(sizeof(double))*lNko,1,pF) != 1) {
          sSkrivefeil = UT_TRUE;
       }
@@ -1674,7 +1674,7 @@ void LI_ReadRb(LC_FILADM *pFil, UT_INT64 n64FilPos,
    short sLesefeil = UT_FALSE;
    FILE *pF;
 
-   /* ≈pner RB-fil, og posisjonerer */
+   /* Åpner RB-fil, og posisjonerer */
    LI_OpenRb(pFil,n64FilPos,LES);
    pF = pFil->pBase->pfRb;
 
@@ -1768,7 +1768,7 @@ void LI_ReadCoordRb(LC_FILADM *pFil, UT_INT64 n64FilPos, unsigned long ulGiLen,
    short sLesefeil = UT_FALSE;
    FILE *pF;
 
-   /* ≈pner RB-fil, og posisjonerer */
+   /* Åpner RB-fil, og posisjonerer */
    LI_OpenRb(pFil,n64FilPos+(UT_INT64)ulGiLen,LES);
    pF = pFil->pBase->pfRb;
 
@@ -1830,7 +1830,7 @@ CD                        Sys.pGrInfo->ulPiLen);
 long LI_BerBufferLen(unsigned long ulGiLen,long lNko,unsigned long ulPiLen)
 {
             /* GINFO */
-            /* Koordinat ÿ og N */
+            /* Koordinat Ø og N */
             /* H¯yde, KP og PINFO-ofsett */
             /* PINFO */
    return  ((long)sizeof(char) * (long)ulGiLen) +
@@ -1845,7 +1845,7 @@ long LI_BerBufferLen(unsigned long ulGiLen,long lNko,unsigned long ulPiLen)
    /* GINFO */
    lLen = (sizeof(char)) * ulGiLen;
 
-   /* Koordinat ÿ og N */
+   /* Koordinat Ø og N */
    lLen += 2L * (sizeof(double)) * lNko;
 
    /* H¯yde, KP og PINFO-ofsett */
@@ -1861,7 +1861,7 @@ long LI_BerBufferLen(unsigned long ulGiLen,long lNko,unsigned long ulPiLen)
 
 /*
 AR-910929
-CH LI_OpenRb                                         ≈pne og posisjoner, Rb
+CH LI_OpenRb                                         Åpne og posisjoner, Rb
 CD ==========================================================================
 CD FormÂl:
 CD Sjekker at rett Rb-fil er Âpen, og posisjoner

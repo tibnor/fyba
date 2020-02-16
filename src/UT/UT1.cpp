@@ -75,7 +75,7 @@ CD  ==================================================================
 /*
 GL-890215
 AR-911006
-CH UT_OpenFile                                          ≈pner og sjekker fil
+CH UT_OpenFile                                          Åpner og sjekker fil
 CD ==========================================================================
 CD Bruk:
 CD  fp = UT_OpenFile("TULLFILA","DAT",READ,OLD,&ierr);
@@ -86,12 +86,12 @@ CD --------------------------------------------------------------------------
 CD const char *fnam       i    Filnavn inkl. type (Max 46 tegn inkl. '\0')
 CD const char *ftyp       i    Filtype (extention) (Max 4 tegn inkl. '\0')
 CD short   facc        i    Aksess (0=UT_READ,1=UT_WRITE,2=UT_UPDATE)
-CD short   exist       i    ≈pningstatus (0=UT_UNKNOWN,1=UT_OLD,2=UT_NEW)
+CD short   exist       i    Åpningstatus (0=UT_UNKNOWN,1=UT_OLD,2=UT_NEW)
 CD short   &ierr       u    (UT_OK,UT_ERROR eller skriv printf(strerror(ierr));
 CD FILE    filpeker    r    filpeker.
 CD
 CD FormÂl:
-CD     ≈pner en fil med angitt aksess og Âpningstatus.
+CD     Åpner en fil med angitt aksess og Âpningstatus.
 CD     returnerer status som kan benyttes videre eller utskrives
 	==========================================================================
 */

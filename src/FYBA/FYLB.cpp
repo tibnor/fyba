@@ -1,7 +1,7 @@
 /* === 920909 ============================================================ */
 /*  STATENS KARTVERK  -  FYSAK-PC                                          */
 /*  Fil: fylb.c                                                            */
-/*  Ansvarlig: Andreas Røstad                                              */
+/*  Ansvarlig: Andreas RÂ¯stad                                              */
 /*  Innhold: Bufferhandteringsrutiner for fysak-pc                         */
 /* ======================================================================= */
 
@@ -17,7 +17,7 @@
 
 /* Globale strukturer */
 extern LC_SYSTEMADM Sys;
-extern volatile short fyba_initiert;    /* Bryter for å vise at LC_Init er utført */
+extern volatile short fyba_initiert;    /* Bryter for Ã‚ vise at LC_Init er utfÂ¯rt */
 
 
 /*  Funksjonsdefinisjoner for interne funksjoner */
@@ -34,7 +34,7 @@ static void LR_TestEndreBuepTilKurve(double dDeltaFi);
 AR-911011
 CH LC_GetGrFi                                              Hent gruppe-filnr
 CD =============================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Henter peker til FilAdm for aktuell gruppe.
 CD
 CD Parametre:
@@ -65,7 +65,7 @@ SK_EntPnt_FYBA short LC_GetGrFi(LC_FILADM **ppFil)
 AR-911008
 CH LC_InitNextFil                                     Initier finn neste fil
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Initierer pFil for bruk i finn neste fil.
 CD
 CD Parametre:
@@ -87,21 +87,21 @@ SK_EntPnt_FYBA void LC_InitNextFil(LC_FILADM **ppFil)
 AR-911008
 CH LC_NextFil                                                 Finn neste fil
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Finn neste fil i aktuell base.
 CD
 CD Parametre:
 CD Type           Navn    I/U   Forklaring
 CD --------------------------------------------------------------------------
 CD LC_FILADM    **ppFil   iu   Peker til FilAdm-peker
-CD unsigned short usLag    i   Velg hvilke "lag" det skal søkes i.
+CD unsigned short usLag    i   Velg hvilke "lag" det skal sÂ¯kes i.
 CD                               LC_FRAMGR, LC_BAKGR og /eller LC_SEKV
-CD                               (Bruk "|" for å kombinere.)
+CD                               (Bruk "|" for Ã‚ kombinere.)
 CD short          sStatus  r   Status  UT_TRUE=OK, UT_FALSE=ingen flere funnet
 CD
 CD Bruk:
 CD     LC_FILADM *pFil;
-CD               Denne løkka går gjennom alle framgrunns-filene i basen
+CD               Denne lÂ¯kka gÃ‚r gjennom alle framgrunns-filene i basen
 CD     LC_InitNextFil(&pFil)
 CD     while (LC_NextFil(&pFil,LC_FRAMGR)) {
 CD       pszFilNavn = LC_GetFiNa(pFil);
@@ -115,7 +115,7 @@ SK_EntPnt_FYBA short LC_NextFil(LC_FILADM **ppFil,unsigned short usLag)
 {
    LC_FILADM *pF;
 
-   /* Første gang */
+   /* FÂ¯rste gang */
    if (*ppFil == (void *)-1L) {
       pF = Sys.pAktBase->pForsteFil;
 
@@ -146,7 +146,7 @@ SK_EntPnt_FYBA short LC_NextFil(LC_FILADM **ppFil,unsigned short usLag)
 AR-911001
 CH LC_InitNextBgr                                  Initier finn neste gruppe
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Initierer Bgr for bruk i finn neste gruppe.
 CD
 CD Parametre:
@@ -169,22 +169,22 @@ SK_EntPnt_FYBA void LC_InitNextBgr(LC_BGR * pBgr)
 AR-911003
 CH LC_NextBgr                                              Finn neste gruppe
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Finn neste gruppe i aktuell base.
-CD Sekvensielle filer blir ikke håndtert.
+CD Sekvensielle filer blir ikke hÃ‚ndtert.
 CD
 CD Parametre:
 CD Type           Navn    I/U   Forklaring
 CD --------------------------------------------------------------------------
 CD LC_BGR *        pBgr    iu   Peker til gruppestruktur der gruppenummer lagres
-CD unsigned short usLag    i   Velg hvilke "lag" det skal søkes i.
+CD unsigned short usLag    i   Velg hvilke "lag" det skal sÂ¯kes i.
 CD                               LC_FRAMGR og /eller LC_BAKGR
-CD                               (Bruk "|" for å kombinere.)
+CD                               (Bruk "|" for Ã‚ kombinere.)
 CD short          sStatus  r   Status  UT_TRUE=OK, UT_FALSE=ingen flere grupper
 CD
 CD Bruk:
 CD     LC_BGR Bgr;
-CD               Denne løkka går gjennom alle framgrunns-gruppene i basen
+CD               Denne lÂ¯kka gÃ‚r gjennom alle framgrunns-gruppene i basen
 CD     LC_InitNextBgr(&Bgr);
 CD     while (LC_NextBgr(&Bgr,LC_FRAMGR)) {
 CD       gnavn = LC_RxGr(&Bgr,LES_OPTIMALT,&ngi,&nko,&info);
@@ -239,15 +239,15 @@ SK_EntPnt_FYBA short LC_NextBgr(LC_BGR * pBgr,unsigned short usLag)
 AR-911003
 CH LC_InqAntFiler                                  Finn antall filer i basen
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Finn antall filer i aktuell base.
 CD
 CD Parametre:
 CD Type           Navn    I/U  Forklaring
 CD -------------------------------------------------------------------
-CD unsigned short usLag    i   Velg hvilke "lag" det skal søkes i.
+CD unsigned short usLag    i   Velg hvilke "lag" det skal sÂ¯kes i.
 CD                               LC_FRAMGR og /eller LC_BAKGR
-CD                               (Bruk "|" for å kombinere.)
+CD                               (Bruk "|" for Ã‚ kombinere.)
 CD short          sAntall  r   Antall filer i aktuell base.
 CD
 CD Bruk:
@@ -276,7 +276,7 @@ SK_EntPnt_FYBA short LC_InqAntFiler(unsigned short usLag)
 AR-911001
 CH LC_GetGrNr                                             Hent gruppe-nummer
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Henter gruppenummer for aktuell gruppe.
 CD
 CD Parametre:
@@ -306,7 +306,7 @@ SK_EntPnt_FYBA short LC_GetGrNr(LC_BGR * pBgr)
 AR-911001
 CH LC_GetGrPara                                        Hent gruppe-parametre
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Henter diverse opplysninger om aktuell gruppe.
 CD
 CD Parametre:
@@ -314,13 +314,13 @@ CD Type    Navn   I/U   Forklaring
 CD-------------------------------------------------------------------------
 CD short   *ngi    u    Antall linjer GINFO
 CD long    *nko    u    Antall koordinater
-CD short   *info   u    Diverse informasjon. En sum av følgende:
+CD short   *info   u    Diverse informasjon. En sum av fÂ¯lgende:
 CD                        GI_PINFO = gruppen har PINFO
-CD                        GI_NAH   = gruppen har høyde informasjon (..NØH)
-CD                        GI_NAD   = gruppen har dybde informasjon (..NØD)
+CD                        GI_NAH   = gruppen har hÂ¯yde informasjon (..NÃ˜H)
+CD                        GI_NAD   = gruppen har dybde informasjon (..NÃ˜D)
 CD                        GI_KP    = gruppen har knutepunkt (...KP n)
 CD                        GI_REF   = gruppen har referanser (.. :n)
-CD                        GI_OY_REF= gruppen har referanser med øy
+CD                        GI_OY_REF= gruppen har referanser med Â¯y
 CD                        GI_NGIS      = gruppen er tatt ut fra NGIS for oppdat.
 CD                        GI_SLETTA    = gruppen er sletta (merka som sletta)
 CD                        GI_READ_ONLY = gruppen kan ikke endres.
@@ -354,22 +354,22 @@ SK_EntPnt_FYBA short LC_GetGrPara(short *ngi,long *nko,unsigned short *info)
 AR-900107
 CH LC_GetGrParaBgr                           Hent gruppe-parametre for gruppe
 CD =============================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Henter diverse opplysninger om gitt gruppenummer.
 CD
 CD Parametre:
 CD Type            Navn I/U  Forklaring
 CD------------------------------------------------------------------------------
-CD LC_BGR *         pBgr  i   Gruppenummer det ønskes opplysninger om.
+CD LC_BGR *         pBgr  i   Gruppenummer det Â¯nskes opplysninger om.
 CD short          *ngi   u   Antall linjer GINFO  (0=sletta eller ulovlig nummer)
 CD long           *nko   u   Antall koordinater
-CD unsigned short *info  u   Diverse informasjon. En sum av følgende:
+CD unsigned short *info  u   Diverse informasjon. En sum av fÂ¯lgende:
 CD                           GI_PINFO = gruppen har PINFO
-CD                           GI_NAH   = gruppen har høyde informasjon (..NØH)
-CD                           GI_NAD   = gruppen har døbde informasjon (..NØD)
+CD                           GI_NAH   = gruppen har hÂ¯yde informasjon (..NÃ˜H)
+CD                           GI_NAD   = gruppen har dÂ¯bde informasjon (..NÃ˜D)
 CD                           GI_KP    = gruppen har knutepunkt (...KP n)
 CD                           GI_REF   = gruppen har referanser (.. :n)
-CD                           GI_OY_REF= gruppen har referanser med øy
+CD                           GI_OY_REF= gruppen har referanser med Â¯y
 CD                           GI_NGIS      = gruppen er tatt ut fra NGIS for oppdat.
 CD                           GI_SLETTA    = gruppen er sletta (merka som sletta)
 CD                           GI_READ_ONLY = gruppen kan ikke endres.
@@ -418,13 +418,13 @@ SK_EntPnt_FYBA short LC_GetGrParaBgr(LC_BGR * pBgr,short *ngi,long *nko,unsigned
 AR-900107
 CH LC_GetObjtypeBgr                                             Hent objekttype
 CD =============================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Henter objekttype for gitt gruppenummer.
 CD
 CD Parametre:
 CD Type    Navn       I/U  Forklaring
 CD------------------------------------------------------------------------------
-CD LC_BGR *pBgr        i   Gruppenummer det ønskes opplysninger om.
+CD LC_BGR *pBgr        i   Gruppenummer det Â¯nskes opplysninger om.
 CD char   *pszObjtype  r   OBJTYPE
 CD                         NULL hvis gruppen ikke finnes
 CD
@@ -461,34 +461,34 @@ SK_EntPnt_FYBA const char *LC_GetObjtypeBgr(LC_BGR * pBgr)
 AR-911001
 CH LC_RsGr                                           Les gruppe sekvensielt
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Leser en datagruppe fra ekstern SOSI-fil inn i aktuell gruppe i ringbuffer.
 CD Rutinen tilsvarer put fra brukerprogram inn i ringbufferet, men rutinen
-CD tildeler selv nødvendig plass..
+CD tildeler selv nÂ¯dvendig plass..
 CD Gruppen beholder serienummer tildelt i LC_NyGr.
 CD Brukerindeks og geografisk-indeks blir ikke oppdatert.
-CD (Dette skjer først når gruppen skrives til basen.)
+CD (Dette skjer fÂ¯rst nÃ‚r gruppen skrives til basen.)
 CD
 CD Parametre:
 CD Type             Navn   I/U  Forklaring
 CD --------------------------------------------------------------------------
 CD short           *rstat  iu   Lesestatus
 CD                                Inn: 1=Les fra starten, 0=Les neste
-CD                                Ut:  0=OK, -1=slutten av filen er nådd
+CD                                Ut:  0=OK, -1=slutten av filen er nÃ‚dd
 CD LC_FILADM       *pFil    i   Peker til FilAdm
 CD short           *ngi     u   Antall linjer GINFO
 CD long            *nko     u   Antall koordinater
-CD unsigned short  *info    u   Diverse informasjon. En "sum" av følgende:
+CD unsigned short  *info    u   Diverse informasjon. En "sum" av fÂ¯lgende:
 CD                          GI_PINFO     = gruppen har PINFO
-CD                          GI_NAH       = gruppen har høyde informasjon (..NØH)
-CD                          GI_NAD       = gruppen har dybde informasjon (..NØD)
+CD                          GI_NAH       = gruppen har hÂ¯yde informasjon (..NÃ˜H)
+CD                          GI_NAD       = gruppen har dybde informasjon (..NÃ˜D)
 CD                          GI_KP        = gruppen har knutepunkt (...KP n)
 CD                          GI_REF       = gruppen har referanser (.. eller ..REF)
-CD                          GI_OY_REF    = gruppen har referanser med øy
+CD                          GI_OY_REF    = gruppen har referanser med Â¯y
 CD                          GI_NGIS      = gruppen er tatt ut fra NGIS for oppdat.
 CD                          GI_SLETTA    = gruppen er sletta (merka som sletta)
 CD                          GI_READ_ONLY = gruppen kan ikke endres.
-CD long             gml_snr u    Serienummer gruppen hadde på ekstern fil
+CD long             gml_snr u    Serienummer gruppen hadde pÃ‚ ekstern fil
 CD short            gnavn   r    Gruppenavn. (Se under $LENKE<LC_RxGr>)
 CD
 CD Bruk:
@@ -557,13 +557,13 @@ SK_EntPnt_FYBA short LC_RsGr(short *rstat,LC_FILADM *pFil,short *ngi,long *nko,
 AR-911001
 CH LC_RsHode                                        Les filhode sekvensiellt
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Leser et filhode fra ekstern SOSI-fil inn i aktuell gruppe i ringbuffer.
 CD Rutinen tilsvarer put fra brukerprogram inn i ringbufret, men rutinen
-CD tildeler selv nødvendig plass i RB.
+CD tildeler selv nÂ¯dvendig plass i RB.
 CD Denne rutinen er stort sett lik LC_RsGr, men LC_RsHode forandrer
-CD ikke aktuell filposisjon på den sekvensielle filen.
-CD Gruppen beholder serienummer hodet hadde på SOSI-filen.
+CD ikke aktuell filposisjon pÃ‚ den sekvensielle filen.
+CD Gruppen beholder serienummer hodet hadde pÃ‚ SOSI-filen.
 CD
 CD Parametre:
 CD Type             Navn   I/U  Forklaring
@@ -571,13 +571,13 @@ CD --------------------------------------------------------------------------
 CD LC_FILADM       *pFil    i   Peker til FilAdm
 CD short           *ngi     u   Antall linjer GINFO
 CD long            *nko     u   Antall koordinater
-CD unsigned short  *info    u   Diverse informasjon. En "sum" av følgende:
+CD unsigned short  *info    u   Diverse informasjon. En "sum" av fÂ¯lgende:
 CD                          GI_PINFO = gruppen har PINFO
-CD                          GI_NAH   = gruppen har høyde informasjon (..NØH)
-CD                          GI_NAD   = gruppen har dybde informasjon (..NØD)
+CD                          GI_NAH   = gruppen har hÂ¯yde informasjon (..NÃ˜H)
+CD                          GI_NAD   = gruppen har dybde informasjon (..NÃ˜D)
 CD                          GI_KP    = gruppen har knutepunkt (...KP n)
 CD                          GI_REF   = gruppen har referanser (.. :n)
-CD                          GI_OY_REF= gruppen har referanser med øy
+CD                          GI_OY_REF= gruppen har referanser med Â¯y
 CD short            gnavn   r    Gruppenavn. (Se under $LENKE<LC_RxGr>)
 CD
 CD Bruk:
@@ -620,7 +620,7 @@ short LC_RsHode(LC_FILADM *pFil,short *ngi,long *nko,unsigned short *info)
 AR-930610
 CH LC_WsGr                                            Skriv gruppe sekvensiellt
 CD =============================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Skriver aktuell gruppe til ekstern, sekvensiell SOSI-fil.
 CD
 CD Parametre:
@@ -674,14 +674,14 @@ SK_EntPnt_FYBA void LC_WsGr(LC_FILADM *pFil)
 AR-930610
 CH LC_WsGrPart                              Skriv del av gruppe sekvensiellt
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Skriver en del av aktuell gruppe til ekstern, sekvensiell SOSI-fil.
 CD
 CD Parametre:
 CD Type       Navn     I/U   Forklaring
 CD --------------------------------------------------------------------------
 CD LC_FILADM *pFil      i    Peker til FilAdm
-CD long       fra_punkt i    Punktnummer for første koordinat som skal skrives.
+CD long       fra_punkt i    Punktnummer for fÂ¯rste koordinat som skal skrives.
 CD                           (Lovlig:  1  <=  fra_punkt  <=  nko)
 CD long       antall    i    Antall koordinatlinjer som skal skrives.
 CD                           (Lovlig:  0  <=  antall  <=  nko)
@@ -730,16 +730,16 @@ SK_EntPnt_FYBA void LC_WsGrPart(LC_FILADM *pFil,long fra_punkt,long antall)
 
 /*
 AR:2000-10-17
-CH LC_EndreHode                            Endre hodet på eksisterende SOSI-fil
+CH LC_EndreHode                            Endre hodet pÃ‚ eksisterende SOSI-fil
 CD =============================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Skriver aktuell gruppe til starten av sekvensiell SOSI-fil.
 CD Det er en forutsetning at aktuell gruppe er et filhode.
 CD Denne rutinen er stort sett lik LC_WsGr, men LC_EndreHode forandrer ikke
-CD aktuell filposisjon på den sekvensielle filen.
+CD aktuell filposisjon pÃ‚ den sekvensielle filen.
 CD OBS!
-CD Det må være nok ledig plass før neste gruppe for tilbakeskrivingen.
-CD Det er ikke mulig å forandre koordinatsystem, enhet eller origo på fil
+CD Det mÃ‚ vÃŠre nok ledig plass fÂ¯r neste gruppe for tilbakeskrivingen.
+CD Det er ikke mulig Ã‚ forandre koordinatsystem, enhet eller origo pÃ‚ fil
 CD som inneholder data.
 CD
 CD Parametre:
@@ -747,7 +747,7 @@ CD Type       Navn      I/U   Forklaring
 CD -----------------------------------------------------------------------------
 CD LC_FILADM *pFil       i    Peker til FilAdm
 CD short      oppdatert  r    Skrivestatus (1=OK, 0=Det er ikke plass
-CD                                          til å skrive hodet)
+CD                                          til Ã‚ skrive hodet)
 CD
 CD Bruk:
 CD ist = LC_EndreHode(pFil);
@@ -782,13 +782,13 @@ SK_EntPnt_FYBA short LC_EndreHode(LC_FILADM *pFil)
             LC_Error(98,"(LC_EndreHode)","");
 
          } else {                         /* OK ==> Skriv */
-                                          /* Finn ledig plass for å skrive */
+                                          /* Finn ledig plass for Ã‚ skrive */
             siste = LB_Plass(pFil,0,&neste);
                                              /* Sjekk mot ledig plass */
             if (LB_WGru(KONTROLLER_PLASS,1,Sys.pGrInfo->nko,pFil,0,&neste)) {
                /* Det er plass nok */
 
-               /* Hent hode-opplysninger det ikke er lov til å endre når det er data i filen */
+               /* Hent hode-opplysninger det ikke er lov til Ã‚ endre nÃ‚r det er data i filen */
                LC_GetTransEx(&Maske,&Trans);
                LC_GetTegnsett(&tegnsett);
                pszNgisLag = LH_GetNgisLag();
@@ -812,7 +812,7 @@ SK_EntPnt_FYBA short LC_EndreHode(LC_FILADM *pFil)
                   LC_Error(96,"(LC_EndreHode)","");
                }
 
-            } else {        /* Det er ikke plass til å skrive hodet */
+            } else {        /* Det er ikke plass til Ã‚ skrive hodet */
                LC_Error(97,"(LC_EndreHode)","");
             }
          }
@@ -830,9 +830,9 @@ SK_EntPnt_FYBA short LC_EndreHode(LC_FILADM *pFil)
 AR-920810
 CH LC_RxGr                                               Les gruppe fra base
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Velger en gruppe som aktiv gruppe, og leser den fra SOSI-filen hvis den
-CD ikke er i RB fra før. (Styres også av les_sosi.)
+CD ikke er i RB fra fÂ¯r. (Styres ogsÃ‚ av les_sosi.)
 CD Hvis gruppen ikke finnes (sletta eller ulovlig gruppenummer) returneres
 CD ngi=0 og nko=0.
 CD
@@ -840,22 +840,22 @@ CD Parametre:
 CD Type    Navn    I/U  Forklaring
 CD --------------------------------------------------------------------------
 CD LC_BGR * pBgr     i   Peker til fil- og gruppenummer.
-CD short   les_sosi i   Lesemetode: Følgende konstanter er definert:
+CD short   les_sosi i   Lesemetode: FÂ¯lgende konstanter er definert:
 CD                         LES_OPTIMALT   (0 = Les mest effektivt base/SOSI)
 CD                         LES_SOSI       (1 = Les alltid fra SOSI-filen)
 CD short  *ngi      u   Antall linjer GINFO
 CD long   *nko      u   Antall koordinater
-CD unsigned short *info      u   Diverse informasjon. En sum av følgende:
+CD unsigned short *info      u   Diverse informasjon. En sum av fÂ¯lgende:
 CD                       GI_PINFO     = gruppen har PINFO
-CD                       GI_NAH       = gruppen har høyde informasjon (..NØH)
-CD                       GI_NAD       = gruppen har dybde informasjon (..NØD)
+CD                       GI_NAH       = gruppen har hÂ¯yde informasjon (..NÃ˜H)
+CD                       GI_NAD       = gruppen har dybde informasjon (..NÃ˜D)
 CD                       GI_KP        = gruppen har knutepunkt (...KP n)
 CD                       GI_REF       = gruppen har referanser (.. eller ..REF)
-CD                       GI_OY_REF    = gruppen har referanser med øy
+CD                       GI_OY_REF    = gruppen har referanser med Â¯y
 CD                       GI_NGIS      = gruppen er tatt ut fra NGIS for oppdat.
 CD                       GI_SLETTA    = gruppen er sletta (merka som sletta)
 CD                       GI_READ_ONLY = gruppen kan ikke endres.
-CD short gnavn     r   Gruppenavn - Følgende konstanter er definert:
+CD short gnavn     r   Gruppenavn - FÂ¯lgende konstanter er definert:
 CD                                      INGEN_GRUPPE = Gruppen finnes ikke, ikke lest. 
 CD                                      L_SLUTT    =   (.SLUTT) 
 CD                                      L_PUNKT    =   (.PUNKT) 
@@ -904,7 +904,7 @@ SK_EntPnt_FYBA short LC_RxGr(LC_BGR * pBgr,short les_sosi,short *ngi,long *nko,u
       if (Sys.sGrEndra != END_UENDRA) {
          if (!(!sNyGruppe  &&  les_sosi == LES_SOSI)) {
             if (LC_WxGr(SKRIV_OPTIMALT) == UT_FALSE) {
-               // "Kan ikke lese ny gruppe. Du har ikke skriveaksess for å lagre aktuell gruppe som er endret. Fil :"
+               // "Kan ikke lese ny gruppe. Du har ikke skriveaksess for Ã‚ lagre aktuell gruppe som er endret. Fil :"
                LC_Error(163, "(LC_RxGr)", Sys.GrId.pFil->pszNavn);
             }
          }
@@ -973,20 +973,20 @@ SK_EntPnt_FYBA short LC_RxGr(LC_BGR * pBgr,short les_sosi,short *ngi,long *nko,u
 AR-911001
 CH LC_WxGr                                             Skriv gruppe til base
 CD ==========================================================================
-CD Formål:
-CD Skriver aktuell gruppe til tilhørende SOSI-fil.
-CD Brukerindeks og geografisk indeks oppdateres straks, uavhengig av kø.
+CD FormÃ‚l:
+CD Skriver aktuell gruppe til tilhÂ¯rende SOSI-fil.
+CD Brukerindeks og geografisk indeks oppdateres straks, uavhengig av kÂ¯.
 CD Ledig plass fram til neste gruppe blir blanket.
 CD Filhode blir ALLTID skrevet direkte til SOSI-filen.
 CD
 CD Parametre:
 CD Type  Navn    I/U  Forklaring
 CD ------------------------------------------------------------------------
-CD short k_stat   i   Skrivemetode:  Følgende konstanter er definert:
-CD                      SKRIV_OPTIMALT = Skriv mest effektivt kø/SOSI
+CD short k_stat   i   Skrivemetode:  FÂ¯lgende konstanter er definert:
+CD                      SKRIV_OPTIMALT = Skriv mest effektivt kÂ¯/SOSI
 CD                      SKRIV_SOSI     = Skriv direkte til SOSI-filen
 CD short status   r   Status: UT_TRUE = OK
-CD                            UT_FALSE = Ikke utført, pga. feil.
+CD                            UT_FALSE = Ikke utfÂ¯rt, pga. feil.
 CD
 CD Bruk:
 CD LC_WxGr(k_stat)
@@ -998,7 +998,7 @@ SK_EntPnt_FYBA short LC_WxGr(short k_stat)
 
    if (Sys.GrId.lNr != INGEN_GRUPPE)      /* Aktuell gruppe OK */
    {
-      if (Sys.sGrEndra != END_UENDRA)     /* Gruppen er endra, må skrive */
+      if (Sys.sGrEndra != END_UENDRA)     /* Gruppen er endra, mÃ‚ skrive */
       {   
          /* Har skriveaksess? */
          //if (Sys.GrId.pFil->sAccess == UT_UPDATE  &&
@@ -1023,7 +1023,7 @@ SK_EntPnt_FYBA short LC_WxGr(short k_stat)
             }
 
             if (Sys.sGrEndra == (short)END_ENDRA) {
-               // Kontroller prikknivå i egenskaper ?
+               // Kontroller prikknivÃ‚ i egenskaper ?
 
                // Oppdater ..NGIS-FLAGG
                LC_OppdaterEndret(O_ENDRET);     
@@ -1031,12 +1031,12 @@ SK_EntPnt_FYBA short LC_WxGr(short k_stat)
 
             Sys.sGrEndra = END_UENDRA;
 
-            // Filhode som ligger som første gruppe på filen
+            // Filhode som ligger som fÂ¯rste gruppe pÃ‚ filen
             // Oppdater filtabellen 
             if (Sys.pGrInfo->gnavn == L_HODE  &&  Sys.GrId.lNr == 0) {
                LO_BeFt(Sys.GrId.pFil);
 
-            // Ajourfører gruppetabellen med kvalitet og enhet
+            // AjourfÂ¯rer gruppetabellen med kvalitet og enhet
             } else {
                nivaa = 2;
                pnr = 1;
@@ -1062,12 +1062,12 @@ SK_EntPnt_FYBA short LC_WxGr(short k_stat)
             if (k_stat == SKRIV_SOSI  ||  Sys.pGrInfo->gnavn == L_HODE) {
                LB_Swap();
 
-            /* Legg inn i skrivekøa */
+            /* Legg inn i skrivekÂ¯a */
             } else {
                Sys.lAntSkriv++;
                LI_SetBt (Sys.GrId.pFil, Sys.GrId.lNr, BT_SKRKO);
 
-                                           /* Tøm køa hvis den er full */
+                                           /* TÂ¯m kÂ¯a hvis den er full */
                if (Sys.lAntSkriv > Sys.lMaxSkriv) {
                   LC_Save();
                }
@@ -1076,7 +1076,7 @@ SK_EntPnt_FYBA short LC_WxGr(short k_stat)
             /* ----------------------------- Oppdater indekser */
             LS_Indx(); /* Serienummer */
             
-            LR_Indx();      /* Primær geografisk */
+            LR_Indx();      /* PrimÃŠr geografisk */
             
             if (Sys.pGrInfo->gnavn == L_FLATE) {
                LR_IndxFlate(); /* Flate geografisk */
@@ -1101,7 +1101,7 @@ SK_EntPnt_FYBA short LC_WxGr(short k_stat)
 AR-930907
 CH LB_WriteRb                           Skriv aktuell gruppe til buffer-filen
 CD ===========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Skriv aktuell gruppe til buffer-filen.
 CD
 CD Parametre: ingen
@@ -1118,7 +1118,7 @@ static void LB_WriteRb(void)
 
    lLen = LI_BerBufferLen(Sys.pGrInfo->ulGiLen,Sys.pGrInfo->nko,Sys.pGrInfo->ulPiLen);
 
-   /* Er ikke på filen fra før, tildel ny plass */
+   /* Er ikke pÃ‚ filen fra fÂ¯r, tildel ny plass */
    if (Sys.pGrInfo->rb_st == NY_RB_ST) {
       Sys.pGrInfo->rb_st = Sys.GrId.pFil->n64NesteLedigRbPos;
       Sys.GrId.pFil->n64NesteLedigRbPos += (UT_INT64)lLen;
@@ -1130,7 +1130,7 @@ static void LB_WriteRb(void)
       Sys.GrId.pFil->lSisteGrRb = Sys.GrId.lNr;
 
 
-   /* Er på filen, sjekk om det er nok ledig plass */
+   /* Er pÃ‚ filen, sjekk om det er nok ledig plass */
    } else {
       /* Siste gruppe i buffer-filen */
       if (Sys.pGrInfo->rb_neste_gr == INGEN_GRUPPE) {
@@ -1140,7 +1140,7 @@ static void LB_WriteRb(void)
       } else {
          pNesteGrInfo = LI_GetGrt(Sys.GrId.pFil,Sys.pGrInfo->rb_neste_gr);
 
-         /* Det er ikke plass, må flytte gruppen til slutten av filen */
+         /* Det er ikke plass, mÃ‚ flytte gruppen til slutten av filen */
          if (Sys.pGrInfo->rb_st + lLen  > pNesteGrInfo->rb_st) {
             /* Tett "hullet" i kjeden */
             pNesteGrInfo->rb_forrige_gr = Sys.pGrInfo->rb_forrige_gr;
@@ -1149,7 +1149,7 @@ static void LB_WriteRb(void)
                pForrigeGrInfo->rb_neste_gr = Sys.pGrInfo->rb_neste_gr;
             }
 
-            /* Legg til på slutten */
+            /* Legg til pÃ‚ slutten */
             Sys.pGrInfo->rb_st = Sys.GrId.pFil->n64NesteLedigRbPos;
             Sys.GrId.pFil->n64NesteLedigRbPos += (UT_INT64)lLen;
 
@@ -1173,9 +1173,9 @@ static void LB_WriteRb(void)
 AR-930608
 CH LC_RoundKoord                 Endre koordinatene i buffer til riktig enhet
 CD ===========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Endrer koordinatene i aktuell gruppe i buffer til valgt enhet.
-CD (Rutinen blir utført fra LC_WxGr.)
+CD (Rutinen blir utfÂ¯rt fra LC_WxGr.)
 CD
 CD Parametre: ingen
 CD
@@ -1205,11 +1205,11 @@ SK_EntPnt_FYBA void LC_RoundKoord(void)
             /* Nord */
             tall = UT_RoundDD(*(Sys.pdNord+pt) / enhet);
             *(Sys.pdNord+pt) = tall * enhet;
-            /* Øst */
+            /* Ã˜st */
             tall = UT_RoundDD(*(Sys.pdAust+pt) / enhet);
             *(Sys.pdAust+pt) = tall * enhet;
 
-            /* Høyde */
+            /* HÂ¯yde */
             if (Sys.pGrInfo->info & GI_NAH) {
 				   if ((Sys.pInfo+pt)->dHoyde != HOYDE_MANGLER) {
 					   tall = UT_RoundDD((Sys.pInfo+pt)->dHoyde / enhet_h);
@@ -1233,8 +1233,8 @@ SK_EntPnt_FYBA void LC_RoundKoord(void)
 AR-911001
 CH LC_OppdaterEndret                                    Oppdater ..NGIS-FLAGG
 CD ==========================================================================
-CD Formål:
-CD Oppdaterer ..NGIS-FLAGG i GINFO og ajourfører interne tabeller.
+CD FormÃ‚l:
+CD Oppdaterer ..NGIS-FLAGG i GINFO og ajourfÂ¯rer interne tabeller.
 CD Hvis endring = O_GINFO oppateres tabellene i forhold til
 CD eksisterende GINFO.
 CD
@@ -1305,7 +1305,7 @@ SK_EntPnt_FYBA void LC_OppdaterEndret(short endring)
       if (szFlagg[0] == 'R'  ||  szFlagg[0] == 'H') {
          Sys.pGrInfo->info |= GI_READ_ONLY;                    /* Bare leseaksess */
       } else {
-         Sys.pGrInfo->info &= (unsigned short)(~GI_READ_ONLY); /* Både lese- og skriveaksess */
+         Sys.pGrInfo->info &= (unsigned short)(~GI_READ_ONLY); /* BÃ‚de lese- og skriveaksess */
       }
    }
 }
@@ -1315,7 +1315,7 @@ SK_EntPnt_FYBA void LC_OppdaterEndret(short endring)
 AR-911001
 CH LC_FiLastGr                                     Finn siste gruppe i filen
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Finner gruppenummer for siste gruppe i filen.
 CD
 CD Parametre:
@@ -1341,13 +1341,13 @@ SK_EntPnt_FYBA long LC_FiLastGr(LC_FILADM *pFil)
 AR-930608
 CH LC_CopyGr                                                   Kopier gruppe
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Kopierer fra en annen gruppe inn i aktuell gruppe i buffer.
 CD Rutinen tilsvarer put fra brukerprogram inn i bufret, men rutinen
-CD tildeler selv nødvendig plass.
+CD tildeler selv nÂ¯dvendig plass.
 CD Gruppen beholder serienummer tildelt i LC_NyGr.
-CD Geografisk-indeks blir ikke oppdatert før gruppen skrives til basen.
-CD Enhet blir oppdatert slik at opprinnelig enhet blir bevart. Om nødvendig
+CD Geografisk-indeks blir ikke oppdatert fÂ¯r gruppen skrives til basen.
+CD Enhet blir oppdatert slik at opprinnelig enhet blir bevart. Om nÂ¯dvendig
 CD legges det inn ..ENHET i GINFO.
 CD Kvalitet og dato blir oppdatert hvis SOSI-VERSJON < 4.00.
 CD Hvis det er filhode som kopieres skjer det ingen endring av egenskaper.
@@ -1376,7 +1376,7 @@ SK_EntPnt_FYBA short LC_CopyGr (LC_BGR * pBgr,short ngis,short *ngi,long *nko,un
    UT_INT64 rb_st,sosi_st;
    LC_GRTAB_LINJE * grtp;
    char *cp,szTx[256];
-   LC_R_LEAF * pRL;   /* Peker inn i geografisk søketre */
+   LC_R_LEAF * pRL;   /* Peker inn i geografisk sÂ¯ketre */
 
 
    LO_TestFilpeker(pBgr->pFil,"CopyGr");
@@ -1410,7 +1410,7 @@ SK_EntPnt_FYBA short LC_CopyGr (LC_BGR * pBgr,short ngis,short *ngi,long *nko,un
       rb_st   = Sys.pGrInfo->rb_st;
 		rb_forrige_gr = Sys.pGrInfo->rb_forrige_gr;
       rb_neste_gr   = Sys.pGrInfo->rb_neste_gr;
-      pRL           = Sys.pGrInfo->pRL; /* Peker inn i geografisk søketre */
+      pRL           = Sys.pGrInfo->pRL; /* Peker inn i geografisk sÂ¯ketre */
 
       /* Kopier data om gruppen det kopieres fra */
       *Sys.pGrInfo = *grtp;
@@ -1435,7 +1435,7 @@ SK_EntPnt_FYBA short LC_CopyGr (LC_BGR * pBgr,short ngis,short *ngi,long *nko,un
       if (pBgr->lNr != 0)
       {
          // ----- Handter NGIS oppdateringsflagg
-         // Søk etter ..NGIS-FLAGG, og fjern den
+         // SÂ¯k etter ..NGIS-FLAGG, og fjern den
          gilin=2;
          if (LC_GetGP("..NGIS-FLAGG",&gilin,Sys.pGrInfo->ngi) != NULL)
          {
@@ -1487,7 +1487,7 @@ SK_EntPnt_FYBA short LC_CopyGr (LC_BGR * pBgr,short ngis,short *ngi,long *nko,un
          // Bare hvis filen er eldre enn SOSI v 4.0
          if (Sys.GrId.pFil->sSosiVer < 400)
          {
-            // Det skal aldri legges ut kvalitet på .FLATE eller .OBJEKT
+            // Det skal aldri legges ut kvalitet pÃ‚ .FLATE eller .OBJEKT
             if (Sys.pGrInfo->gnavn != L_FLATE  &&  Sys.pGrInfo->gnavn != L_OBJEKT) {
                // ..KVALITET
                LC_UpdateGiKvalitet(Sys.GrId.pFil,grtp->Kvalitet.sMetode,
@@ -1536,12 +1536,12 @@ SK_EntPnt_FYBA short LC_CopyGr (LC_BGR * pBgr,short ngis,short *ngi,long *nko,un
 AR-930707
 CH LC_CopyCoord                           Kopier koordinater fra annen gruppe
 CD ===========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Kopierer koordinater fra en annen gruppe inn i aktuell gruppe i ringbuffer.
 CD De kopierte koordinatene kommer som en utvidelse av gruppen.
 CD Rutinen tilsvarer put fra brukerprogram inn i ringbufret, men rutinen
-CD tildeler selv nødvendig plass i RB.
-CD Geografisk-indeks blir ikke oppdatert før gruppen skrives til basen.
+CD tildeler selv nÂ¯dvendig plass i RB.
+CD Geografisk-indeks blir ikke oppdatert fÂ¯r gruppen skrives til basen.
 CD Kvalitet og enhet blir automatisk oppdatert slik at gruppene ikke 
 CD mister informasjon.
 CD
@@ -1557,7 +1557,7 @@ CD                        (Lovlig: 1  til  nko+1)
 CD short   ngi       u    Antall GINFO-linjer
 CD long    nko       u    Antall koordinater
 CD short   info      u    Diverse informasjon. (Se under $LENKE<LC_RxGr>)
-CD short   sStatus   r    Status: UT_TRUE=OK, UT_FALSE=ikke utført.
+CD short   sStatus   r    Status: UT_TRUE=OK, UT_FALSE=ikke utfÂ¯rt.
 CD
 CD Bruk:
 CD sStatus = LC_CopyCoord(bgr,retning,til_linje,&ngi,&nko,&info);
@@ -1666,7 +1666,7 @@ SK_EntPnt_FYBA short LC_CopyCoord(LC_BGR * pBgr,short retning,long til_linje,sho
          // ----- Oppdater Kvalitet i de kopierte punktene
          if (Sys.GrId.pFil->sSosiVer < 400)
          {
-            // Husk kvalitet i GINFO på aktuell gruppe
+            // Husk kvalitet i GINFO pÃ‚ aktuell gruppe
             nivaa = 2;
             pnr = 1;
             LC_GetCurKvalitet(Sys.GrId.pFil,&nivaa,pnr,&gi_met,&gi_noy,&gi_syn,&gi_hmet,&gi_hnoy);
@@ -1705,12 +1705,12 @@ SK_EntPnt_FYBA short LC_CopyCoord(LC_BGR * pBgr,short retning,long til_linje,sho
 AR-940208
 CH LC_SnuGr                                                        Snu gruppe
 CD ===========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Snur en gruppe.
 CD Rutinen tilsvarer put fra brukerprogram inn i ringbufret.
-CD Både koordinater, høyde, KP og PINFO blir behandlet.
-CD For .BUE blir fortegnet på radius endret.
-CD Fortegnet på referanser til gruppen blir oppdatert.
+CD BÃ‚de koordinater, hÂ¯yde, KP og PINFO blir behandlet.
+CD For .BUE blir fortegnet pÃ‚ radius endret.
+CD Fortegnet pÃ‚ referanser til gruppen blir oppdatert.
 CD
 CD Parametre:
 CD Type    Navn     I/U   Forklaring
@@ -1764,7 +1764,7 @@ SK_EntPnt_FYBA void LC_SnuGr(void)
 		pszPinfo = (char*)UT_MALLOC(Sys.pGrInfo->ulPiLen * sizeof(char));
       UT_memcpy(pszPinfo,Sys.pGrInfo->ulPiLen * sizeof(char),Sys.pszPinfo,Sys.pGrInfo->ulPiLen * sizeof(char));
 
-      /* Tømmer gruppen for gammelt innhold */
+      /* TÂ¯mmer gruppen for gammelt innhold */
       LC_DelKoL(1,nko);
       LC_InsKoL(1,nko);
 
@@ -1785,7 +1785,7 @@ SK_EntPnt_FYBA void LC_SnuGr(void)
 		UT_FREE(pInfo);
 		UT_FREE(pszPinfo);
 
-		/* ====== Hvis gruppen er .BUE ==> skift fortegn på radius ==== */
+		/* ====== Hvis gruppen er .BUE ==> skift fortegn pÃ‚ radius ==== */
       if (Sys.pGrInfo->gnavn == L_BUE) {
          sGiLin = 2;
          pszPinfo = LC_GetGP("..RADIUS",&sGiLin,Sys.pGrInfo->ngi);
@@ -1826,7 +1826,7 @@ SK_EntPnt_FYBA void LC_SnuGr(void)
                  }
               }
 
-              /* Øyer */
+              /* Ã˜yer */
               for (pOE = Polygon.OyOA.pForsteOE; pOE != NULL; pOE = pOE->pNesteOE) {
 					  for (pPE = pOE->PO.pForstePE; pPE != NULL; pPE = pPE->pNestePE) {
                     if ((memcmp(&pPE->Bgr,&Bgr,sizeof(LC_BGR))) == 0) {
@@ -1862,12 +1862,12 @@ SK_EntPnt_FYBA void LC_SnuGr(void)
 AR-911001
 CH LC_DelGr                                                     Slett gruppe
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Fjerner aktuell gruppe fra basen.
 CD Grupper som er tatt ut fra NGIS for oppdatering blir ikke sletta fra
-CD SOSI-filen, men de blir merka som sletta. (LC_SetNgisModus avgjør da om
+CD SOSI-filen, men de blir merka som sletta. (LC_SetNgisModus avgjÂ¯r da om
 CD disse kan leses.)
-CD Det er ikke mulig å slette grupper fra sekvensielle filer, eller grupper
+CD Det er ikke mulig Ã‚ slette grupper fra sekvensielle filer, eller grupper
 CD som er brukt i flater.
 CD
 CD Parametre:
@@ -1894,10 +1894,10 @@ SK_EntPnt_FYBA short LC_DelGr(void)
                                          /* Ikke filhode, eller kladdebase */
       //if (Sys.pGrInfo->gnavn != L_HODE  &&  Sys.GrId.pFil->pBase->sType == LC_BASE) {
       if (Sys.GrId.lNr != 0  &&  Sys.GrId.pFil->pBase->sType == LC_BASE) {
-         if ( ! (Sys.pGrInfo->info & GI_SLETTA)) {  /* Ikke sletta fra før */
+         if ( ! (Sys.pGrInfo->info & GI_SLETTA)) {  /* Ikke sletta fra fÂ¯r */
             if (Sys.GrId.pFil->usLag & LC_FRAMGR) { /* Har skriveaksess */
 
-               // Finn og ta vare på NGIS-flagg
+               // Finn og ta vare pÃ‚ NGIS-flagg
                gp = LC_GetGP("..NGIS-FLAGG",&gilin,Sys.pGrInfo->ngi);
                if (gp) {
                   pszNgisFlagg = (char*)malloc(strlen(gp)+1);
@@ -1942,7 +1942,7 @@ SK_EntPnt_FYBA short LC_DelGr(void)
 
                         if (Sys.pGrInfo->sosi_st != NY_SOSI_ST) { /* Ikke ny gruppe */
                            LB_Plass(Sys.GrId.pFil,Sys.pGrInfo->sosi_st,&neste);
-                           /* Posisjoner og blank ut området */
+                           /* Posisjoner og blank ut omrÃ‚det */
                            _fseeki64(Sys.GrId.pFil->pBase->pfSos,Sys.pGrInfo->sosi_st,SEEK_SET);
 							      LB_WriteBlank(Sys.GrId.pFil->pBase->pfSos,Sys.GrId.pFil->sTegnsett,neste);
 									fflush(Sys.GrId.pFil->pBase->pfSos);
@@ -1961,7 +1961,7 @@ SK_EntPnt_FYBA short LC_DelGr(void)
                      /* Fjerner fra snr.tab */
                      LS_PutSn(Sys.GrId.pFil,INGEN_GRUPPE,lSnr);
 
-                     /* Fjerner fra geogr. søketabell */
+                     /* Fjerner fra geogr. sÂ¯ketabell */
                      LR_R_Delete(Sys.pGrInfo->pRL);
                      Sys.pGrInfo->pRL = NULL;
 
@@ -2018,22 +2018,22 @@ SK_EntPnt_FYBA short LC_DelGr(void)
 AR-920129
 CH LC_SplittGr                                                 Splitt gruppe
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Splitter aktuell gruppe i to deler.
-CD Første del av gruppen beholdes som aktuell gruppe. Denne blir ikke
+CD FÂ¯rste del av gruppen beholdes som aktuell gruppe. Denne blir ikke
 CD skrevet til SOSI-filen, men buffer er oppdatert.
-CD Siste del av gruppen legges som en ny gruppe på samme fil som
+CD Siste del av gruppen legges som en ny gruppe pÃ‚ samme fil som
 CD opprinnelig gruppe. Denne blir skrevet til basen.
 CD Den delen av gruppen som ligger mellom P1 og P2 blir fjernet.
 CD
-CD Hvis gruppen er BUEP og en av delene får bare to koordinater
-CD blir det lagt inn et nytt punkt midt på buen.
+CD Hvis gruppen er BUEP og en av delene fÃ‚r bare to koordinater
+CD blir det lagt inn et nytt punkt midt pÃ‚ buen.
 CD
 CD Parametre:
 CD Type     Navn   I/U   Forklaring
 CD --------------------------------------------------------------------------
-CD long    sP1     i    Punktnummer 1.   (Må være større enn 1)
-CD long    sP2     i    Punktnummer 2.   (Må være mindre enn nko)
+CD long    sP1     i    Punktnummer 1.   (MÃ‚ vÃŠre stÂ¯rre enn 1)
+CD long    sP2     i    Punktnummer 2.   (MÃ‚ vÃŠre mindre enn nko)
 CD LC_BGR *  pBgr2   u    Nytt gruppenummer for siste del av gruppen.
 CD short    sStatus r    Status: UT_TRUE  = OK
 CD                               UT_FALSE = feil, ikke splittet
@@ -2069,7 +2069,7 @@ SK_EntPnt_FYBA short LC_SplittGr (long sP1,long sP2,LC_BGR * pBgr2)
 		 sP1 > 1  &&
        sP2 < Sys.pGrInfo->nko) {
 
-      /* Husk at beregning er utført */
+      /* Husk at beregning er utfÂ¯rt */
       sStatus = UT_TRUE;
 
       /* Husk gruppen */
@@ -2083,7 +2083,7 @@ SK_EntPnt_FYBA short LC_SplittGr (long sP1,long sP2,LC_BGR * pBgr2)
           Sys.pGrInfo->gnavn == L_BUEP ||
           Sys.pGrInfo->gnavn == L_SIRKELP )
       {
-         // Tar vare på bueparametrene for opprinnelig "bue"
+         // Tar vare pÃ‚ bueparametrene for opprinnelig "bue"
          LC_GetBuePar(HENT_FORRFRA,&as1,&ns1,&r,&fi,&dfi,&s);
          bStorbue = (fabs(dfi) > PI);
       }
@@ -2110,7 +2110,7 @@ SK_EntPnt_FYBA short LC_SplittGr (long sP1,long sP2,LC_BGR * pBgr2)
          LC_PutKp(nko,LC_GetKp(1));
       }
 
-      /* Fjern første del av gruppen */
+      /* Fjern fÂ¯rste del av gruppen */
       if (sP2 > sP1){
          nko = LC_DelKoL(1, sP2-1);
       } else if (nko > 1) {
@@ -2123,9 +2123,9 @@ SK_EntPnt_FYBA short LC_SplittGr (long sP1,long sP2,LC_BGR * pBgr2)
          LC_GetBue(HENT_FORRFRA,&a1,&n1,&a2,&n2,&r,&s);
 			GM_KonvBue(a1,n1,a2,n2,r,s,&as2,&ns2,&fi2,&dfi2);
 
-         /* Buen skal ikke være storbue lenger hvis sentrum er flyttet.
-          * Dette er tilfelle når linjen fra gammelt til nytt senter
-          * skjærer linjen fra nytt start til sluttpunkt.
+         /* Buen skal ikke vÃŠre storbue lenger hvis sentrum er flyttet.
+          * Dette er tilfelle nÃ‚r linjen fra gammelt til nytt senter
+          * skjÃŠrer linjen fra nytt start til sluttpunkt.
           */
          if (GM_sLinLin(a1,n1,a2,n2,as1,ns1,as2,ns2,&ax,&nx)) {
             LC_PutGP("..STORBUE","0",&s);
@@ -2137,8 +2137,8 @@ SK_EntPnt_FYBA short LC_SplittGr (long sP1,long sP2,LC_BGR * pBgr2)
       {
          if (nko == 2)
          {
-            // --- Legger inn nytt punkt på buen mellom de to endepunktene.
-            // Åpningsvinkel til starten av den nye buen
+            // --- Legger inn nytt punkt pÃ‚ buen mellom de to endepunktene.
+            // Ã…pningsvinkel til starten av den nye buen
             LC_GetTK(1,&a1,&n1);
             GM_PktBue(as1,ns1,fi,dfi,a1,n1,&dfiNy);
 
@@ -2214,7 +2214,7 @@ SK_EntPnt_FYBA short LC_SplittGr (long sP1,long sP2,LC_BGR * pBgr2)
          nko = LC_DelKoL(sP1+1, nko-sP1);
       }
 
-      // SIRKELP må konverteres til BUEP
+      // SIRKELP mÃ‚ konverteres til BUEP
       if (Sys.pGrInfo->gnavn == L_SIRKELP )
       {
          LC_PutGi(1,".BUEP");
@@ -2226,9 +2226,9 @@ SK_EntPnt_FYBA short LC_SplittGr (long sP1,long sP2,LC_BGR * pBgr2)
          LC_GetBue(HENT_FORRFRA,&a1,&n1,&a2,&n2,&r,&s);
          GM_KonvBue(a1,n1,a2,n2,r,s,&as2,&ns2,&fi2,&dfi2);
 
-         /* Buen skal ikke være storbue lenger hvis sentrum er flyttet.
-          * Dette er tilfelle når linjen fra gammelt til nytt senter
-			 * skjærer linjen fra nytt start til sluttpunkt.
+         /* Buen skal ikke vÃŠre storbue lenger hvis sentrum er flyttet.
+          * Dette er tilfelle nÃ‚r linjen fra gammelt til nytt senter
+			 * skjÃŠrer linjen fra nytt start til sluttpunkt.
           */
          if (GM_sLinLin(a1,n1,a2,n2,as1,ns1,as2,ns2,&dA_ny,&dN_ny)) {
             LC_PutGP("..STORBUE","0",&s);
@@ -2240,8 +2240,8 @@ SK_EntPnt_FYBA short LC_SplittGr (long sP1,long sP2,LC_BGR * pBgr2)
       {
          if (nko == 2)
          {
-            // --- Legger inn nytt punkt på buen mellom de to endepunktene.
-            // Åpningsvinkel til slutten av den nye buen
+            // --- Legger inn nytt punkt pÃ‚ buen mellom de to endepunktene.
+            // Ã…pningsvinkel til slutten av den nye buen
             LC_GetTK(2,&a2,&n2);
             GM_PktBue(as1,ns1,fi,dfi,a2,n2,&dfiNy);
             // Midtpunktet
@@ -2263,16 +2263,16 @@ SK_EntPnt_FYBA short LC_SplittGr (long sP1,long sP2,LC_BGR * pBgr2)
 
 /*
 AR-930803
-CH LR_TestEndreBuepTilKurve                               Sammenføy grupper
+CH LR_TestEndreBuepTilKurve                               SammenfÂ¯y grupper
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Sjekk om BUEP blir ugyldeig etter splitting. 
 CD Konverterer eventuellt til .KURVE
 CD
 CD Parametre:
 CD Type    Navn      I/U  Forklaring
 CD -----------------------------------------------------------------------------
-CD double  dDeltaFi   i   Åpningsvinkel for opprinnelig BUEP
+CD double  dDeltaFi   i   Ã…pningsvinkel for opprinnelig BUEP
 CD
 CD Bruk:
 CD LR_TestEndreBuepTilKurve(dDeltaFi);
@@ -2291,7 +2291,7 @@ static void LR_TestEndreBuepTilKurve(double dDeltaFi)
    // Bueparametrene for oppdatert "bue"
    if (LC_GetBuePar(HENT_FORRFRA,&as,&ns,&r,&fi,&dfi,&s) )
    {
-      // Buen er snudd krumming (åpningsvinkelen har skiftet fortegn)
+      // Buen er snudd krumming (Ã‚pningsvinkelen har skiftet fortegn)
       if (dDeltaFi * dfi  <  0.0)
       {
          LC_PutGi(1,".KURVE");
@@ -2303,7 +2303,7 @@ static void LR_TestEndreBuepTilKurve(double dDeltaFi)
          LC_GetTK((Sys.pGrInfo->nko+1)/2,&dAMidt,&dNMidt);
          LC_GetTK(Sys.pGrInfo->nko,&a2,&n2);
          GM_fotp(a1,n1,a2,n2,dAMidt,dNMidt,&dAFotP,&dNFotP);
-         // Avstand fra fotpunktet til punktet på buen må være minst en enhet
+         // Avstand fra fotpunktet til punktet pÃ‚ buen mÃ‚ vÃŠre minst en enhet
          if(GM_Avstand(dAMidt,dNMidt,dAFotP,dNFotP) < Sys.pGrInfo->dEnhet) {
             LC_PutGi(1,".KURVE");
          }
@@ -2318,13 +2318,13 @@ static void LR_TestEndreBuepTilKurve(double dDeltaFi)
 
 /*
 AR-930803
-CH LC_SammenfoyGr                                          Sammenføy grupper
+CH LC_SammenfoyGr                                          SammenfÂ¯y grupper
 CD ==========================================================================
-CD Formål:
-CD Sammenføye to grupper.
+CD FormÃ‚l:
+CD SammenfÂ¯ye to grupper.
 CD Kopierer koordinater fra gitt gruppe inn i aktuell gruppe.
 CD De kopierte koordinatene kommer som en utvidelse av gruppen.
-CD Rutinen tildeler selv nødvendig plass i buffer.
+CD Rutinen tildeler selv nÂ¯dvendig plass i buffer.
 CD Kvalitet og enhet blir automatisk oppdatert slik at gruppene ikke 
 CD mister informasjon.
 CD Gruppen det kopieres fra blir slettet.
@@ -2341,16 +2341,16 @@ CD                                HENT_BAKFRA  (-1) = buffer skal snues.
 CD short   plassering  i    Forteller hvor pFraBgr skal plasseres i
 CD                          aktuell gruppe.
 CD                             LC_SG_FORRAN = Heng den andre gruppen inn
-CD                                            forran første koordinat.
+CD                                            forran fÂ¯rste koordinat.
 CD                             LC_SG_BAK    = Heng den andre gruppen inn
 CD                                            etter siste koordinat.
-CD short   metode      i    Forteller hva som skal skje med sammenføingspunktene.
+CD short   metode      i    Forteller hva som skal skje med sammenfÂ¯ingspunktene.
 CD                             LC_SG_BEHOLD = Begge punktene beholdes.
 CD                             LC_SG_FJERN  = Bare det ene av punktene beholdes.
 CD short   ngi         u    Antall GINFO-linjer
 CD long    nko         u    Antall koordinater
 CD unsigned short info u    Diverse informasjon. (Se under $LENKE<LC_RxGr>)
-CD short   sStatus     r    Status: UT_TRUE=OK, UT_FALSE=ikke utført.
+CD short   sStatus     r    Status: UT_TRUE=OK, UT_FALSE=ikke utfÂ¯rt.
 CD
 CD Bruk:
 CD sStatus = LC_SammenfoyGr(bgr,retning,plassering,metode,&ngi,&nko,&info);
@@ -2394,7 +2394,7 @@ SK_EntPnt_FYBA short LC_SammenfoyGr(LC_BGR * pFraBgr,short retning,short plasser
                                        (double)oha,(double)ohn);
          if (LC_FFFlate(&GeoStat,&FlateBgr)) {
             do {
-               if (FlateBgr.pFil == AktBgr.pFil) {  /* På samme fil ? */
+               if (FlateBgr.pFil == AktBgr.pFil) {  /* PÃ‚ samme fil ? */
    
                   /* Funnet flate i rett fil, sjekk referansene */
                   gnavn = LC_RxGr(&FlateBgr,LES_OPTIMALT,ngi,nko,info);
@@ -2407,9 +2407,9 @@ SK_EntPnt_FYBA short LC_SammenfoyGr(LC_BGR * pFraBgr,short retning,short plasser
                      /* Ytre avgrensning */
 					      Endret = LB_RensOmkrets(&Pol.HovedPO,lAktSnr,lFraSnr);
 
-                     /* Øyer */
+                     /* Ã˜yer */
                      for (pOE = Pol.OyOA.pForsteOE; pOE != NULL; pOE = pOE->pNesteOE) {
-                        /* Sjkker en og en øy */
+                        /* Sjkker en og en Â¯y */
 					         Endret |= LB_RensOmkrets(&pOE->PO,lAktSnr,lFraSnr);
                      }
 
@@ -2466,10 +2466,10 @@ SK_EntPnt_FYBA short LC_SammenfoyGr(LC_BGR * pFraBgr,short retning,short plasser
 
 /*
 AR-930803
-CH LB_RensOmkrets                             Fjerner overflødige referanser
+CH LB_RensOmkrets                             Fjerner overflÂ¯dige referanser
 CD ==========================================================================
-CD Formål:
-CD  Fjerner overflødige referanser ved sammenføining av to grupper.
+CD FormÃ‚l:
+CD  Fjerner overflÂ¯dige referanser ved sammenfÂ¯ining av to grupper.
 CD
 CD Parametre:
 CD Type    Navn     I/U   Forklaring
@@ -2487,7 +2487,7 @@ static short LB_RensOmkrets(LC_POL_OMKR * pPO,long lAktSnr,long lFraSnr)
 
 
    if (pPO != NULL) {
-      /* Tilslag på første og siste gruppe */
+      /* Tilslag pÃ‚ fÂ¯rste og siste gruppe */
       if (pPO->pForstePE->lSnr  == lAktSnr  &&
           pPO->pSistePE->lSnr  == lFraSnr) {
          /* Overser siste referansen (kopiert gruppe) */
@@ -2497,7 +2497,7 @@ static short LB_RensOmkrets(LC_POL_OMKR * pPO,long lAktSnr,long lFraSnr)
       } else if (pPO->pForstePE->lSnr  == lFraSnr  &&
                  pPO->pSistePE->lSnr  == lAktSnr) {
 
-         /* Overser første referansen (kopiert gruppe) */
+         /* Overser fÂ¯rste referansen (kopiert gruppe) */
          LC_POL_FjernGruppeOmkrets(pPO, pPO->pForstePE);
          return UT_TRUE;
       }
@@ -2514,7 +2514,7 @@ static short LB_RensOmkrets(LC_POL_OMKR * pPO,long lAktSnr,long lFraSnr)
          } else if (pPE->lSnr  == lFraSnr  &&
                     pPE->pNestePE->lSnr  == lAktSnr) {
 
-            /* Overser første referansen (kopiert gruppe) */
+            /* Overser fÂ¯rste referansen (kopiert gruppe) */
             LC_POL_FjernGruppeOmkrets(pPO, pPE);
             return UT_TRUE;
          }
@@ -2529,13 +2529,13 @@ static short LB_RensOmkrets(LC_POL_OMKR * pPO,long lAktSnr,long lFraSnr)
 AR:2000-07-28
 CH LC_NyGr                                                 Ny gruppe i basen
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Lager en ny gruppe i basen, og tildeler serienummer.
 CD Sjekker at gruppenavnet er lovlig i denne versjon av FYBA.
 CD Ved feil navn vil ".LINJE" bli valgt.
 CD Legger inn gruppenavn i buffer.
 CD Gruppen blir "aktuell" gruppe.
-CD Sjekker ledig plass både for indeks-fil og sosi-fil.
+CD Sjekker ledig plass bÃ‚de for indeks-fil og sosi-fil.
 CD
 CD Parametre:
 CD Type       Navn    I/U   Forklaring
@@ -2630,7 +2630,7 @@ SK_EntPnt_FYBA short LC_NyGr (LC_FILADM *pFil,char *sosi,LC_BGR * pBgr,long *snr
             /* Nuller brukttabellen */
             LI_PutBt(pFil,pBgr->lNr,0L);
 
-            /* Fjerner fra geogr. søketabell */
+            /* Fjerner fra geogr. sÂ¯ketabell */
             Sys.pGrInfo->pRL = NULL;
 
             /* Nytt serienummer */
@@ -2720,14 +2720,14 @@ SK_EntPnt_FYBA short LC_NyGr (LC_FILADM *pFil,char *sosi,LC_BGR * pBgr,long *snr
 AR-911001
 CH LB_FormaterEnhet                                         Lag GINFO for enhet
 CD =============================================================================
-CD Formål:
-CD Legger inn enhet med høvelig antall siffer.
+CD FormÃ‚l:
+CD Legger inn enhet med hÂ¯velig antall siffer.
 CD
 CD Parametre:
 CD Type     Navn   I/U   Forklaring
 CD -----------------------------------------------------------------------------
 CD char   *streng    i    Peker til streng hvor ginfo skal legges
-CD char   *sosi     i    SOSI-navn som skal legges først i strengen
+CD char   *sosi     i    SOSI-navn som skal legges fÂ¯rst i strengen
 CD double  enhet    i    Aktuell enhet
 CD char   *ginfo    r    Peker til oppbygd streng
 CD
@@ -2759,7 +2759,7 @@ char *LB_FormaterEnhet(char *streng,short sStrengMaxLen,char *SosiNavn,double en
 AR-930611
 CH LC_InsGiL                                              Skyt inn GINFO-linjer
 CD =============================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Skyter inn linjer GINFO-delen i en gruppe.
 CD
 CD Parametre:
@@ -2781,7 +2781,7 @@ SK_EntPnt_FYBA short LC_InsGiL(short linje, short antall)
    if (Sys.GrId.lNr != INGEN_GRUPPE) {            /* Aktuell gruppe OK */
       if (linje > 0  &&  linje <= (Sys.pGrInfo->ngi + 1)) {
 
-         /* På slutten av GINFO */
+         /* PÃ‚ slutten av GINFO */
          if (linje == (Sys.pGrInfo->ngi + 1)) {
             for ( ; antall > 0; antall--) {
                LC_AppGiL();
@@ -2790,7 +2790,7 @@ SK_EntPnt_FYBA short LC_InsGiL(short linje, short antall)
          /* Inni GINFO */
          } else {
             Sys.sGrEndra = (short)END_ENDRA;
-            /* Må flytte resten av buffer for å gi plass til de nye linjene */
+            /* MÃ‚ flytte resten av buffer for Ã‚ gi plass til de nye linjene */
             memmove(Sys.Ginfo.pszTx + Sys.Ginfo.ulOfset[linje-1] + antall,
                   Sys.Ginfo.pszTx + Sys.Ginfo.ulOfset[linje-1],
                   Sys.pGrInfo->ulGiLen - Sys.Ginfo.ulOfset[linje-1]);
@@ -2813,7 +2813,7 @@ SK_EntPnt_FYBA short LC_InsGiL(short linje, short antall)
                   Sys.Ginfo.ulOfset[0] = 0;
                   *Sys.Ginfo.pszTx = '\0';
                } else {
-                  /* Førte posisjon etter forrige linje */
+                  /* FÂ¯rte posisjon etter forrige linje */
                   len = (short)strlen(Sys.Ginfo.pszTx + Sys.Ginfo.ulOfset[linje-2]);
                   Sys.Ginfo.ulOfset[linje-1] = Sys.Ginfo.ulOfset[linje-2] + len + 1;
                   *(Sys.Ginfo.pszTx + Sys.Ginfo.ulOfset[linje-1]) = '\0';
@@ -2838,16 +2838,16 @@ SK_EntPnt_FYBA short LC_InsGiL(short linje, short antall)
 
 /*
 AR-930610
-CH LC_AppGiL                                             Heng på en GINFO-linje
+CH LC_AppGiL                                             Heng pÃ‚ en GINFO-linje
 CD =============================================================================
-CD Formål:
-CD Henger på en linje i GINFO-delen i en gruppe.
+CD FormÃ‚l:
+CD Henger pÃ‚ en linje i GINFO-delen i en gruppe.
 CD
 CD Parametre:
 CD Type     Navn    I/U   Forklaring
 CD -----------------------------------------------------------------------------
 CD short    ngi      r    Antall GINFO-linjer i gruppen etter utvidelsen.
-CD                        (Linjenumret på den tilføyde linjen.)
+CD                        (Linjenumret pÃ‚ den tilfÂ¯yde linjen.)
 CD
 CD Bruk:
 CD ngi = LC_AppGiL();
@@ -2876,7 +2876,7 @@ SK_EntPnt_FYBA short LC_AppGiL()
 AR-930611
 CH LC_InsKoL                                        Skyt inn koordinatlinjer
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Skyter inn linjer koordinatdelen i en gruppe.
 CD
 CD Parametre:
@@ -2904,7 +2904,7 @@ SK_EntPnt_FYBA long LC_InsKoL(long linje, long antall)
             Sys.sGrEndra = (short)END_ENDRA;
             if (linje <= Sys.lPibufPnr)  Sys.sPibufStatus = LC_PIBUF_TOM;
 
-            /* Utfør flyttingen */
+            /* UtfÂ¯r flyttingen */
             memmove(pdAust+antall, pdAust, (Sys.pGrInfo->nko-linje+1) * (sizeof(double)));
             memmove(pdNord+antall, pdNord, (Sys.pGrInfo->nko-linje+1) * (sizeof(double)));
             memmove(pInfo+antall,  pInfo,  (Sys.pGrInfo->nko-linje+1) * (sizeof(LB_INFO)));
@@ -2912,7 +2912,7 @@ SK_EntPnt_FYBA long LC_InsKoL(long linje, long antall)
             /* Antall koordinater etter utvidelsen */
             Sys.pGrInfo->nko += antall;
 
-            /* Blank ut det nye området */
+            /* Blank ut det nye omrÃ‚det */
             while (antall > 0) {
                *pdAust = 0.0;
                *pdNord = 0.0;
@@ -2944,10 +2944,10 @@ SK_EntPnt_FYBA long LC_InsKoL(long linje, long antall)
 
 /*
 AR-911001
-CH LC_AppKoL                                       Heng på en koordinatlinje
+CH LC_AppKoL                                       Heng pÃ‚ en koordinatlinje
 CD ==========================================================================
-CD Formål:
-CD Henger på en linje i koordinatdelen i en gruppe.
+CD FormÃ‚l:
+CD Henger pÃ‚ en linje i koordinatdelen i en gruppe.
 CD
 CD Parametre:
 CD Type     Navn    I/U   Forklaring
@@ -2990,13 +2990,13 @@ SK_EntPnt_FYBA long LC_AppKoL()
 AR-930611
 CH LC_DelGiL                                                 Fjern GINFO-linjer
 CD =============================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Fjerner linjer i GINFO-delen i en gruppe.
 CD
 CD Parametre:
 CD Type     Navn    I/U   Forklaring
 CD -----------------------------------------------------------------------------
-CD short    linje    i    Første linjenummer som skal fjernes.
+CD short    linje    i    FÂ¯rste linjenummer som skal fjernes.
 CD                        (Lovlig: 2  til  ngi)
 CD short    antall   i    Antall linjer som skal fjernes.
 CD short    ngi      r    Antall GINFO-linjer i gruppen etter setting.
@@ -3014,7 +3014,7 @@ SK_EntPnt_FYBA short LC_DelGiL(short linje, short antall)
       if (antall > 0) {
          Sys.sGrEndra = (short)END_ENDRA;
 
-         start = max(linje,2);           /* 2 er første lovlige linje */
+         start = max(linje,2);           /* 2 er fÂ¯rste lovlige linje */
          antall -= (start-linje);        /* Juster antall tilsvarende */
 
          /* Max antall er resten av GINFO */
@@ -3025,7 +3025,7 @@ SK_EntPnt_FYBA short LC_DelGiL(short linje, short antall)
             pszTil = Sys.Ginfo.pszTx + Sys.Ginfo.ulOfset[start-1];
             pszFra = Sys.Ginfo.pszTx + Sys.Ginfo.ulOfset[start+antall-1];
 
-            /* Utfør flyttingen */
+            /* UtfÂ¯r flyttingen */
             memmove(pszTil, pszFra, Sys.pGrInfo->ulGiLen - Sys.Ginfo.ulOfset[start+antall-1] + 1);
 
             /* Antall GINFO-linjer etter slettingen */
@@ -3058,7 +3058,7 @@ SK_EntPnt_FYBA short LC_DelGiL(short linje, short antall)
 AR:2008-04-09
 CH LC_DelGiNavn                                   Fjerner egenskap fra GINFO
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Fjerner alle forekomster av gitt egenskap (SOSI-navn) fra GINFO.
 CD
 CD Parametre:
@@ -3087,13 +3087,13 @@ SK_EntPnt_FYBA short LC_DelGiNavn(char *pszEgenskapNavn)
 AR-930611
 CH LC_DelKoL                                              Fjern koordinatlinjer
 CD =============================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Fjerner linjer koordinatdelen i en gruppe.
 CD
 CD Parametre:
 CD Type     Navn    I/U   Forklaring
 CD -----------------------------------------------------------------------------
-CD long    linje    i    Første linje som skal fjernes.
+CD long    linje    i    FÂ¯rste linje som skal fjernes.
 CD                        (Lovlig: 1  til  nko)
 CD long    antall   i    Antall linjer som skal fjernes.(Max resten av gruppen)
 CD long    nko      r    Antall koordinater i gruppen etter blanking.
@@ -3116,7 +3116,7 @@ SK_EntPnt_FYBA long LC_DelKoL(long linje, long antall)
       Sys.sGrEndra = (short)END_ENDRA;
       if (linje <= Sys.lPibufPnr)  Sys.sPibufStatus = LC_PIBUF_TOM;
             
-      start = max(linje,1);             /* 1 er første lovlige linje */
+      start = max(linje,1);             /* 1 er fÂ¯rste lovlige linje */
       antall -= (start-linje);          /* Juster antall tilsvarende */
 
                                         /* Max antall er resten av punktene */
@@ -3134,7 +3134,7 @@ SK_EntPnt_FYBA long LC_DelKoL(long linje, long antall)
 
          /* Har gruppen PINFO */
          if (Sys.pGrInfo->ulPiLen > 0) {
-            /* Er det PINFO på de punktene som er slettet? */
+            /* Er det PINFO pÃ‚ de punktene som er slettet? */
             pI = pInfo;
             ulP1 = LC_INGEN_PINFO;
             for (s=0; s<antall && ulP1==LC_INGEN_PINFO; s++,pI++) {
@@ -3178,7 +3178,7 @@ SK_EntPnt_FYBA long LC_DelKoL(long linje, long antall)
             }
          }
 
-         /* Utfør flyttingen */
+         /* UtfÂ¯r flyttingen */
          memmove(pdAust, pdAust+antall, (Sys.pGrInfo->nko-start-antall+1) * (sizeof(double)));
          memmove(pdNord, pdNord+antall, (Sys.pGrInfo->nko-start-antall+1) * (sizeof(double)));
          memmove(pInfo,  pInfo+antall,  (Sys.pGrInfo->nko-start-antall+1) * (sizeof(LB_INFO)));
@@ -3200,7 +3200,7 @@ SK_EntPnt_FYBA long LC_DelKoL(long linje, long antall)
 AR-930803
 CH LB_ClGr                                          Nullstill aktuell gruppe
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Nullstill aktuell gruppe.
 CD
 CD Parametre:
@@ -3226,17 +3226,17 @@ void LB_ClGr (void)
 AR-930610
 CH LB_RGru                                                        Les gruppe
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Leser en datagruppe fra SOSI-fil inn i aktuell gruppe.
-CD Eventuelle gamle pekere må være frgitt utenfor denne rutinen.
+CD Eventuelle gamle pekere mÃ‚ vÃŠre frgitt utenfor denne rutinen.
 CD
 CD Parametre:
 CD Type       Navn    I/U  Forklaring
 CD --------------------------------------------------------------------------
 CD LC_FILADM *pFil     i   Peker til FilAdm
-CD UT_INT64   start    i   Startposisjon på SOSI-filen
-CD UT_INT64   slutt    u   Sluttposisjon på SOSI-filen
-CD short      siste_gr r   Siste gruppe (0=ikke siste, 1=siste på filen)
+CD UT_INT64   start    i   Startposisjon pÃ‚ SOSI-filen
+CD UT_INT64   slutt    u   Sluttposisjon pÃ‚ SOSI-filen
+CD short      siste_gr r   Siste gruppe (0=ikke siste, 1=siste pÃ‚ filen)
 CD
 CD Bruk:
 CD siste_gr = LB_RGru(pFil,start,&slutt);
@@ -3261,7 +3261,7 @@ short LB_RGru(LC_FILADM *pFil,UT_INT64 start,UT_INT64 *slutt)
    double dOrigoNord = pFil->TransPar.Origo.dNord;
 
 
-   /* PINFO-buffer er ødelagt */
+   /* PINFO-buffer er Â¯delagt */
    Sys.sPibufStatus = LC_PIBUF_TOM;
 
    /* Angi hvilket tegnsett som skal brukes */
@@ -3318,15 +3318,15 @@ short LB_RGru(LC_FILADM *pFil,UT_INT64 start,UT_INT64 *slutt)
                   Sys.pGrInfo->info |= GI_REF;               
                   if (LN_TestOy(pLb->pp))  Sys.pGrInfo->info |= GI_OY_REF;
 
-                  /* ..REF skal skrives bare på første linje med referanser */ 
+                  /* ..REF skal skrives bare pÃ‚ fÂ¯rste linje med referanser */ 
                   if (pLb->cur_navn[pLb->cur_niv-1] == L_REF2  &&  sRefFunnet == UT_TRUE) {
                      sLagreNavn = UT_FALSE;
                   }
 
 #ifdef UTGAAR
-                  /* Gruppen har høyde informasjon */
+                  /* Gruppen har hÂ¯yde informasjon */
                } else if (pLb->cur_navn[pLb->cur_niv-1] == L_HOYDE) {
-                  Sys.pGrInfo->info |= GI_NAH;   /* Husk at gruppen har høyde */
+                  Sys.pGrInfo->info |= GI_NAH;   /* Husk at gruppen har hÂ¯yde */
 #endif
 
                   /* Spesiell "..ENHET" */
@@ -3420,7 +3420,7 @@ short LB_RGru(LC_FILADM *pFil,UT_INT64 start,UT_INT64 *slutt)
       while (pLb->cur_niv >= 2) {
          if (type != LEST_BLANK  &&  type != LEST_KOM) {
             /* Sjekk at det ikke kommer GINFO innimellom koordinatene */
-               /* Ikke NØ eller NØH */
+               /* Ikke NÃ˜ eller NÃ˜H */
             if (pLb->cur_niv == 2  &&
                 pLb->cur_navn[pLb->cur_niv-1] != L_NAH  &&
                 pLb->cur_navn[pLb->cur_niv-1] != L_NAD  &&
@@ -3449,21 +3449,21 @@ short LB_RGru(LC_FILADM *pFil,UT_INT64 start,UT_INT64 *slutt)
                d = strtod(pLb->pp,&cp);
                *(Sys.pdNord + Sys.pGrInfo->nko - 1) = dOrigoNord + (d * dEnhet);
 
-               /* Øst-koordinaten */
+               /* Ã˜st-koordinaten */
                d = strtod(cp,&cp);  
                *(Sys.pdAust + Sys.pGrInfo->nko - 1) = dOrigoAust + (d * dEnhet);
 
-               /* ..NØH */
+               /* ..NÃ˜H */
                if (pLb->cur_navn[pLb->cur_niv-1] == L_NAH)
                { 
-                  Sys.pGrInfo->info |= GI_NAH;   /* Husk at gruppen har høyde */
+                  Sys.pGrInfo->info |= GI_NAH;   /* Husk at gruppen har hÂ¯yde */
 
-                  /* Regn om høyden */
+                  /* Regn om hÂ¯yden */
                   d = strtod(cp,&cp);
                   pInfo->dHoyde = d * dEnhet_h;
                }
 
-               /* ..NØD */
+               /* ..NÃ˜D */
                else if (pLb->cur_navn[pLb->cur_niv-1] == L_NAD)
                {
                   Sys.pGrInfo->info |= GI_NAD;   /* Husk at gruppen har dybde */
@@ -3579,10 +3579,10 @@ short LB_RGru(LC_FILADM *pFil,UT_INT64 start,UT_INT64 *slutt)
 
 /*
 AR-911001
-CH LB_Save                                           Tøm skrivekøa for 1 fil
+CH LB_Save                                           TÂ¯m skrivekÂ¯a for 1 fil
 CD ==========================================================================
-CD Formål:
-CD Skriver gruppene som ligger i skrivekø ut til SOSI-fil.
+CD FormÃ‚l:
+CD Skriver gruppene som ligger i skrivekÂ¯ ut til SOSI-fil.
 CD
 CD Parametre:
 CD Type       Navn  I/U   Forklaring
@@ -3603,10 +3603,10 @@ void LB_Save(LC_FILADM *pFil)
 
    Bgr.pFil = pFil;
 
-   if (Sys.lAntSkriv > 0L) {                     /* Er det noen i kø ? */
+   if (Sys.lAntSkriv > 0L) {                     /* Er det noen i kÂ¯ ? */
       AktBgr = Sys.GrId;
       for (lNr=0L; lNr<pFil->lAntGr; lNr++) {
-         if (LI_InqBt(pFil,lNr,BT_SKRKO)) {           /* I kø ? */
+         if (LI_InqBt(pFil,lNr,BT_SKRKO)) {           /* I kÂ¯ ? */
             Bgr.lNr = lNr;
             LC_RxGr(&Bgr,LES_OPTIMALT,&ngi,&nko,&info);
             LB_Swap();
@@ -3623,10 +3623,10 @@ void LB_Save(LC_FILADM *pFil)
 
 /*
 AR-911001
-CH LC_Save                                                     Tøm skrivekøa
+CH LC_Save                                                     TÂ¯m skrivekÂ¯a
 CD ==========================================================================
-CD Formål:
-CD Skriver gruppene som ligger i skrivekø ut til SOSI-fil.
+CD FormÃ‚l:
+CD Skriver gruppene som ligger i skrivekÂ¯ ut til SOSI-fil.
 CD
 CD Parametre: ingen
 CD
@@ -3639,7 +3639,7 @@ SK_EntPnt_FYBA void LC_Save(void)
    LC_BASEADM * pBase;
    LC_FILADM *pFil;
 
-   if (Sys.lAntSkriv > 0L) {                     /* Er det noen i kø ? */
+   if (Sys.lAntSkriv > 0L) {                     /* Er det noen i kÂ¯ ? */
       /* Skanner alle baser og alle filer */
       for (pBase=Sys.pForsteBase; pBase!=NULL; pBase=pBase->pNesteBase) {
          for (pFil=pBase->pForsteFil; pFil!=NULL; pFil=pFil->pNesteFil) {
@@ -3657,10 +3657,10 @@ SK_EntPnt_FYBA void LC_Save(void)
 AR-930610
 CH LB_Swap                                  Dump gruppe fra buffer til SOSI
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Skriver en gruppe fra buffer tilbake til SOSI-fil. Ledig plass fram til
 CD neste gruppe blir blanket. Hvis det ikke er plass blir gruppen flyttet
-CD til slutten av filen. Fjerner gruppen fra skrivekøa.
+CD til slutten av filen. Fjerner gruppen fra skrivekÂ¯a.
 CD
 CD Parametre: ingen
 CD
@@ -3679,7 +3679,7 @@ void LB_Swap(void)
    nko = Sys.pGrInfo->nko;
 
    if (start == NY_SOSI_ST){                       /* Ny gruppe? */
-      siste = 1;                                   /* På slutten */
+      siste = 1;                                   /* PÃ‚ slutten */
       start = Sys.GrId.pFil->n64AktPos;
    } else{
       siste = LB_Plass(Sys.GrId.pFil,start,&neste);    /* Finn ledig plass */
@@ -3689,18 +3689,18 @@ void LB_Swap(void)
    if ( ! siste ) {
       /* Skriver */
       if ( ! LB_WGru(SKRIV_VANLIG,1,nko,Sys.GrId.pFil,start,&neste)) {
-         /* For lite plass, blank ut "gammelt" området på SOSI-filen */
+         /* For lite plass, blank ut "gammelt" omrÃ‚det pÃ‚ SOSI-filen */
          _fseeki64(Sys.GrId.pFil->pBase->pfSos,start,SEEK_SET);
          Sys.GrId.pFil->pBase->BufAdm.sStatus = LESEBUFFER_TOM;
-         LB_WriteBlank(Sys.GrId.pFil->pBase->pfSos,Sys.GrId.pFil->sTegnsett,neste); /* Blank ut området */
+         LB_WriteBlank(Sys.GrId.pFil->pBase->pfSos,Sys.GrId.pFil->sTegnsett,neste); /* Blank ut omrÃ‚det */
 
-         /* Gruppen skrives på slutten av SOSI-filen */
+         /* Gruppen skrives pÃ‚ slutten av SOSI-filen */
          siste = 1;
          start = Sys.GrId.pFil->n64AktPos;
       }
    }
 
-   /* Siste gruppe på SOSI-filen */
+   /* Siste gruppe pÃ‚ SOSI-filen */
    if ( siste ) {
       Sys.pGrInfo->sosi_st = start;       /* Ny filposisjon */
       neste = LLONG_MAX;
@@ -3710,7 +3710,7 @@ void LB_Swap(void)
       Sys.GrId.pFil->n64AktPos = neste;                    /* Ny slutt-posisjon */
    }
 
-   LI_ClrBt(Sys.GrId.pFil,Sys.GrId.lNr,BT_SKRKO);       /* Fjern fra skrivekø */
+   LI_ClrBt(Sys.GrId.pFil,Sys.GrId.lNr,BT_SKRKO);       /* Fjern fra skrivekÂ¯ */
 }
 
 
@@ -3718,31 +3718,31 @@ void LB_Swap(void)
 AR-930610
 CH LB_WGru                                         Skriv gruppe til SOSI-fil
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Skriver aktuell gruppe fra buffer til en SOSI-fil.
 CD Sjekker ikke om buffer er endret i fht. SOSI. (Skriver alltid.)
 CD
 CD Parametre:
 CD Type       Navn     I/U  Forklaring
 CD --------------------------------------------------------------------------
-CD short      strategi  i   Skrivestrategi: Følgende konstanter er definert:
+CD short      strategi  i   Skrivestrategi: FÂ¯lgende konstanter er definert:
 CD                          KONTROLLER_PLASS = Bare kontroller plass,
 CD                                             (ikke skriv til SOSI).
 CD                          SKRIV_VANLIG     = Skriv til SOSI, vanlig.
 CD                          SKRIV_SISTE      = Skriv til SOSI, med .SLUTT
-CD                                             og sett filstørrelse.
-CD long       fra_punkt i   Punktnummer for første koordinat som skal skrives.
+CD                                             og sett filstÂ¯rrelse.
+CD long       fra_punkt i   Punktnummer for fÂ¯rste koordinat som skal skrives.
 CD                          (Lovlig:  1  <=  fra_punkt  <=  nko)
 CD long       antall    i   Antall koordinatlinjer som skal skrives.
 CD                          (Lovlig:  0  <=  antall  <=  nko)
 CD                          (Ved skriv av annet enn aktuell gruppe skrives
 CD                          alltid hele gruppen.)
 CD LC_FILADM *pFil      i   Peker til FilAdm for fil det skal skrives til
-CD UT_INT64   ffipos    i   Startposisjon på SOSI-filen
-CD UT_INT64  *lfipos   iu   inn: Første pos i neste gruppe (må ikke overskrives)
-CD                          ut : Første pos etter gruppen (etter event. utrop.)
+CD UT_INT64   ffipos    i   Startposisjon pÃ‚ SOSI-filen
+CD UT_INT64  *lfipos   iu   inn: FÂ¯rste pos i neste gruppe (mÃ‚ ikke overskrives)
+CD                          ut : FÂ¯rste pos etter gruppen (etter event. utrop.)
 CD short      ist       r   Status: 1 = Skrevet OK
-CD                               0 = Ikke plass, må flyttes til slutten
+CD                               0 = Ikke plass, mÃ‚ flyttes til slutten
 CD
 CD Bruk:
 CD ok = LB_WGru (strategi,fra_punkt,antall,pFil,ffipos,&lfipos);
@@ -3767,7 +3767,7 @@ short LB_WGru (short strategi,long fra_punkt,long antall,
    double dOrigoNord = pFil->TransPar.Origo.dNord;
    double dOrigoAust = pFil->TransPar.Origo.dAust;
    UT_INT64 fpos;
-   UT_INT64 nfipos;                   /* Neste filposisjon (første etter linjen) */
+   UT_INT64 nfipos;                   /* Neste filposisjon (fÂ¯rste etter linjen) */
    UT_INT64 afipos = ffipos;                 /* Aktuell filposisjon */
 
 
@@ -3845,7 +3845,7 @@ short LB_WGru (short strategi,long fra_punkt,long antall,
       nfipos = afipos + (long)strlen(tx);
       while (nfipos > *lfipos) {
          if (gnavn == L_HODE) {
-            /* Prøver å flytte gruppen til slutten */
+            /* PrÂ¯ver Ã‚ flytte gruppen til slutten */
             if (!LB_FlyttGrTilSlutt(pFil,*lfipos,lfipos)) {
                LC_Error(146,"(LB_WGru)",pFil->pszNavn);
                return 1;
@@ -3873,32 +3873,32 @@ short LB_WGru (short strategi,long fra_punkt,long antall,
    if (dEnhetDybde == 0.0)  dEnhetDybde = pFil->TransPar.dEnhet_d;
 
 
-   /* Hopp fram til første koordinat som skal skrives */
+   /* Hopp fram til fÂ¯rste koordinat som skal skrives */
    pt = fra_punkt - 1;
 
    forrige_nah = -1;
-   skriv_nah = 1;         /* Skriv ..NØ(H) før første koordinat linje */
+   skriv_nah = 1;         /* Skriv ..NÃ˜(H) fÂ¯r fÂ¯rste koordinat linje */
 
    /* =====> Skriv koordinater og PINFO */
    for (l=0; l<antall; l++,pt++) {
       nah = ((Sys.pInfo + pt)->dHoyde != HOYDE_MANGLER);
 
-       /* Må skrive ..NØ eller ..NØH ved skifte mellom disse */
+       /* MÃ‚ skrive ..NÃ˜ eller ..NÃ˜H ved skifte mellom disse */
       if (forrige_nah != nah) {
          skriv_nah = 1;
       }
 
-      if (skriv_nah) {               /* Skriv ..NØ / ..NØH / ..NØD */
+      if (skriv_nah) {               /* Skriv ..NÃ˜ / ..NÃ˜H / ..NÃ˜D */
          if (nah) {
 
             if ((Sys.pGrInfo->info & GI_NAH) != 0) {
-               UT_StrCopy(tx,"..NØH\r\n",LC_MAX_SOSI_LINJE_LEN);
+               UT_StrCopy(tx,"..NÃ˜H\r\n",LC_MAX_SOSI_LINJE_LEN);
             } else {
-               UT_StrCopy(tx,"..NØD\r\n",LC_MAX_SOSI_LINJE_LEN);
+               UT_StrCopy(tx,"..NÃ˜D\r\n",LC_MAX_SOSI_LINJE_LEN);
             }
             nfipos = afipos + 7;
          } else {
-            UT_StrCopy(tx,"..NØ\r\n",LC_MAX_SOSI_LINJE_LEN);
+            UT_StrCopy(tx,"..NÃ˜\r\n",LC_MAX_SOSI_LINJE_LEN);
             nfipos = afipos + 6;
          }
          forrige_nah = nah;
@@ -3919,16 +3919,16 @@ short LB_WGru (short strategi,long fra_punkt,long antall,
       dA = UT_RoundDD((*(Sys.pdAust+pt) - dOrigoAust) / dEnhet);
       UT_SNPRINTF(tx,LC_MAX_SOSI_LINJE_LEN,"%.0f %.0f",dN,dA);
 
-      // ----- Høyde eller dybde
+      // ----- HÂ¯yde eller dybde
       if (nah)
       {
-         // NØH
+         // NÃ˜H
          if ((Sys.pGrInfo->info & GI_NAH) != 0)
          {
             dA = UT_RoundDD((Sys.pInfo+pt)->dHoyde / dEnhetHoyde);
          }
 
-         // NØD
+         // NÃ˜D
          else
          {
             dA = UT_RoundDD((Sys.pInfo+pt)->dHoyde / dEnhetDybde);
@@ -3964,7 +3964,7 @@ short LB_WGru (short strategi,long fra_punkt,long antall,
          LC_Error(134,"(LB_WGru)",LX_GetGi(1));
       }
 
-      // Legg på linjeslutt
+      // Legg pÃ‚ linjeslutt
       UT_StrCat(tx,"\r\n",LC_MAX_SOSI_LINJE_LEN);
                                            
       /* Sjekk om plassen er oppbrukt */
@@ -3981,11 +3981,11 @@ short LB_WGru (short strategi,long fra_punkt,long antall,
       afipos = nfipos;
    }
 
-   if (strategi == SKRIV_SISTE)                 /* På slutten av filen */
+   if (strategi == SKRIV_SISTE)                 /* PÃ‚ slutten av filen */
    {
       /* Akt.pos + reserveplass */
       *lfipos = _ftelli64(pfSos) + (UT_INT64)Sys.sResPlass;
-      /* Legg på 200 ekstra etter filhodet */
+      /* Legg pÃ‚ 200 ekstra etter filhodet */
       if (ffipos == 0)  *lfipos += 200;
       LB_WriteBlank(pfSos,pFil->sTegnsett,*lfipos);
 
@@ -4001,7 +4001,7 @@ short LB_WGru (short strategi,long fra_punkt,long antall,
          LC_Error(142,"(LB_WGru)",tx);
       }
 
-      // Sjekk om filstørrelsen er redusert
+      // Sjekk om filstÂ¯rrelsen er redusert
       sFilMindre = UT_FALSE;
       if (Sys.sUtvidModus != LC_UTVID_SIKKER) {
          if (UT_InqPathSize_i64(pFil->pszNavn,&Size) == 0) {
@@ -4009,13 +4009,13 @@ short LB_WGru (short strategi,long fra_punkt,long antall,
          }
       }
 
-      // Filstørrelsen er redusert, eller sikker utvidingsmodus
+      // FilstÂ¯rrelsen er redusert, eller sikker utvidingsmodus
       if (sFilMindre == UT_TRUE  ||  Sys.sUtvidModus == LC_UTVID_SIKKER) {
 
-         /* Steng filen for å bevare byte-pekeren */
+         /* Steng filen for Ã‚ bevare byte-pekeren */
          LO_CloseSos(pFil->pBase);
 
-         /* Sett filstørrelse */
+         /* Sett filstÂ¯rrelse */
          if (fpos != -1) {
             if ((i = UT_SetPathSize_i64(pFil->pszNavn,fpos-1)) != 0) {
                UT_SNPRINTF(tx,LC_MAX_SOSI_LINJE_LEN,"(%s, Posisjon:%lld, Se log-fil for detaljert beskrivelse)",pFil->pszNavn,fpos-1);
@@ -4028,7 +4028,7 @@ short LB_WGru (short strategi,long fra_punkt,long antall,
    else
    {
       if (strategi != KONTROLLER_PLASS) {
-                            /* Blank fram til neste gruppe, og tøm buffer */
+                            /* Blank fram til neste gruppe, og tÂ¯m buffer */
          LB_WriteBlank(pfSos,pFil->sTegnsett,*lfipos);
       }
    }
@@ -4043,15 +4043,15 @@ short LB_WGru (short strategi,long fra_punkt,long antall,
 AR-920309
 CH LB_FlyttGrTilSlutt                      Flytt gruppe til slutten av filen
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Flytt gruppe til slutten av filen
 CD
 CD Parametre:
 CD Type       Navn    I/U   Forklaring
 CD --------------------------------------------------------------------------
 CD LC_FILADM *pFil     i    Peker til FilAdm
-CD UT_INT64   start    i    Startposisjon på SOSI-filen (første pos. i gr.)
-CD UT_INT64  *neste    u    Startposisjon i neste gruppe (første pos. etter gr.)
+CD UT_INT64   start    i    Startposisjon pÃ‚ SOSI-filen (fÂ¯rste pos. i gr.)
+CD UT_INT64  *neste    u    Startposisjon i neste gruppe (fÂ¯rste pos. etter gr.)
 CD short      status   r    Status:  UT_FALSE = Feil
 CD                                   UT_TRUE = OK
 CD
@@ -4069,7 +4069,7 @@ static short LB_FlyttGrTilSlutt(LC_FILADM *pFil, UT_INT64 start, UT_INT64 *neste
    /* Husk aktuell filposisjon */
    lCurFilpos = _ftelli64(pFil->pBase->pfSos);
 
-   /* Sjekk gruppetabellen for å finne hvilken gruppe */
+   /* Sjekk gruppetabellen for Ã‚ finne hvilken gruppe */
    /* som starter i start posisjonen. */
    for (lNr=1L; lNr<pFil->lAntGr; lNr++) {
       pGrInfo = LI_GetGrt(pFil,lNr);
@@ -4115,7 +4115,7 @@ static short LB_FlyttGrTilSlutt(LC_FILADM *pFil, UT_INT64 start, UT_INT64 *neste
 AR-920309
 CH LB_Plass                                          Finn tilgjengelig plass
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Scanner SOSI-filen og finner hvor mye plass som er tilgjengelig for
 CD gruppen. (Uten flytting.)
 CD
@@ -4123,8 +4123,8 @@ CD Parametre:
 CD Type       Navn    I/U   Forklaring
 CD --------------------------------------------------------------------------
 CD LC_FILADM *pFil     i    Peker til FilAdm
-CD UT_INT64      start    i    Startposisjon på SOSI-filen (første pos. i gr.)
-CD UT_INT64     *neste    u    Startposisjon i neste gruppe (første pos. etter gr.)
+CD UT_INT64      start    i    Startposisjon pÃ‚ SOSI-filen (fÂ¯rste pos. i gr.)
+CD UT_INT64     *neste    u    Startposisjon i neste gruppe (fÂ¯rste pos. etter gr.)
 CD short      siste    r    Siste gruppe:  UT_FALSE = Ikke siste gruppe
 CD                                         UT_TRUE = Siste gruppe
 CD
@@ -4140,7 +4140,7 @@ short LB_Plass (LC_FILADM *pFil, UT_INT64 start, UT_INT64 *neste)
    _fseeki64(pFil->pBase->pfSos,start,SEEK_SET);
    pLb->sStatus = LESEBUFFER_TOM;
    
-   /* Gruppenavn på egen gruppe */
+   /* Gruppenavn pÃ‚ egen gruppe */
    LB_GetSet(pFil->pBase->pfSos,pLb,&(pFil->SosiNavn));
 
    /* Scann gruppen sett for sett */
@@ -4160,8 +4160,8 @@ GL-880119
 AR-911001
 CH LB_WriteBlank                                        Fyller inn "!!!!!!!"
 CD ==========================================================================
-CD Formål:
-CD Fyller området FRA-OG-MED current-posisjon og fram TIL,
+CD FormÃ‚l:
+CD Fyller omrÃ‚det FRA-OG-MED current-posisjon og fram TIL,
 CD (men ikke inklusiv) , ltilpos med !!!!!.
 CD Rutina takler fra 1 til mange posisjoner.
 CD
@@ -4205,7 +4205,7 @@ static void LB_WriteBlank (FILE *fil,short sTegnsett,UT_INT64 ltilpos)
          LB_WriteLine(fil,sTegnsett,buffer);
 
       }else {                          /* ant fyll = 1 eller 2 */
-                                      /* blank sist på forrige linje */
+                                      /* blank sist pÃ‚ forrige linje */
          _fseeki64(fil,-2L,SEEK_CUR);
          if      (iant == 1)   UT_StrCopy(buffer, " \r\n", LC_MAX_SOSI_LINJE_LEN);
          else if (iant == 2)   UT_StrCopy(buffer, "  \r\n", LC_MAX_SOSI_LINJE_LEN);
@@ -4217,10 +4217,10 @@ static void LB_WriteBlank (FILE *fil,short sTegnsett,UT_INT64 ltilpos)
 
 /*
 AR-911001
-CH LB_WriteLine                                    Lavnivå skriv tekst linje
+CH LB_WriteLine                                    LavnivÃ‚ skriv tekst linje
 CD ==========================================================================
-CD Formål:
-CD Lavnivå overbygning ove write i C-biblioteket for å skrive en linje.
+CD FormÃ‚l:
+CD LavnivÃ‚ overbygning ove write i C-biblioteket for Ã‚ skrive en linje.
 CD
 CD Parametre:
 CD Type     Navn     I/U   Forklaring
@@ -4245,7 +4245,7 @@ short LB_WriteLine (FILE *fil,short sTegnsett,char *tx)
 AR-920909
 CH LB_FyllBuffer                         Oppdater lesebuffer fra SOSI-filen
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Les neste linje fra SOSI-filen inn i lesebuffer.
 CD Konverterer til rett internt tegnsett.
 CD
@@ -4300,8 +4300,8 @@ void LB_FyllBuffer (FILE *fil,LB_LESEBUFFER *plb)
 AR-920909
 CH LB_GetSet                               Hent SOSI-navn og verdi fra buffer
 CD =============================================================================
-CD Formål:
-CD Hen ett SOSI-navn og tilhørende verdi fra lesebuffer.
+CD FormÃ‚l:
+CD Hen ett SOSI-navn og tilhÂ¯rende verdi fra lesebuffer.
 CD Inn: Hvis buffer har gyldig innhold peker "plb->np" til posisjon
 CD      der tolking skal starte.
 CD
@@ -4358,14 +4358,14 @@ short LB_GetSet(FILE *fil,LB_LESEBUFFER *plb,LC_NAVNETABELL * pNavn)
          cTmp = *plb->cp;
          *plb->cp = '\0';
 
-         /* Søk i navnetabellen */
+         /* SÂ¯k i navnetabellen */
          gml_niv = plb->cur_niv;
          plb->cur_niv = LN_PakkNavn(pNavn,plb->np,&navn_nr,&(plb->cur_ant_par));
          plb->cur_navn[plb->cur_niv - 1] = navn_nr;
 
          *plb->cp = cTmp;
 
-         /* Sjekk mot sprang i prikknivå */
+         /* Sjekk mot sprang i prikknivÃ‚ */
          if ((plb->cur_niv - gml_niv) > 1) {
             LC_Error(147,"(LB_GetSet)",plb->np);
          }
@@ -4407,7 +4407,7 @@ short LB_GetSet(FILE *fil,LB_LESEBUFFER *plb,LC_NAVNETABELL * pNavn)
             plb->cur_type = LEST_BLANK;
             plb->np = plb->cp;
 
-            /* Fyll er alltid nivå 2 eller 3 */
+            /* Fyll er alltid nivÃ‚ 2 eller 3 */
             if (plb->cur_niv == 1) {
                plb->cur_niv = 2; 
             }
@@ -4444,10 +4444,10 @@ short LB_GetSet(FILE *fil,LB_LESEBUFFER *plb,LC_NAVNETABELL * pNavn)
 AR-920909
 CH LB_GetParameter                                 Hent parameter fra buffer
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Hent parameter fra lesebuffer.
 CD Forutsetter at det ikke er blanke forran parameteren.
-CD Inn: "plb->np" peker til første posisjon i parameteren. (Der tolking
+CD Inn: "plb->np" peker til fÂ¯rste posisjon i parameteren. (Der tolking
 CD skal starte.
 CD
 CD Parametre:
@@ -4536,7 +4536,7 @@ static short LB_TestFyll(const char *pszTx)
 AR/TU:2008-09-11
 CH LC_ErstattReferanse                                     Erstatt referanse 
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Erstatt referanse i alle grupper i gitt fil.
 CD 
 CD
@@ -4546,7 +4546,7 @@ CD --------------------------------------------------------------------------
 CD LC_FILADM *pFil           i   Fil som skal behandles
 CD long       lGmlSnr        i   Gruppe som skal byttes ut
 CD long       lNyttSnr       i   Ny gruppe
-CD                               Verdien 0 fører til gammelt serienummer 
+CD                               Verdien 0 fÂ¯rer til gammelt serienummer 
 CD                               fjernes uten at det legges inn noe nytt.
 CD bool       bSammeRetning  i   Gruppene er digitalisert i samme retning
 CD
@@ -4583,7 +4583,7 @@ SK_EntPnt_FYBA void LC_ErstattReferanse (LC_FILADM *pFil,long lGmlSnr,long lNytt
          LC_GetGrParaBgr(&Bgr,&ngi,&nko,&info);
          if ((info&GI_REF) != 0)
          {
-            // Gruppen er på rett fil og har referanser, Bytt serienummer 
+            // Gruppen er pÃ‚ rett fil og har referanser, Bytt serienummer 
             LC_RxGr(&Bgr,LES_OPTIMALT,&ngi,&nko,&info);
             lAntRef = LC_InqAntRef();
             plRefArray = (long *) UT_MALLOC(lAntRef * sizeof(long));

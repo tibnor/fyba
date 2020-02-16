@@ -46,7 +46,7 @@ int LU_compare (const void *arg1, const void *arg2);
 AR-911003
 CH LC_OpenQuery                                                Initier query
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Initierer query mot GINFO/PINFO.
 CD Tildeler administrasjonsblokk for utvalg.
 CD
@@ -80,7 +80,7 @@ SK_EntPnt_FYBA LC_UT_ADM *LC_OpenQuery(void)
 AR-910718
 CH LC_CloseQuery                                             Avslutter query
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Avslutter query mot GINFO/PINFO.
 CD Frigir minne brukt til administrasjon og utvalgstabeller.
 CD
@@ -97,7 +97,7 @@ CD LC_CloseQuery(pUtAdm);
 SK_EntPnt_FYBA void LC_CloseQuery(LC_UT_ADM * pUtAdm)
 {
    LC_UTVALG *pU,*pNesteU;
-   LC_LAG *pLag,*pNesteLag; //JAØ-19980922
+   LC_LAG *pLag,*pNesteLag; //JAÃ˜-19980922
 
 
    if (pUtAdm != NULL)
@@ -134,7 +134,7 @@ SK_EntPnt_FYBA void LC_CloseQuery(LC_UT_ADM * pUtAdm)
       }
 
       /*
-       * Frigir lag. JAØ-19980922
+       * Frigir lag. JAÃ˜-19980922
        */
       pLag = pUtAdm->pForsteLag;
       while (pLag != NULL) {
@@ -156,7 +156,7 @@ SK_EntPnt_FYBA void LC_CloseQuery(LC_UT_ADM * pUtAdm)
 AR-920521
 CH LU_FrigiUtvalg                                            Frigi et utvalg
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Frigir et utvalg med alle underliggende utvalgselementer.
 CD
 CD Parameters:
@@ -186,14 +186,14 @@ static void LU_FrigiUtvalg (LC_UTVALG * pU)
 AR-920521
 CH LU_FrigiUE                                        Frigi utvalgselementer
 CD ==========================================================================
-CD Formål:
-CD Frigir alle elementene (utvalgslinjene) på et nivå i kjeden av
+CD FormÃ‚l:
+CD Frigir alle elementene (utvalgslinjene) pÃ‚ et nivÃ‚ i kjeden av
 CD utvalgselementer for et utvalg.
 CD
 CD Parameters:
 CD Type                  Navn      I/O  Forklaring
 CD -------------------------------------------------------------------------
-CD LC_UTVALG_ELEMENT *  pForsteUE  i   Start utvalgs-kjede på dette nivå.
+CD LC_UTVALG_ELEMENT *  pForsteUE  i   Start utvalgs-kjede pÃ‚ dette nivÃ‚.
 CD
 CD Bruk:
 CD LU_FrigiUE(pForsteUE);
@@ -203,12 +203,12 @@ SK_EntPnt_FYBA void LU_FrigiUE (LC_UTVALG_ELEMENT * pUE)
 {
    LC_UTVALG_ELEMENT *  pNesteUE;
 
-   /* Går gjennom alle elementene på dette nivå */
+   /* GÃ‚r gjennom alle elementene pÃ‚ dette nivÃ‚ */
    while (pUE != NULL) {
-      /* Frigi elementer på underliggende nivå under dette objektet */
+      /* Frigi elementer pÃ‚ underliggende nivÃ‚ under dette objektet */
       if (pUE->pForsteUE != NULL)  LU_FrigiUE(pUE->pForsteUE);
 
-      /* Husk hva som er neste element på dette nivå */ 
+      /* Husk hva som er neste element pÃ‚ dette nivÃ‚ */ 
       pNesteUE = pUE->pNesteUE;
 
 		/* Frigi dette elementet */
@@ -226,14 +226,14 @@ SK_EntPnt_FYBA void LU_FrigiUE (LC_UTVALG_ELEMENT * pUE)
 AR-920527
 CH LC_PutQueryLine                                   Legg inn en query-linje
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Legger inn og tolker en linje med query-tekst.
 CD
 CD Parametre:
 CD Type       Navn  I/U   Forklaring
 CD ------------------------------------------------------------------------
 CD LC_UT_ADM *UtAdm  i    Peker til administrasjonsblokk for utvalg.
-CD char      *qulin  i    Linje med query-tekst. (Uten prikker på første nivå).
+CD char      *qulin  i    Linje med query-tekst. (Uten prikker pÃ‚ fÂ¯rste nivÃ‚).
 CD short     sType   i    Gruppe eller Punkt (U_GRUPPE eller U_PUNKT).
 CD short      ist    r    Status (UT_TRUE=OK, UT_FALSE=linjen er ikke OK)
 CD
@@ -261,7 +261,7 @@ SK_EntPnt_FYBA short LC_PutQueryLine(LC_UT_ADM *pUtAdm,const char *qulin,short s
          cp++;
       }
 
-      /* Første utvalg i blokken, alloker topp-blokk */
+      /* FÂ¯rste utvalg i blokken, alloker topp-blokk */
       if (sType == U_GRUPPE) {
          pUB = &pUtAdm->Gruppe;
 
@@ -277,9 +277,9 @@ SK_EntPnt_FYBA short LC_PutQueryLine(LC_UT_ADM *pUtAdm,const char *qulin,short s
       /* Alloker minne og tolk linjen */
       sStatus = LU_AppUE(pUB->pSisteU,sNiv,cp);
 
-      // Ta vare på opplysning om HØYDE er brukt
+      // Ta vare pÃ‚ opplysning om HÃ˜YDE er brukt
       if (sStatus != UT_FALSE) {
-         if (strcmp(pUB->pSisteU->pSisteUE->sosi,"HØYDE") == 0) {
+         if (strcmp(pUB->pSisteU->pSisteUE->sosi,"HÃ˜YDE") == 0) {
             pUB->sHoydeBrukt = UT_TRUE;
          }
       }
@@ -293,8 +293,8 @@ SK_EntPnt_FYBA short LC_PutQueryLine(LC_UT_ADM *pUtAdm,const char *qulin,short s
 AR-920522
 CH LC_PutQueryRegel                                    Legg inn et regelnavn
 CD ==========================================================================
-CD Formål:
-CD Legger inn et regelnavn på siste linje i utvalgstabellen.
+CD FormÃ‚l:
+CD Legger inn et regelnavn pÃ‚ siste linje i utvalgstabellen.
 CD (Navnet blir intern konvertert til "store" bokstaver.)
 CD
 CD Parametre:
@@ -319,11 +319,11 @@ SK_EntPnt_FYBA void LC_PutQueryRegel(LC_UTVALG * pU,const char *navn)
 }
 
 /*
-JAØ-19980921
+JAÃ˜-19980921
 CH LC_PutLag                                          Legg inn peker til lag
 CD ==========================================================================
-CD Formål:
-CD Legger inn peker til det laget utvalget tilhører.
+CD FormÃ‚l:
+CD Legger inn peker til det laget utvalget tilhÂ¯rer.
 CD
 CD Parametre:
 CD Type         Navn  I/U   Forklaring
@@ -344,7 +344,7 @@ SK_EntPnt_FYBA void LC_PutLag(LC_UT_ADM *pUtAdm,LC_UTVALG *pU,const char *navn)
 
    if (pUtAdm != NULL)
    {
-	   /* Det er allerede lagt inn lag på dette utvalget ? */
+	   /* Det er allerede lagt inn lag pÃ‚ dette utvalget ? */
       if (pU->pLag != NULL) { 
          /* Annet lag enn forrige gang ? */
          if (strcmp(navn,pU->pLag->pszLagNavn) != 0) {
@@ -359,7 +359,7 @@ SK_EntPnt_FYBA void LC_PutLag(LC_UT_ADM *pUtAdm,LC_UTVALG *pU,const char *navn)
 		      if (!sFunnet) pLag = pLag->pNesteLag;
 	      }
    	 
-         if (pLag == NULL) { /* Nytt lag, må opprettes og settes inn i kjeden. */
+         if (pLag == NULL) { /* Nytt lag, mÃ‚ opprettes og settes inn i kjeden. */
 		      pNyttLag = (LC_LAG *)UT_MALLOC(sizeof(LC_LAG));
 		      memset(pNyttLag,0,sizeof(LC_LAG));
 		      pNyttLag->sLagAktiv = 1;
@@ -387,15 +387,15 @@ SK_EntPnt_FYBA void LC_PutLag(LC_UT_ADM *pUtAdm,LC_UTVALG *pU,const char *navn)
 AR-890308
 CH LC_LesUtvalg                                        Les utvalg i kom.filen
 CD =============================================================================
-CD Formål:
-CD Leser og tolker gruppe og punktutvalg på kommandofilen og legger i tabell.
-CD Forutsetter at filen er åpnet på forhånd.
+CD FormÃ‚l:
+CD Leser og tolker gruppe og punktutvalg pÃ‚ kommandofilen og legger i tabell.
+CD Forutsetter at filen er Ã‚pnet pÃ‚ forhÃ‚nd.
 CD
 CD Parametre:
 CD Type       Navn    I/U   Forklaring
 CD -----------------------------------------------------------------------------
 CD LC_UT_ADM *pUtAdm   i    Peker til administrasjonsblokk for utvalg.
-CD FILE      *pKomFil  i    Peker til "handle" for åpnet kommandofil.
+CD FILE      *pKomFil  i    Peker til "handle" for Ã‚pnet kommandofil.
 CD short      sStatus  r    UT_TRUE=OK, UT_FALSE=feil i linjen
 CD
 CD Bruk:
@@ -415,10 +415,10 @@ SK_EntPnt_FYBA short LC_LesUtvalg(LC_UT_ADM *pUtAdm,const char *pszKomFil)
 
    if (pUtAdm != NULL)
    {
-      /* Åpner filen */
+      /* Ã…pner filen */
       pKomFil = UT_OpenFile(pszKomFil,"",UT_READ,UT_OLD,&sStatus);
 
-	   /* Åpningsfeil */
+	   /* Ã…pningsfeil */
       if (sStatus != UT_OK) {
          char szError[256];
          UT_strerror(szError,256,sStatus);
@@ -427,7 +427,7 @@ SK_EntPnt_FYBA short LC_LesUtvalg(LC_UT_ADM *pUtAdm,const char *pszKomFil)
          return UT_FALSE;
       }
        
-      /* Starter først på filen og leser  */
+      /* Starter fÂ¯rst pÃ‚ filen og leser  */
       UT_SetPos(pKomFil,0L);
 
       lesefeil = LU_LesULinje(pKomFil,100,szTx,&sNiv);
@@ -474,7 +474,7 @@ SK_EntPnt_FYBA short LC_LesUtvalg(LC_UT_ADM *pUtAdm,const char *pszKomFil)
                   UT_StrToken(szTx,itxi,&itxi,61,ord);
                   LC_PutQueryRegel(pUB->pSisteU,ord);
 
-               /* GRUPPE */  //JAØ-19980921
+               /* GRUPPE */  //JAÃ˜-19980921
                } else if (sNiv == 2  &&  strcmp(ord,"LAG") == 0) {
                   UT_StrToken(szTx,itxi,&itxi,61,ord);
                   LC_PutLag(pUtAdm,pUB->pSisteU,ord);
@@ -491,14 +491,14 @@ SK_EntPnt_FYBA short LC_LesUtvalg(LC_UT_ADM *pUtAdm,const char *pszKomFil)
                      return UT_FALSE;               // Avbryter tolkingen ==>
                   }
 
-                  /* Sjekk om HØYDE er brukt i utvalg */
-                  if (strcmp(pUB->pSisteU->pSisteUE->sosi,"HØYDE") == 0) {
+                  /* Sjekk om HÃ˜YDE er brukt i utvalg */
+                  if (strcmp(pUB->pSisteU->pSisteUE->sosi,"HÃ˜YDE") == 0) {
                      pUB->sHoydeBrukt = UT_TRUE;
                   }
 
                   /* PUNKT-UTVALG */
                   if (pUB == &pUtAdm->Punkt) {
-                     /* "!" er brukt, må sjekke alle punkt */
+                     /* "!" er brukt, mÃ‚ sjekke alle punkt */
                      if (pUB->pSisteU->pSisteUE->metode == LC_U_IKKE) {
                         pUB->sTestAllePi = UT_TRUE;
                      }
@@ -536,14 +536,14 @@ SK_EntPnt_FYBA short LC_LesUtvalg(LC_UT_ADM *pUtAdm,const char *pszKomFil)
 AR-920610
 CH LU_AppUE                                      Legg til en ny utvalgslinje
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Legg til et nytt element i kjeden utvalgslinjer.
 CD
 CD Parameters:
 CD Type         Navn     I/O  Forklaring
 CD -----------------------------------------------------------------------
 CD LC_UTVALG   *pU        i   Aktuellt utvalg
-CD short        sNiv      i   Nivå (antall prikker forran navnet)
+CD short        sNiv      i   NivÃ‚ (antall prikker forran navnet)
 CD char        *pszTx     i   Lest linje
 CD short        sStatus   r   UT_TRUE=OK, UT_FALSE=feil i linjen
 CD
@@ -567,7 +567,7 @@ SK_EntPnt_FYBA short LU_AppUE (LC_UTVALG *pU,short sNiv,const char *pszTx)
    //if (sAktNiv < sNiv-1) {
    if (sAktNiv < sNiv  ||  sNiv > sAktNiv) {
       LC_Error(126,"(LU_AppUE)",pszTx);
-      return  UT_FALSE;       /* ==> Retur når ulovlig sprang i nivå */
+      return  UT_FALSE;       /* ==> Retur nÃ‚r ulovlig sprang i nivÃ‚ */
    }
 
 	/* Alloker minne og initier */
@@ -606,7 +606,7 @@ SK_EntPnt_FYBA short LU_AppUE (LC_UTVALG *pU,short sNiv,const char *pszTx)
    /* Tolk linjen */
    if ( ! LU_TolkUtvalgslinje(pNyUE,pszTx)) {
       LC_Error(124,"(LU_AppUE)",pszTx);
-      return  UT_FALSE;       /* ==> Retur når ulovlig utvalgslinje */
+      return  UT_FALSE;       /* ==> Retur nÃ‚r ulovlig utvalgslinje */
    }
          
    return  UT_TRUE;
@@ -617,7 +617,7 @@ SK_EntPnt_FYBA short LU_AppUE (LC_UTVALG *pU,short sNiv,const char *pszTx)
 AR-910718
 CH LU_DelLastQery                           Fjern siste utvalg fra tabellen
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Fjerner siste utvalg fra tabellen. (Fram til forrige regelnavn.)
 CD
 CD Parametre:
@@ -655,11 +655,11 @@ static void LU_DelLastQuery(LC_UTVALG_BLOKK *pUB)
 
 
 /*
-ÅE-20040709 Forandret litt for at type skulle ta negative tall.
+Ã…E-20040709 Forandret litt for at type skulle ta negative tall.
 AR-920526
 CH LU_TolkUtvalgslinje                         Tolk utvalgslinje i kom.filen
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Tolker en utvalgslinje fra kommandofilen og legger i tabell.
 CD Forutsetter at linjen er lest.
 CD
@@ -833,7 +833,7 @@ static short LU_TolkUtvalgslinje(LC_UTVALG_ELEMENT * pUE,const char *pszTx)
 AR-881115
 CH LU_SjekkDatatype                                              Sjekk datatype
 CD =============================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Finner datatype ut fra utvalgsparameter.
 CD
 CD Parametre:
@@ -841,7 +841,7 @@ CD Type      Navn       I/U   Forklaring
 CD -----------------------------------------------------------------------------
 CD char     *pszVerdi    i    Verdi
 CD char     szMetode     i    Utvalgsmetode
-CD short    *psType      iu   Type, Inn=foreløpig type, Ut=beregnet type
+CD short    *psType      iu   Type, Inn=forelÂ¯pig type, Ut=beregnet type
 CD
 CD Bruk:
 CD LU_SjekkDatatype(pszVerdi,szMetode,sType);
@@ -858,7 +858,7 @@ static void LU_SjekkDatatype(char *pszVerdi,char szMetode,short *psType)
 	/* Sjekk typen */
 	for (cp=pszVerdi; *cp!='\0'; ++cp)
    {
-      // Første tegn:
+      // FÂ¯rste tegn:
       if (i==0)
       {
          if (*cp=='.')
@@ -898,7 +898,7 @@ static void LU_SjekkDatatype(char *pszVerdi,char szMetode,short *psType)
 
    if (*psType == LC_U_TALL)
    {
-      // Hvis tallet har for mange siffer til long må det håndteres som tekst
+      // Hvis tallet har for mange siffer til long mÃ‚ det hÃ‚ndteres som tekst
       long lTall = atol(pszVerdi);
       if (lTall == LONG_MAX  ||  lTall == LONG_MIN)
       {
@@ -912,7 +912,7 @@ static void LU_SjekkDatatype(char *pszVerdi,char szMetode,short *psType)
 AR-881115
 CH LC_GetUtRegelNavn                                      Henter regelnavn
 CD =============================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Henter regelnavn for at programmet utenfor skal kunne sjekke
 CD at det er tilgjengelig videre behandling av alle definerte navn.
 CD
@@ -955,7 +955,7 @@ SK_EntPnt_FYBA char *LC_GetUtRegelNavn(LC_UT_ADM *pUtAdm,short *ist)
             pUtAdm->pAktUB->pAktU = pUtAdm->pAktUB->pForsteU;
 
          } else {
-            /* RETUR når det ikke er tilslag */
+            /* RETUR nÃ‚r det ikke er tilslag */
             *ist = -1;
             return NULL;
          }
@@ -975,7 +975,7 @@ SK_EntPnt_FYBA char *LC_GetUtRegelNavn(LC_UT_ADM *pUtAdm,short *ist)
 AR-920526
 CH LC_FinnPinfoUtvalg
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Finner et PINFO-UTVALG i kjeden av slike utvalg.
 CD
 CD Parametre:
@@ -995,7 +995,7 @@ SK_EntPnt_FYBA LC_UTVALG * LC_FinnPinfoUtvalg(LC_UT_ADM * pUtAdm,const char *psz
 
    if (pUtAdm != NULL)
    {
-      /* Søk i kjeden av pinfo-utvalg */
+      /* SÂ¯k i kjeden av pinfo-utvalg */
       for (pU=pUtAdm->Pinfo.pForsteU; pU != NULL; pU=pU->pNesteU) {
          if (strcmp(pszNavn,pU->pszRegel) == 0) {
             return  pU;              /* ==> Funnet */
@@ -1012,15 +1012,15 @@ SK_EntPnt_FYBA LC_UTVALG * LC_FinnPinfoUtvalg(LC_UT_ADM * pUtAdm,const char *psz
 AR-881130
 CH LC_PunktUtvalg                                               PUNKT-utvalg
 CD =============================================================================
-CD Formål:
-CD Sjekker PINFO-delen av aktuell gruppe for tilslag på PUNKT-UTVALG.
+CD FormÃ‚l:
+CD Sjekker PINFO-delen av aktuell gruppe for tilslag pÃ‚ PUNKT-UTVALG.
 CD
 CD Parametre:
 CD Type       Navn       I/U   Forklaring
 CD -----------------------------------------------------------------------------
 CD LC_UT_ADM * pUtAdm      i    Peker til administrasjonsblokk for utvalg.
 CD short      sPrior      i    Prioritet.
-CD short     *psStat     iu    Søkestatus, Inn: 1=start søk, 0=fortsett søk
+CD short     *psStat     iu    SÂ¯kestatus, Inn: 1=start sÂ¯k, 0=fortsett sÂ¯k
 CD                                         Ut : 0=tilslag, -1=ikke tilslag
 CD long       lPnr        i    Punktnummer som skal sjekkes.
 CD char     **ppszRegel   u    Peker til regelnavn
@@ -1036,7 +1036,7 @@ SK_EntPnt_FYBA void LC_PunktUtvalg(LC_UT_ADM *pUtAdm,short sPrior,short *psStat,
 
    if (pUtAdm != NULL)
    {
-      if (*psStat == 1) {               /* Initier søk */
+      if (*psStat == 1) {               /* Initier sÂ¯k */
          /* Utvalgsmetode "!" (ikke) er brukt, eller
             punktet har PINFO mm. */
          if (pUtAdm->Punkt.sTestAllePi == UT_TRUE  ||
@@ -1055,7 +1055,7 @@ SK_EntPnt_FYBA void LC_PunktUtvalg(LC_UT_ADM *pUtAdm,short sPrior,short *psStat,
          }
       }
 
-                                      /* Søk */
+                                      /* SÂ¯k */
       while (pU != NULL) {
          /* Rett prioritet ? */
          if (sPrior == LC_OVERSE_PRIORITET  ||  pU->sPrioritet == sPrior) {
@@ -1083,7 +1083,7 @@ SK_EntPnt_FYBA void LC_PunktUtvalg(LC_UT_ADM *pUtAdm,short sPrior,short *psStat,
 AR-920929
 CH LC_PiTestUtvalg                                  Sjekk PUNKT/PINFO utvalg
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Sjekk om PINFO i aktuellt punkt tilfredstiller et punkt-utvalg.
 CD
 CD Parametre:
@@ -1107,9 +1107,9 @@ SK_EntPnt_FYBA short LC_PiTestUtvalg(LC_UT_ADM * pUtAdm,LC_UTVALG * pU,long lPnr
    {
       LC_UTVALG_ELEMENT * pUE = pU->pForsteUE;
 
-      /* Søk */
+      /* SÂ¯k */
       while (pUE != NULL) {
-                                          /* Linjen må testes i disse tilfeller */
+                                          /* Linjen mÃ‚ testes i disse tilfeller */
                                       /* Har tilslag, og metode er ..OG */
                                       /* Har ikke tilslag, og metode er ..ELLER */
          if (( sTilslag  &&  pUE->kommando == LC_U_OG) ||
@@ -1129,7 +1129,7 @@ SK_EntPnt_FYBA short LC_PiTestUtvalg(LC_UT_ADM * pUtAdm,LC_UTVALG * pU,long lPnr
 AR-920617
 CH LU_PiTestDelutvalg                              Sjekk en del av et utvalg
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Sjekk om PINFO i aktuellt punkt tilfredstiller en del av et
 CD punkt-utvalg. Sjekker et utvalgselement samt underliggende elementer
 CD under dette.
@@ -1150,11 +1150,11 @@ static short LU_PiTestDelutvalg(LC_UT_ADM * pUtAdm,LC_UTVALG_ELEMENT * pUE,long 
 {
    short sTilslag = UT_FALSE;
    short sForste = UT_TRUE;
-                                   /* Søk */
+                                   /* SÂ¯k */
    while (pUE != NULL) {
       if (sForste) {
          /*
-          * Første element i delutvalget skal alltid testes.
+          * FÂ¯rste element i delutvalget skal alltid testes.
           */
          sTilslag = LU_PiTestLinje(pUE,lPnr);
 
@@ -1164,11 +1164,11 @@ static short LU_PiTestDelutvalg(LC_UT_ADM * pUtAdm,LC_UTVALG_ELEMENT * pUE,long 
 
       } else {
          /*
-          * Elementet må testes i disse tilfeller:
+          * Elementet mÃ‚ testes i disse tilfeller:
           *  - Har tilslag, og metode er ..OG.
           *  - Har ikke tilslag, og metode er ..ELLER.
-          * Elementet kan være toppen av et nytt delutvalg, kaller derfor
-          * LU_PiTestDelutvalg for å teste dette elementet.
+          * Elementet kan vÃŠre toppen av et nytt delutvalg, kaller derfor
+          * LU_PiTestDelutvalg for Ã‚ teste dette elementet.
           */
          if (( sTilslag  &&  pUE->kommando == LC_U_OG) ||
             (!sTilslag  &&  pUE->kommando == LC_U_ELLER)) {
@@ -1188,7 +1188,7 @@ static short LU_PiTestDelutvalg(LC_UT_ADM * pUtAdm,LC_UTVALG_ELEMENT * pUE,long 
 AR-920617
 CH LU_PiTestLinje                                      Sjekk en utvalgslinje
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Sjekk om PINFO i aktuellt punkt tilfredstiller en linje punkt-utvalg.
 CD
 CD Parametre
@@ -1252,33 +1252,33 @@ static short LU_PiTestLinje(LC_UTVALG_ELEMENT * pUE,long lPnr)
                                    /* Metode IKKE LIK "!=" */
    } else if (metode == LC_U_IKKELIK) {
       tilslag = 0;
-      pUE->metode = LC_U_LIK;                         /* Sjekker først på likhet */
+      pUE->metode = LC_U_LIK;                         /* Sjekker fÂ¯rst pÃ‚ likhet */
          /* Hent parameter */
       while ((para = LC_GetPiVerdi(pUE->sosi,lPnr,&sSett)) != NULL) {
          if (LU_ParaTest(pUE,para,akt_para,U_PARA_LEN)) {              /* Tilslag? */
             tilslag = 1;
-            break;          /* Vet nå at det ikke blir tilslag, hopper ut */
+            break;          /* Vet nÃ‚ at det ikke blir tilslag, hopper ut */
          }
          sSett++;
       }
       pUE->metode = LC_U_IKKELIK;
-      if (! tilslag)              /* Tilslag når "=-testen" ikke ga tilslag */
+      if (! tilslag)              /* Tilslag nÃ‚r "=-testen" ikke ga tilslag */
          return UT_TRUE;
 
                                    /* Metode INNEHOLDER IKKE "!()" */
    } else if (metode == LC_U_IKKECONTEIN) {
       tilslag = 0;
-      pUE->metode = LC_U_CONTEIN;            /* Sjekker først INNEHOLDER */
+      pUE->metode = LC_U_CONTEIN;            /* Sjekker fÂ¯rst INNEHOLDER */
          /* Hent parameter */
       while ((para = LC_GetPiVerdi(pUE->sosi,lPnr,&sSett)) != NULL) {
          if (LU_ParaTest(pUE,para,akt_para,U_PARA_LEN)) {              /* Tilslag? */
             tilslag = 1;
-            break;          /* Vet nå at det ikke blir tilslag, hopper ut */
+            break;          /* Vet nÃ‚ at det ikke blir tilslag, hopper ut */
          }
          sSett++;
       }
       pUE->metode = LC_U_IKKECONTEIN;
-      if (! tilslag)              /* Tilslag når "()-testen" ikke ga tilslag */
+      if (! tilslag)              /* Tilslag nÃ‚r "()-testen" ikke ga tilslag */
          return UT_TRUE;
 
                                    /* Andre utvalgsmetoder */
@@ -1300,7 +1300,7 @@ static short LU_PiTestLinje(LC_UTVALG_ELEMENT * pUE,long lPnr)
 AR-881130
 CH LC_GruppeUtvalg                                              GINFO-utvalg
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Sjekker GINFO-delen av aktuell gruppe mot alle gruppeutvalg fra fil.
 CD
 CD Parametre:
@@ -1309,7 +1309,7 @@ CD -----------------------------------------------------------------------------
 CD LC_UT_ADM *pUtAdm    i    Peker til administrasjonsblokk for utvalg.
 CD short      sPrior    i    Prioritet.
 CD                           LC_OVERSE_PRIORITET = Tar ikke hensyn til prioritet.
-CD short     *sstat     iu   Søkestatus, Inn: 1=start søk, 0=fortsett søk
+CD short     *sstat     iu   SÂ¯kestatus, Inn: 1=start sÂ¯k, 0=fortsett sÂ¯k
 CD                                       Ut : 0=tilslag, -1=ikke tilslag
 CD char     **regelnavn  u   Peker til regelnavn
 CD char      *regelnavn  u   Peker til utvalgsnavn
@@ -1324,7 +1324,7 @@ SK_EntPnt_FYBA char *LC_GruppeUtvalg(LC_UT_ADM *pUtAdm,short sPrior,short *sstat
 
    if (pUtAdm != NULL)
    {
-      if (*sstat == 1) {               /* Initier søk */
+      if (*sstat == 1) {               /* Initier sÂ¯k */
          pU = pUtAdm->Gruppe.pForsteU;
          pUtAdm->sGruppeValgt = UT_FALSE;
 
@@ -1336,7 +1336,7 @@ SK_EntPnt_FYBA char *LC_GruppeUtvalg(LC_UT_ADM *pUtAdm,short sPrior,short *sstat
          }
       }
 
-                                      /* Søk */
+                                      /* SÂ¯k */
       while (pU != NULL) {
          /* Rett prioritet ? */
          if (sPrior == LC_OVERSE_PRIORITET  ||  pU->sPrioritet == sPrior) {
@@ -1366,14 +1366,14 @@ SK_EntPnt_FYBA char *LC_GruppeUtvalg(LC_UT_ADM *pUtAdm,short sPrior,short *sstat
 AR-881213
 CH LC_GiQuery                                         Query mot aktuell ginfo
 CD =============================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Sjekker GINFO-delen av aktuell gruppe mot aktuellt query-oppsett.
 CD
 CD Parametre:
 CD Type       Navn     I/U   Forklaring
 CD -----------------------------------------------------------------------------
 CD LC_UT_ADM *pUtAdm    i    Peker til administrasjonsblokk for utvalg.
-CD short      status    r    Søkestatus, UT_TRUE=tilslag, UT_FALSE=ikke tilslag
+CD short      status    r    SÂ¯kestatus, UT_TRUE=tilslag, UT_FALSE=ikke tilslag
 CD
 CD Bruk:
 CD ist = LC_GiQuery(pUtAdm);
@@ -1392,13 +1392,13 @@ SK_EntPnt_FYBA short LC_GiQuery(LC_UT_ADM *pUtAdm)
 }
 
 /*
-JAØ-20000512
+JAÃ˜-20000512
 CH LC_FAGiKombinertFlateQuery   Finn alle ved query mot ginfo i flate og omkrets
 CD =============================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Sjekker GINFO-delen av alle flater mot aktuell queryopsett. Finner de flatene
-CD som har tilslag på utvalgsblokken pUtAdmFlate og har har referanser til grupper
-CD som har tilslag på utvalgsblokken pUtAdmOmkrets.
+CD som har tilslag pÃ‚ utvalgsblokken pUtAdmFlate og har har referanser til grupper
+CD som har tilslag pÃ‚ utvalgsblokken pUtAdmOmkrets.
 CD Tilslag merkes i brukttabellen kolonne BT_GISOK (30).
 CD [Esc] avbryter utvalget, antall tilslag settes da til -1.
 CD
@@ -1407,11 +1407,11 @@ CD Type            Navn     I/U   Forklaring
 CD -----------------------------------------------------------------------------
 CD LC_UT_ADM  *pUtAdmFlate   i    Peker til administrasjonsblokk for utvalg for flata. 
 CD LC_UT_ADM  *pUtAdmOmkrets i    Peker til administrasjonsblokk for utvalg for omkrets.
-CD unsigned short  usLag     i    Velg hvilke "lag" det skal søkes i.
+CD unsigned short  usLag     i    Velg hvilke "lag" det skal sÂ¯kes i.
 CD                                LC_FRAMGR og /eller LC_BAKGR
-CD short           sAlle     i    Flagg for hvorvidt utvalg for omkrets må slå til på 
+CD short           sAlle     i    Flagg for hvorvidt utvalg for omkrets mÃ‚ slÃ‚ til pÃ‚ 
 CD                                alle gruppene i omkretsen. TRUE/FALSE
-CD short           antall    r    Antall tilslag på utvalget.
+CD short           antall    r    Antall tilslag pÃ‚ utvalget.
 CD 
 CD Bruk:
 CD antall = LC_FAGiQuery(pUtAdm, LC_FRAMGR | LC_BAKGR);
@@ -1455,7 +1455,7 @@ SK_EntPnt_FYBA long LC_FAGiKombinertFlateQuery(LC_UT_ADM * pUtAdmFlate,LC_UT_ADM
 			   gnavn = LC_RxGr(&FlateBgr,LES_OPTIMALT,&ngi,&nko,&info);
 			   if (gnavn == L_FLATE) { // Er det en flate ?
 				   if (ngi > 0){                    // Med koordinat ?
-					   if (LC_GiQuery(pUtAdmFlate)){   // Tilslag på flata.
+					   if (LC_GiQuery(pUtAdmFlate)){   // Tilslag pÃ‚ flata.
 
 						   LC_InitGetRefFlate(&GrfStat);
 						   ant_ref = LC_GetRefFlate(&GrfStat,GRF_YTRE|GRF_INDRE,gsnr,(unsigned char*)ref_status,RED_MAX_REF);
@@ -1514,7 +1514,7 @@ SK_EntPnt_FYBA long LC_FAGiKombinertFlateQuery(LC_UT_ADM * pUtAdmFlate,LC_UT_ADM
 AR-900109
 CH LC_FAGiQuery                                 Finn alle ved query mot ginfo
 CD =============================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Sjekker GINFO-delen av alle grupper mot aktuell queryopsett.
 CD Tilslag merkes i brukttabellen kolonne BT_GISOK (14).
 CD [Esc] avbryter utvalget, antall tilslag settes da til -1.
@@ -1523,9 +1523,9 @@ CD Parametre:
 CD Type            Navn    I/U   Forklaring
 CD -----------------------------------------------------------------------------
 CD LC_UT_ADM      *pUtAdm   i    Peker til administrasjonsblokk for utvalg.
-CD unsigned short  usLag    i    Velg hvilke "lag" det skal søkes i.
+CD unsigned short  usLag    i    Velg hvilke "lag" det skal sÂ¯kes i.
 CD                                 LC_FRAMGR og /eller LC_BAKGR
-CD short           antall   r    Antall tilslag på utvalget.
+CD short           antall   r    Antall tilslag pÃ‚ utvalget.
 CD
 CD Bruk:
 CD antall = LC_FAGiQuery(pUtAdm, LC_FRAMGR | LC_BAKGR);
@@ -1579,10 +1579,10 @@ SK_EntPnt_FYBA long LC_FAGiQuery(LC_UT_ADM *pUtAdm,unsigned short usLag)
 
 /*
 AR-20040705
-ÅE-20040705
+Ã…E-20040705
 CH LC_FAPiQuery                            Finn alle grupper ved query mot pinfo
 CD =============================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Sjekker PINFO-delen av alle grupper mot aktuell queryopsett.
 CD Tilslag merkes i brukttabellen kolonne BT_GISOK (14).
 CD [Esc] avbryter utvalget, antall tilslag settes da til -1.
@@ -1591,9 +1591,9 @@ CD Parametre:
 CD Type            Navn    I/U   Forklaring
 CD -----------------------------------------------------------------------------
 CD LC_UT_ADM      *pUtAdm   i    Peker til administrasjonsblokk for utvalg.
-CD unsigned short  usLag    i    Velg hvilke "lag" det skal søkes i.
+CD unsigned short  usLag    i    Velg hvilke "lag" det skal sÂ¯kes i.
 CD                                 LC_FRAMGR og /eller LC_BAKGR
-CD short           antall   r    Antall tilslag på utvalget.
+CD short           antall   r    Antall tilslag pÃ‚ utvalget.
 CD
 CD Bruk:
 CD antall = LC_FAPiQuery(pUtAdm, LC_FRAMGR | LC_BAKGR);
@@ -1640,7 +1640,7 @@ SK_EntPnt_FYBA long LC_FAPiQuery(LC_UT_ADM *pUtAdm,unsigned short usLag)
                   if (ustat == 0 && sFunnet==UT_FALSE && !avbrutt) {
                      sFunnet = UT_TRUE;
                      antall += LC_MerkGr(BT_GISOK,1);     /* Tilslag */
-                     break; // avbryter søk i denne gruppen ved første aktuelle pinfo
+                     break; // avbryter sÂ¯k i denne gruppen ved fÂ¯rste aktuelle pinfo
                   }
                   lPunkt++;
                   avbrutt = LC_Cancel();     /* <ESC> avbryter lesing */
@@ -1665,7 +1665,7 @@ SK_EntPnt_FYBA long LC_FAPiQuery(LC_UT_ADM *pUtAdm,unsigned short usLag)
 AR-890904
 CH LU_GiTestUtvalg                                           Sjekk et utvalg
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Sjekk om GINFO av aktuell gruppe tilfredstiller et gruppe-utvalg.
 CD
 CD Parametre:
@@ -1685,15 +1685,15 @@ SK_EntPnt_FYBA short LU_GiTestUtvalg(LC_UT_ADM * pUtAdm,LC_UTVALG *  pU)
    LC_UTVALG_ELEMENT * pUE = pU->pForsteUE;
 
 	// Hvis utvalgsregelen er med i et lag og dette ikke 
-	// skal tegnes ut, returneres FALSE. JAØ-19980922
+	// skal tegnes ut, returneres FALSE. JAÃ˜-19980922
 	if (pU->pLag != NULL) {
 		if (pU->pLag->sLagAktiv == 0) return 0;
 	}
-   // Innført at også utvalgsregler kan slås av for tegning. JAØ-20020927
+   // InnfÂ¯rt at ogsÃ‚ utvalgsregler kan slÃ‚s av for tegning. JAÃ˜-20020927
    if (!pU->sTegnes) return 0;
-                                   /* Søk */
+                                   /* SÂ¯k */
    while (pUE != NULL) {
-                                       /* Linjen må testes i disse tilfeller */
+                                       /* Linjen mÃ‚ testes i disse tilfeller */
                                    /* Har tilslag, og metode er ..OG */
                                    /* Har ikke tilslag, og metode er ..ELLER */
       if (( sTilslag  &&  pUE->kommando == LC_U_OG) ||
@@ -1713,7 +1713,7 @@ SK_EntPnt_FYBA short LU_GiTestUtvalg(LC_UT_ADM * pUtAdm,LC_UTVALG *  pU)
 AR-890904
 CH LU_GiTestDelutvalg                              Sjekk en del av et utvalg
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Sjekk om GINFO av aktuell gruppe tilfredstiller en del av et
 CD gruppe-utvalg. Sjekker et utvalgselement samt underliggende elementer
 CD under dette.
@@ -1735,11 +1735,11 @@ static short LU_GiTestDelutvalg(LC_UT_ADM * pUtAdm,LC_UTVALG_ELEMENT * pUE)
    short gilin;
    short sTilslag = UT_FALSE;
    short sForste = UT_TRUE;
-                                   /* Søk */
+                                   /* SÂ¯k */
    while (pUE != NULL) {
       if (sForste) {
          /*
-          * Første element i delutvalget skal alltid testes.
+          * FÂ¯rste element i delutvalget skal alltid testes.
           */
          sTilslag = LU_GiTestLinje(pUtAdm,pUE,&gilin,&apara);
 
@@ -1757,11 +1757,11 @@ static short LU_GiTestDelutvalg(LC_UT_ADM * pUtAdm,LC_UTVALG_ELEMENT * pUE)
 
       } else {
          /*
-          * Elementet må testes i disse tilfeller:
+          * Elementet mÃ‚ testes i disse tilfeller:
           *  - Har tilslag, og metode er ..OG.
           *  - Har ikke tilslag, og metode er ..ELLER.
-          * Elementet kan være toppen av et nytt delutvalg, kaller derfor
-          * LU_GiTestDelutvalg for å teste dette elementet.
+          * Elementet kan vÃŠre toppen av et nytt delutvalg, kaller derfor
+          * LU_GiTestDelutvalg for Ã‚ teste dette elementet.
           */
          if (( sTilslag  &&  pUE->kommando == LC_U_OG) ||
             (!sTilslag  &&  pUE->kommando == LC_U_ELLER)) {
@@ -1780,7 +1780,7 @@ static short LU_GiTestDelutvalg(LC_UT_ADM * pUtAdm,LC_UTVALG_ELEMENT * pUE)
 AR-881215
 CH LU_GiTestLinje                                      Sjekk en utvalgslinje
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Sjekk om GINFO av aktuell gruppe tilfredstiller en linje ginfo-utvalg.
 CD
 CD Parametre
@@ -1856,31 +1856,31 @@ static short LU_GiTestLinje(LC_UT_ADM * pUtAdm,LC_UTVALG_ELEMENT * pUE,
    /* Metode IKKE LIK "!=" */
    } else if (metode == LC_U_IKKELIK) {
       tilslag = 0;
-      pUE->metode = LC_U_LIK;                         /* Sjekker først på likhet */
+      pUE->metode = LC_U_LIK;                         /* Sjekker fÂ¯rst pÃ‚ likhet */
       while ((para = LC_GetGP(pUE->sosi,gilin,9999)) != NULL) { /* Hent parameter */
          if (LU_ParaTest(pUE,para,akt_para,U_PARA_LEN)) {              /* Tilslag? */
             tilslag = 1;
-            break;          /* Vet nå at det ikke blir tilslag, hopper ut */
+            break;          /* Vet nÃ‚ at det ikke blir tilslag, hopper ut */
          }
          (*gilin)++;
       }
       pUE->metode = LC_U_IKKELIK;
-      if (! tilslag)              /* Tilslag når "=-testen" ikke ga tilslag */
+      if (! tilslag)              /* Tilslag nÃ‚r "=-testen" ikke ga tilslag */
          return UT_TRUE;
 
    /* Metode INNEHOLDER IKKE "!()" */
    } else if (metode == LC_U_IKKECONTEIN) {
       tilslag = 0;
-      pUE->metode = LC_U_CONTEIN;            /* Sjekker først INNEHOLDER */
+      pUE->metode = LC_U_CONTEIN;            /* Sjekker fÂ¯rst INNEHOLDER */
       while ((para = LC_GetGP(pUE->sosi,gilin,9999)) != NULL) { /* Hent parameter */
          if (LU_ParaTest(pUE,para,akt_para,U_PARA_LEN)) {              /* Tilslag? */
             tilslag = 1;
-            break;          /* Vet nå at det ikke blir tilslag, hopper ut */
+            break;          /* Vet nÃ‚ at det ikke blir tilslag, hopper ut */
          }
          (*gilin)++;
       }
       pUE->metode = LC_U_IKKECONTEIN;
-      if (! tilslag)              /* Tilslag når "=-testen" ikke ga tilslag */
+      if (! tilslag)              /* Tilslag nÃ‚r "=-testen" ikke ga tilslag */
          return UT_TRUE;
 
 
@@ -1902,7 +1902,7 @@ static short LU_GiTestLinje(LC_UT_ADM * pUtAdm,LC_UTVALG_ELEMENT * pUE,
 AR:2006-08-08
 CH LU_ParaTest                                     Sjekk parameter for tilslag
 CD =============================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Sjekk om parameteren tilfredsstiller denne utvalgslinjen.
 CD
 CD Parametre:
@@ -1926,7 +1926,7 @@ static short LU_ParaTest(LC_UTVALG_ELEMENT * pUE,char *para,char *pszAktPara,sho
 
    
    /* Juster for ledd, og del av streng
-    * når dette er gitt som del av utvalgslinjen
+    * nÃ‚r dette er gitt som del av utvalgslinjen
     * (og ikke som del av SOSI-navnet)
     */
    if((pUE->ledd > 0) || (pUE->start > 0) || (pUE->slutt > 0)) { // Ledd eller del av streng er angitt utenfor SOSI-navnet
@@ -1937,19 +1937,19 @@ static short LU_ParaTest(LC_UTVALG_ELEMENT * pUE,char *para,char *pszAktPara,sho
       UT_StrCopy(pszAktPara,para,sMaxLen);
    }
 
-   // Sjekk først at sammenligningen kan gjøres med aktuell talltype
+   // Sjekk fÂ¯rst at sammenligningen kan gjÂ¯res med aktuell talltype
    short type = pUE->type;
    if ((type & LC_U_TALL) == LC_U_TALL)
    { 
       heltall = atol(pszAktPara);   // OBS! Denne brukes i selve sammenligningen lenger nede i koden
       if (heltall == LONG_MIN  ||  heltall == LONG_MAX)
       {
-         // Tallet har for mange siffer, må håndtere sammenligningen som tekst
+         // Tallet har for mange siffer, mÃ‚ hÃ‚ndtere sammenligningen som tekst
          type = LC_U_ALFA;
       }
    }
 
-   // ----- Utfør testen
+   // ----- UtfÂ¯r testen
    switch (metode) {
       case LC_U_LIK:                                             /* Lik  "=" */
          if ((type & LC_U_TALL) == LC_U_TALL){              /* Heltall */
@@ -2043,7 +2043,7 @@ static short LU_ParaTest(LC_UTVALG_ELEMENT * pUE,char *para,char *pszAktPara,sho
          }
          break;
 
-      case LC_U_STORRE:                  /* Større enn ">" */
+      case LC_U_STORRE:                  /* StÂ¯rre enn ">" */
          if ((type & LC_U_TALL) == LC_U_TALL){             /* Heltall */
             if (heltall > atol(pUE->min))
                return (1);
@@ -2066,7 +2066,7 @@ static short LU_ParaTest(LC_UTVALG_ELEMENT * pUE,char *para,char *pszAktPara,sho
 AR-891206
 CH LU_JustPara                          Juster parameter for ledd og posisjon
 CD =============================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Juster parameteren for leddnummer og del av streng.
 CD
 CD Parametre:
@@ -2077,7 +2077,7 @@ CD short      ledd     i    Leddnummer
 CD short      start    i    Startposisjon i strengen (0=hele strengen)
 CD short      slutt    i    Sluttposisjon i strengen (0=resten)
 CD char      *akt_para iu   Ny behandla parameterstreng
-CD short      max_len  i    Max lengde på akt_para
+CD short      max_len  i    Max lengde pÃ‚ akt_para
 CD
 CD Bruk:
 CD LU_JustPara(para,ledd,start,slutt,akt_para,max_len);
@@ -2113,21 +2113,21 @@ static void LU_JustPara(char *para,short ledd,short start,short slutt,
 
 /*
 AR-891207
-CH LC_QueryGP                                       Søk i ginfo og finn verdi
+CH LC_QueryGP                                       SÂ¯k i ginfo og finn verdi
 CD =============================================================================
-CD Formål:
-CD Bruker query-tekst for å finne linje der parameter skal hentes.
+CD FormÃ‚l:
+CD Bruker query-tekst for Ã‚ finne linje der parameter skal hentes.
 CD
 CD Parametre:
 CD Type     Navn   I/U   Forklaring
 CD ---------------------------------------------------------------------------
 CD char    *qulin   i    Linje med query-tekst.
-CD unsigned short    iniv    i    Nivå: Det er definert konstanter som henges
+CD unsigned short    iniv    i    NivÃ‚: Det er definert konstanter som henges
 CD                             sammen med "|".
-CD                             LC_GINFO = søk i GINFO på aktuell gruppe
-CD                             LC_HODE = søk i filhodet
-CD                             Hvis begge er brukt søkes det først i GINFO.
-CD unsigned short   *univ    u    Nivå: LC_GINFO = parameter er fra GINFO
+CD                             LC_GINFO = sÂ¯k i GINFO pÃ‚ aktuell gruppe
+CD                             LC_HODE = sÂ¯k i filhodet
+CD                             Hvis begge er brukt sÂ¯kes det fÂ¯rst i GINFO.
+CD unsigned short   *univ    u    NivÃ‚: LC_GINFO = parameter er fra GINFO
 CD                             LC_HODE = parameter er fra filhodet
 CD short   *ulin    u    GINFO-linjenummer for tilslaget.
 CD char   **para    u    Funnet parameter.
@@ -2146,18 +2146,18 @@ SK_EntPnt_FYBA short LC_QueryGP(char *qulin,unsigned short iniv,unsigned short *
    short sFunnet = UT_FALSE;
    LC_UT_ADM *pUtAdm;
 
-   /* Åpne query */
+   /* Ã…pne query */
    pUtAdm = LC_OpenQuery();
    /* Tolk linjen */
    if (LC_PutQueryLine(pUtAdm,qulin,U_GRUPPE)) {
       LC_PutQueryRegel(pUtAdm->Gruppe.pSisteU,"S");
 
       /* Sjekk GINFO */
-      /* Initier søk */
+      /* Initier sÂ¯k */
       pUtAdm->Gruppe.pAktU = pUtAdm->Gruppe.pForsteU;
       pUtAdm->sGruppeValgt = UT_FALSE;
 
-      /* Søk */
+      /* SÂ¯k */
       sFunnet = LU_GiTestLinje(pUtAdm,pUtAdm->Gruppe.pForsteU->pForsteUE,ulin,para);
       *univ = LC_GINFO;
 
@@ -2172,11 +2172,11 @@ SK_EntPnt_FYBA short LC_QueryGP(char *qulin,unsigned short iniv,unsigned short *
          /* Les filhode */
          LC_RxGr(&Hode,LES_OPTIMALT,&ngi,&nko,&info);
 
-         /* Initier søk */
+         /* Initier sÂ¯k */
          pUtAdm->Gruppe.pAktU = pUtAdm->Gruppe.pForsteU;
          pUtAdm->sGruppeValgt = UT_FALSE;
 
-         /* Søk */
+         /* SÂ¯k */
          sFunnet = LU_GiTestLinje(pUtAdm,pUtAdm->Gruppe.pForsteU->pForsteUE,ulin,para);   
          *univ = LC_HODE;
 
@@ -2194,7 +2194,7 @@ SK_EntPnt_FYBA short LC_QueryGP(char *qulin,unsigned short iniv,unsigned short *
 AR-920524
 CH LU_LesULinje                       Les en utvalgs-linje fra kommandofilen
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Les en utvalgs-linje fra kommandofilen.
 CD
 CD Parameters:
@@ -2203,7 +2203,7 @@ CD ----------------------------------------------------------------
 CD FILE    *pKomFil   i   Filpeker for beskrivelsesfil
 CD short    sMaxTxLen i   Max lengde av pszTx
 CD char    *pszTx     i   Lest linje
-CD short   *psNiv     u   Nivå (antall prikker forran navnet)
+CD short   *psNiv     u   NivÃ‚ (antall prikker forran navnet)
 CD short    lesefeil  r   Lesefeil fra UT_ReadLine.
 CD
 CD Bruk:
@@ -2244,7 +2244,7 @@ static short LU_LesULinje(FILE *pKomFil,short sMaxTxLen,char *pszTx,
 AR-920524
 CH LU_AppUtvalg                                      Legg til et nytt utvalg
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Legg til et nytt utvalg i en av kjedene av utvalg.
 CD
 CD Parametre:
@@ -2278,7 +2278,7 @@ static void LU_AppUtvalg (LC_UTVALG_BLOKK *pUB,char *pszNavn)
    pU->pForrigeU = NULL;
    pU->pNesteU = NULL;
 
-   /* Første */
+   /* FÂ¯rste */
    if (pUB->pForsteU == NULL) {
       pUB->pForsteU = pU;
       pUB->pSisteU = pU;
@@ -2295,10 +2295,10 @@ static void LU_AppUtvalg (LC_UTVALG_BLOKK *pUB,char *pszNavn)
 
 /*
 AR-920402
-CH LC_InqMaxPrioritet                                Hent største prioritet
+CH LC_InqMaxPrioritet                                Hent stÂ¯rste prioritet
 CD ==========================================================================
-CD Formål:
-CD Henter største prioritet for gitt utvalgstype.
+CD FormÃ‚l:
+CD Henter stÂ¯rste prioritet for gitt utvalgstype.
 CD
 CD Parametre:
 CD Type         Navn          I/U   Forklaring
@@ -2325,7 +2325,7 @@ SK_EntPnt_FYBA short LC_InqMaxPrioritet(LC_UT_ADM * pUA)
 AR-920814
 CH LC_TestPrioritetBrukt                     Tester om en prioritet er brukt
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Tester om en prioritet er brukt.
 CD
 CD Parametre:
@@ -2376,7 +2376,7 @@ SK_EntPnt_FYBA short LC_TestPrioritetBrukt(LC_UT_ADM * pUtAdm,short sPrioritet)
 AR-940110
 CH LU_PakkPrioritet                                    Pakker prioriteten
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Pakker prioriteten.
 CD
 CD Parametre:
@@ -2475,7 +2475,7 @@ int LU_compare (const void *arg1, const void *arg2)
 AR-940110
 CH LU_HuskPrior                          Legg inn prioritet i tabellen
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Legg inn prioritet i tabellen
 CD
 CD Parametre:
@@ -2497,7 +2497,7 @@ static void LU_HuskPrior(short *NyPrior,short *sAntPrior,short sPrior)
 
    for (s=0; s<*sAntPrior; s++) {
       if (sPrior == NyPrior[s]) {
-         return;        /* ==> Prioriteten er brukt før, returner */
+         return;        /* ==> Prioriteten er brukt fÂ¯r, returner */
       }
    }
 
@@ -2519,7 +2519,7 @@ static void LU_HuskPrior(short *NyPrior,short *sAntPrior,short sPrior)
 AR: 1999-11-20
 CH LC_LoggPrioritetUtvalg                        Skriver prioritetsoversikt 
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Skriver oversikt over prioriteter og utvalg til log-filen.
 CD
 CD Parametre:
@@ -2582,8 +2582,8 @@ SK_EntPnt_FYBA void LC_LoggPrioritetUtvalg(LC_UT_ADM * pUtAdm)
 AR-940110
 CH LC_UtvalgPrioritet                                   Finn brukt prioritet
 CD ==========================================================================
-CD Formål:
-CD Sjekker GINFO og PINFO for å finne hvilke prioriteter som "berører" aktuell
+CD FormÃ‚l:
+CD Sjekker GINFO og PINFO for Ã‚ finne hvilke prioriteter som "berÂ¯rer" aktuell
 CD gruppe. Resultatet markeres i Gruppetabellen ulPrior.
 CD
 CD Parametre:
@@ -2616,17 +2616,17 @@ SK_EntPnt_FYBA void LC_UtvalgPrioritet(LC_UT_ADM *pUtAdm)
           * GINFO
           */
         
-         /* Initier søk */
+         /* Initier sÂ¯k */
          pU = pUtAdm->Gruppe.pForsteU;
          pUtAdm->sGruppeValgt = UT_FALSE;
         
-         /* Søk */
+         /* SÂ¯k */
          while (pU != NULL) {
         
             sKolonne = pU->sPrioritet / 32;
             sPrior = pU->sPrioritet % 32;
 
-            /* Hvis vi har tilslag på denne prioriteten trenger vi ikke å sjekke dette utvalget */
+            /* Hvis vi har tilslag pÃ‚ denne prioriteten trenger vi ikke Ã‚ sjekke dette utvalget */
             if ((ulPrioritet[sKolonne] & (0x1UL << sPrior)) == 0UL) {
         
                if (LU_GiTestUtvalg(pUtAdm,pU)) {
@@ -2650,7 +2650,7 @@ SK_EntPnt_FYBA void LC_UtvalgPrioritet(LC_UT_ADM *pUtAdm)
           *   - utvalgsmetode "!" (ikke) er brukt,
           *   - gruppen har PINFO
           *   - gruppen har KP
-          *   - gruppen har høyde
+          *   - gruppen har hÂ¯yde
           */
     
          if (pUtAdm->Punkt.sTestAllePi == UT_TRUE  ||
@@ -2659,7 +2659,7 @@ SK_EntPnt_FYBA void LC_UtvalgPrioritet(LC_UT_ADM *pUtAdm)
              Sys.pGrInfo->info & GI_NAH) {
 
            for (lPnr=1; lPnr<=Sys.pGrInfo->nko; ++lPnr) {
-               /* Initier søk */
+               /* Initier sÂ¯k */
                /* Utvalgsmetode "!" (ikke) er brukt, eller
                   punktet har PINFO mm. */
                if (pUtAdm->Punkt.sTestAllePi == UT_TRUE  ||
@@ -2669,13 +2669,13 @@ SK_EntPnt_FYBA void LC_UtvalgPrioritet(LC_UT_ADM *pUtAdm)
                   pU = NULL;
                }
            
-               /* Søk */
+               /* SÂ¯k */
                while (pU != NULL) {
 
                   sKolonne = pU->sPrioritet / 32;
                   sPrior = pU->sPrioritet % 32;
            
-                  /* Hvis vi har tilslag på denne prioriteten trenger vi ikke å sjekke dette utvalget */
+                  /* Hvis vi har tilslag pÃ‚ denne prioriteten trenger vi ikke Ã‚ sjekke dette utvalget */
                   if ((ulPrioritet[sKolonne] & (0x1UL << sPrior)) == 0UL) {
            
                      if (LC_PiTestUtvalg(pUtAdm,pU,lPnr)) {
@@ -2704,9 +2704,9 @@ SK_EntPnt_FYBA void LC_UtvalgPrioritet(LC_UT_ADM *pUtAdm)
 AR:2007-08-23
 CH LC_ErLik_Avrundet                 Rund av og sjekk om sammenfallende punkt
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Runder av til valgt enhet, og sjekker om de to punktene er sammenfallende. 
-CD (Avviket er mindre enn 1/10 enhet både nord og øst)
+CD (Avviket er mindre enn 1/10 enhet bÃ‚de nord og Â¯st)
 CD
 CD Parametre:
 CD Type     Navn    I/U Forklaring
@@ -2739,10 +2739,10 @@ SK_EntPnt_FYBA bool LC_ErLik_Avrundet(double dA1,double dN1,double dA2, double d
 AR:2007-08-23
 CH LC_ErLik_IkkeAvrundet       Sjekk om sammenfallende punkt (uten avrunding)
 CD ==========================================================================
-CD Formål:
-CD Sjekker om de to punktene er sammenfallende innen gitt nøyaktighet. 
-CD Det skjer ingen avrunding av koordinatene før sammenligningen.
-CD (Avviket er mindre enn 1/10 enhet både nord og øst)
+CD FormÃ‚l:
+CD Sjekker om de to punktene er sammenfallende innen gitt nÂ¯yaktighet. 
+CD Det skjer ingen avrunding av koordinatene fÂ¯r sammenligningen.
+CD (Avviket er mindre enn 1/10 enhet bÃ‚de nord og Â¯st)
 CD
 CD Parametre:
 CD Type     Navn    I/U Forklaring
@@ -2769,7 +2769,7 @@ SK_EntPnt_FYBA bool LC_ErLik_IkkeAvrundet(double dA1,double dN1,double dA2, doub
 AR:2007-08-23
 CH LC_ErReferert                                 Sjekk om gruppe er referert
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Sjekker om aktuell gruppe er referert fra andre grupper.
 CD
 CD Parametre:
@@ -2838,7 +2838,7 @@ SK_EntPnt_FYBA bool LC_ErReferert(void)
 AR:2009-04-28
 CH LC_ErReferertFraAntall                  Tell antall referanser til gruppe
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Tell antall referanser til aktuell gruppe.
 CD
 CD Parametre:

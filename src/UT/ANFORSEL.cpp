@@ -4,7 +4,7 @@ CH Anforsel                  Legger til eller fjerner anf¯rseltegn
 CD ===============================================================
 CD
 CD Eier.......: STATENS KARTVERK / FYSAK-prosjektet
-CD Ansvarlig..: ≈ge Eliassen
+CD Ansvarlig..: Åge Eliassen
 CD
 CD ===============================================================
 */
@@ -17,7 +17,7 @@ CD ===============================================================
 
 /*
 OJ-2003-12-03
-≈E-950401
+ÅE-950401
 CH UT_PutAnfTegn           Legg inn / fjern anf¯rseltegn forran og bak streng
 CD ===========================================================================
 CD FormÂl:

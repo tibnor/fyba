@@ -49,7 +49,7 @@ CD PARAMETERLISTE:
 CD Type      Navn     I/U  Merknad
 CD ------------------------------------------------------------------
 CD char     *pszPath   i   Filnavn
-CD long      lSize     i   ÿnsket filst¯rrelse
+CD long      lSize     i   Ønsket filst¯rrelse
 CD short     sStatus   r   Status; 0=OK, annen verdi er feil.
 CD
 CD Bruk:  sStatus = UT_SetPathSize(szPath,lSize);
@@ -162,7 +162,7 @@ CD PARAMETERLISTE:
 CD Type      Navn     I/U  Merknad
 CD ------------------------------------------------------------------
 CD char     *pszPath   i   Filnavn
-CD UT_INT64  n64Size   i   ÿnsket filst¯rrelse
+CD UT_INT64  n64Size   i   Ønsket filst¯rrelse
 CD short     sStatus   r   Status; 0=OK, annen verdi er feil.
 CD
 CD Bruk:  sStatus = UT_SetPathSize_i64(szPath,lSize);
@@ -175,7 +175,7 @@ SK_EntPnt_UT short UT_SetPathSize_i64(char *pszPath, UT_INT64 n64Size)
    //fh = _open( pszPath, _O_RDWR | _O_BINARY | _O_RANDOM );
    _sopen_s(&fh, pszPath, _O_RDWR | _O_BINARY | _O_RANDOM, _SH_DENYRW, _S_IREAD | _S_IWRITE);
   
-   // ≈pnet OK
+   // Åpnet OK
    if (fh != -1)
    {
       rc = _chsize_s(fh,n64Size);

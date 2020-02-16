@@ -189,15 +189,15 @@ CD
 CD PARAMETERLISTE:
 CD Navn      Type  Array i/U Merknad
 CD -------------------------------------------------------------------------------
-CD PktA      double       i   ÿst-koordinat for sjekkpunkt
+CD PktA      double       i   Øst-koordinat for sjekkpunkt
 CD PktN      double       i   Nord-koordinat for sjekkpunkt
-CD wa1       double       i   ÿst-koordinat for 1.pkt i vindu
+CD wa1       double       i   Øst-koordinat for 1.pkt i vindu
 CD wn1       double       i   Nord-koordinat for 1.pkt i vindu
-CD wa2       double       i   ÿst-koordinat for 2.pkt i vindu
+CD wa2       double       i   Øst-koordinat for 2.pkt i vindu
 CD wn2       double       i   Nord-koordinat for 2.pkt i vindu
-CD wa3       double       i   ÿst-koordinat for 3.pkt i vindu
+CD wa3       double       i   Øst-koordinat for 3.pkt i vindu
 CD wn3       double       i   Nord-koordinat for 3.pkt i vindu
-CD wa4       double       i   ÿst-koordinat for 4.pkt i vindu
+CD wa4       double       i   Øst-koordinat for 4.pkt i vindu
 CD wn4       double       i   Nord-koordinat for 4.pkt i vindu
 CD inni      short        r   Er punktet innenfor vinduet
 CD 
@@ -973,7 +973,7 @@ SK_EntPnt_GM short GM_sSirkSirk(double as1,double ns1,double radius1,
 
 /*
 AR-890904
-JAÿ-1999-02-03
+JAØ-1999-02-03
 CH GM_fotp                                       Fotpunkt pÂ linje fra punkt
 CD ==========================================================================
 CD FormÂl:
@@ -1048,7 +1048,7 @@ SK_EntPnt_GM short GM_fotp(double a1,double n1,double a2,double n2,double ap,dou
 
    /* ---------- SkrÂ linje */
    if ( ! beregnet) {
-      //JAÿ-20001205 Pr¯ver ny metode Â beregne fotpunkt, pga avrundingsproblemer ved smÂ verdier.
+      //JAØ-20001205 Pr¯ver ny metode Â beregne fotpunkt, pga avrundingsproblemer ved smÂ verdier.
       retning = GM_RetnGon(a1,n1,a2,n2);
       //Utvider linjene "uendelig" for Â vÊre sikker pÂ Â fÂ kryssing
       a1u = a1; a2u = a2; n1u = n1; n2u = n2;
@@ -1059,7 +1059,7 @@ SK_EntPnt_GM short GM_fotp(double a1,double n1,double a2,double n2,double ap,dou
       GM_PolRettv(&ap2,&np2,retning-100.0,100000000);
       GM_sLinLin(a1u,n1u,a2u,n2u,ap1,np1,ap2,np2,af,nf); //Da gikk det bedre!
 
-      //JAÿ-20001205 Fjernet gammel mÂte Â beregne fotpunkt, pga avrundingsproblemer ved smÂ verdier.
+      //JAØ-20001205 Fjernet gammel mÂte Â beregne fotpunkt, pga avrundingsproblemer ved smÂ verdier.
       /*
       // Parametre for 1-2
       if (GM_bepa(a1,n1,a2,n2,&pa1,&pb1,&pc1)){
@@ -1526,7 +1526,7 @@ CD double  *as       iu   Koordinat i sentrumspunktet
 CD double  *ns       iu
 CD double  *radius   iu   Buens radius
 CD double  *fi       u    "Startretning"  sentrum - punkt 1.
-CD double  *dfi      u    "≈pningsvinkel" (2PI).
+CD double  *dfi      u    "Åpningsvinkel" (2PI).
 CD short    ist      r    1 = OK, 0 = ikke beregnet.
 CD
 CD Bruk:
@@ -1568,7 +1568,7 @@ CD double  *as       u    Koordinat i sentrumspunktet
 CD double  *ns       u
 CD double  *radius   u    Buens radius
 CD double  *fi       u    "Retning" sentrum - start av buen (0)
-CD double  *dfi      u    ≈pningsvinkel (2*PI)
+CD double  *dfi      u    Åpningsvinkel (2*PI)
 CD short    beregnet r    1 = OK; 0 = kan ikke beregne.
 CD
 CD Bruk:
@@ -1938,7 +1938,7 @@ CD
 CD PARAMETERLISTE:
 CD Navn    Type    I/U Merknad
 CD --------------------------------------------------------------------------
-CD pA     *double   i   ÿst-koordinater
+CD pA     *double   i   Øst-koordinater
 CD pN     *double   i   Nord-koordinater
 CD sNko    short    i   Antall koordinater
 CD dAreal  double   r   Areal m^2
@@ -2002,7 +2002,7 @@ CD double   fi       i    Retning sentrum - P1
 CD double   dfi      i    Delta retning p1 og p2
 CD double   nva      u    Nedre venstre hj¯rne  av omskrevet rektangel.
 CD double   nvn      u
-CD double   oha      u    ÿvre h¯yre hj¯rne  av omskrevet rektangel.
+CD double   oha      u    Øvre h¯yre hj¯rne  av omskrevet rektangel.
 CD double   ohn      u
 CD
 CD Bruk:
@@ -2728,9 +2728,9 @@ CD
 CD PARAMETERLISTE:
 CD Navn      Type  Array i/U Merknad
 CD ------------------------------------------------------------------
-CD a1        double       i   ÿst-koordinat for startpunkt
+CD a1        double       i   Øst-koordinat for startpunkt
 CD n1        double       i   Nord-koordinat for startpunkt
-CD a2        double       i   ÿst-koordinat for endepunkt
+CD a2        double       i   Øst-koordinat for endepunkt
 CD n2        double       i   Nord-koordinat for endepunkt
 CD avstand   double       r   Avstand mellom punktene
 CD
@@ -2757,9 +2757,9 @@ CD
 CD PARAMETERLISTE:
 CD Navn      Type  Array i/U Merknad
 CD ------------------------------------------------------------------
-CD a1        double       i   ÿst-koordinat for startpunkt
+CD a1        double       i   Øst-koordinat for startpunkt
 CD n1        double       i   Nord-koordinat for startpunkt
-CD a2        double       i   ÿst-koordinat for endepunkt
+CD a2        double       i   Øst-koordinat for endepunkt
 CD n2        double       i   Nord-koordinat for endepunkt
 CD avstand2   double      r   Kvadrert avstand mellom punktene
 CD
@@ -2786,14 +2786,14 @@ CD
 CD PARAMETERLISTE:
 CD Navn     Type     I/U  Merknad
 CD -----------------------------------------------------------------
-CD as       double    i   ÿst-koordinat for sirkelsentrum
+CD as       double    i   Øst-koordinat for sirkelsentrum
 CD an       double    i   Nord-koordinat for sirkelsentrum
 CD fi       double    i   Retningsvinkel til start bue
 CD dfi      double    i   Retn.endring i radianer.
 CD                          + = mot klokka, - =med klokka
 CD radius   double    i   radius med fortegn
 CD                          +  =  med klokka,  -  = mot klokka
-CD a        double    i   ÿst-koordinat for tangeringspunkt
+CD a        double    i   Øst-koordinat for tangeringspunkt
 CD n        double    i   Nord-koordinat for tangeringspunkt
 CD *buetan  double    u   Retning i radianer(0-2PI) for buetangent
 CD ist      short     r   status:  1 = Beregning ok                 
@@ -2833,7 +2833,7 @@ CD
 CD PARAMETERLISTE:
 CD Type    Navn   I/U  Merknad
 CD ------------------------------------------------------------------
-CD double  as      i  ÿst-koordinat for sirkelsentrum
+CD double  as      i  Øst-koordinat for sirkelsentrum
 CD double  an      i  Nord-koordinat for sirkelsentrum
 CD double  r       i  Radius i sirkelen
 CD double  fi      i  Retningsvinkel til start bue
@@ -2895,9 +2895,9 @@ CD
 CD PARAMETERLISTE:
 CD Type    Navn   I/U  Merknad
 CD ------------------------------------------------------------------
-CD double  dAs     i  ÿst-koordinat for sentrum
+CD double  dAs     i  Øst-koordinat for sentrum
 CD double  dNns    i  Nord-koordinat for sentrum
-CD double  dAreal  i  ÿnsket areal
+CD double  dAreal  i  Ønsket areal
 CD double *a_arr   u  Hj¯rnepunkt (MÂ ha plass til 8 punkt.)
 CD double *n_arr   u  
 CD
@@ -2970,7 +2970,7 @@ CD ==========================================================================
 CD FormÂl:
 CD Tynning med pilh¯yde og maks avstand.
 CD Samme som SiTynnDared, men noe forenklet:
-CD - Koordinatene kommer inn i Nÿ buffer.
+CD - Koordinatene kommer inn i NØ buffer.
 CD - Handterer ikke h¯yde
 CD - Tar ikke hensyn til knutepunkt
 CD
@@ -2980,7 +2980,7 @@ CD --------------------------------------------------------------------------
 CD double   dMaxAvst     i   Max distanse mellom punkta
 CD double   dMaxPil      i   Max pilh¯yde
 CD long    *nko         iu   Antall koordinater
-CD double  *pA          iu   ÿst-koordinater
+CD double  *pA          iu   Øst-koordinater
 CD double  *pN          iu   Nord-koordinater
 CD bool     bBeregnet    r   Status.
 CD Bruk:

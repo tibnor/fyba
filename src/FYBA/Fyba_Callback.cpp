@@ -5,18 +5,18 @@
 //
 //////////////////////////////////////////////////////////////////////////
 //
-// Denne filen inneholder eksempel på callback-rutiner som kalles
+// Denne filen inneholder eksempel pÃ‚ callback-rutiner som kalles
 // av FYBA for feilmeldings-handtering og visning av framdrift under
 // indeksoppbygging.
 //
-// For å få et godt brukergrensesnitt bør disse rutinene endres til
+// For Ã‚ fÃ‚ et godt brukergrensesnitt bÂ¯r disse rutinene endres til
 // det meldings og feilhandteringssystemet som brukes av hovedprogrammet.
 //
 // En tilsvarende enkel feilmeldingshandtering ligger i FYBA_DLL.DLL.
 // Denne (DLL'ens) meldingshandtering blir brukt hvis meldingsingsrutinene
 // ikke blir registrert av hovedprogrammet.
 //
-// Meldingsrutinene registreres med følgende rutiner:
+// Meldingsrutinene registreres med fÂ¯lgende rutiner:
 //  - LC_SetErrorHandler
 //  - LC_SetStartMessageHandler
 //  - LC_SetShowMessageHandler
@@ -66,7 +66,7 @@
 AR-930907
 CH LC_ErrorHandler                                             Feilmelding
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Feilmelding.
 CD
 CD Parametre:
@@ -96,11 +96,11 @@ void LC_ErrorHandler (short feil_nr, const char logtx[], const char vartx[])
            case 2:
                break;
            case 3:
-               printf("\aTrykk [Enter] for å fortsette:");
+               printf("\aTrykk [Enter] for Ã‚ fortsette:");
 					if (getchar() == 0)  getchar();
                break;
 			  case 4:
-					printf("\aTrykk [Enter] for å avbryte programmet:");
+					printf("\aTrykk [Enter] for Ã‚ avbryte programmet:");
 					if (getchar() == 0)  getchar();
 					exit(2);
 					break;
@@ -113,7 +113,7 @@ void LC_ErrorHandler (short feil_nr, const char logtx[], const char vartx[])
 AR-900609
 CH LC_StartMessageHandler                                    Starte meldingsvisning
 CD =============================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Starter vising av melding om baseoppbygging.
 CD
 CD Her skal brukerprogrammet legge inn sin egen initiering av visning av framdrift
@@ -147,7 +147,7 @@ void LC_StartMessageHandler(const char *fnam)
 AR-900609
 CH LC_ShowMessageHandler                                          Vise melding
 CD =============================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Vising av melding om baseoppbygging.
 CD
 CD Her skal brukerprogrammet legge inn sin egen av visnig av framdrift
@@ -178,7 +178,7 @@ void LC_ShowMessageHandler(double prosent)
 AR-900609
 CH LC_EndMessageHandler                                          Avslutt melding
 CD =============================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Avslutt melding om baseoppbygging.
 CD
 CD Her skal brukerprogrammet legge inn sin egen avslutning av visning av framdrift
@@ -208,8 +208,8 @@ void LC_EndMessageHandler(void)
 AR-910402
 CH LC_CancelHandler                                  Sjekk om Esc er trykket
 CD ==========================================================================
-CD Formål:
-CD Sjekk om det er trykt på Esc (Avbryte indeksoppbygging).
+CD FormÃ‚l:
+CD Sjekk om det er trykt pÃ‚ Esc (Avbryte indeksoppbygging).
 CD
 CD Parametre:
 CD Type   Navn      I/U   Forklaring

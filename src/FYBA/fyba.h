@@ -166,7 +166,7 @@
 #define LC_GINFO  2
 #define LC_PINFO  4
 
-/* Konstanter til bruk ved kombinert flates¯k. JAÿ-20000516 */
+/* Konstanter til bruk ved kombinert flates¯k. JAØ-20000516 */
 #define LC_INGEN 0
 #define LC_NOEN  1
 #define LC_ALLE  2
@@ -210,13 +210,13 @@
 
    /* Gruppeinformasjon */
 #define GI_PINFO     ((unsigned short)0x0001) /* Har PINFO */
-#define GI_NAH       ((unsigned short)0x0002) /* Gruppen har h¯yde informasjon (..NÿH) */
+#define GI_NAH       ((unsigned short)0x0002) /* Gruppen har h¯yde informasjon (..NØH) */
 #define GI_KP        ((unsigned short)0x0004) /* Har knutepunkt (...KP n) */
 #define GI_REF       ((unsigned short)0x0008) /* Har referanser (.. :n) */
 #define GI_OY_REF    ((unsigned short)0x0010) /* Har referanser med ¯y */
 #define GI_SLETTA    ((unsigned short)0x0020) /* Er sletta (merka som sletta) */
 #define GI_NGIS      ((unsigned short)0x0040) /* Er tatt ut fra NGIS */
-#define GI_NAD       ((unsigned short)0x0080) /* Har dybde informasjon (..NÿD) */
+#define GI_NAD       ((unsigned short)0x0080) /* Har dybde informasjon (..NØD) */
 #define GI_READ_ONLY ((unsigned short)0x0100) /* Bare leseaksess (kan ikke endres) */
 
    /* Avgrensing av brukttabellen */
@@ -363,7 +363,7 @@ CD en lang streng for hele gruppen med peker for hvert punkt til startposisjon
 CD for PINFO for hvert punkt pÂ samme mÂte som GINFO.
 CD
 CD !--------! !--------! !--------:-------:--------!
-CD ! ÿst    ! ! Nord   ! ! H¯yde  !  KP   ! PINFO  !
+CD ! Øst    ! ! Nord   ! ! H¯yde  !  KP   ! PINFO  !
 CD !--------! !--------! !--------!-------!--------!
 CD ! double ! ! double ! ! double ! short ! ushort !
 CD !   m    ! !   m    ! !   m    !       !  ofset !
@@ -468,7 +468,7 @@ CD
 CD !-----------------------------------*
 CD !      Omskreven boks               !
 CD !                                   !
-CD ! min-N  ! min-ÿ  ! max-N  ! max-ÿ  !
+CD ! min-N  ! min-Ø  ! max-N  ! max-Ø  !
 CD !        !        !        !        !
 CD !--------!--------!--------!--------!
 CD !dMinNord!dMinAust!dMaxNord!dMaxAust!
@@ -526,7 +526,7 @@ CD !------------------------------:---------------------------------------------
 CD !Start  !Start !Ant.   !Ant.   !            Gruppeinnhold                      !
 CD ! pÂ    ! i    !tegn   !tegn   !-----------------------------------------------!
 CD !SOSI-  ! RB   !GINFO- !PINFO- !Gruppe!ant. !ant. !Kvali-  !Enhet ! Div. info  !
-CD !fil    !      !buffer !buffer !navn  !GINFO! Nÿ  ! tet    !      ! (bit def.) !
+CD !fil    !      !buffer !buffer !navn  !GINFO! NØ  ! tet    !      ! (bit def.) !
 CD !-------!------!-------!-------!------!-----!-----!--------!------!------------!
 CD !sosi_st!rb_st !ulGiLen!ulPiLen!gnavn !ngi  !nko  !Kvalitet!dEnhet! info       !
 CD !  n64  ! n64  !  ul   !  ul   ! s    !  s  ! l   ! struct !  d   ! us         !
@@ -534,7 +534,7 @@ CD !       !      !       !       !      !     !     !        !      !0=i       
 CD !       !      !       !       !      !     !     !        !      !1=H         !
 CD !       !      !       !       !      !     !     !        !      !2=KP        !
 CD !       !      !       !       !      !     !     !        !      !3=REF       !
-CD !       !      !       !       !      !     !     !        !      !4=REF med ÿY!
+CD !       !      !       !       !      !     !     !        !      !4=REF med ØY!
 CD !       !      !       !       !      !     !     !        !      !5=sletta    !
 CD !       !      !       !       !      !     !     !        !      !6=NGIS oppd !
 CD *------------------------------------------------------------------------------*
@@ -679,7 +679,7 @@ typedef struct dLC_TRANSPAR {
    short sGeosysSone;
    /*...GEOKOORD */
    short sGeoKoord;
-   /* ...ORIGO-Nÿ */
+   /* ...ORIGO-NØ */
    LC_KOORD_2D Origo;
    //double dOrigoAust;
    //double dOrigoNord;
@@ -706,7 +706,7 @@ typedef struct dLC_TRANSPAR {
 
 #define LC_TR_GEOSYS_INGEN_VERDI  -9999  // Brukes  for Â angi at projeksjon og sone under geosys ikke er gitt
 
-// Konstanter for definering av filtype (primÊrt for bruk i GabEdit) JAÿ-20010306
+// Konstanter for definering av filtype (primÊrt for bruk i GabEdit) JAØ-20010306
 #define LC_FILTYPE_UKJENT        0
 #define LC_FILTYPE_INAKTIV       1
 #define LC_FILTYPE_GAB_EIENDOM   2
@@ -743,11 +743,11 @@ typedef struct dLC_FILADM{
    FTID     SosiTid;        // Oppdateringstidspunkt for SOSI-filen
    LC_TRANSPAR TransPar;       // Transformasjonsparametre fra filhodet
    unsigned short TransMaske;  // Maske som viser hvilke deler av TransPar som inneholder data
-   LC_REKT Omr;                // ..OMR≈DE fra filhodet
+   LC_REKT Omr;                // ..OMRÅDE fra filhodet
    short   sTegnsett;          // Tegnsett fra filhodet eller standardverdi
    char    szDato[LC_DATO_LEN]; // ..DATO fra fil-hodet
    short   sSosiVer;            // ..SOSI-VERSJON fra fil-hodet * 100
-   char    SosiNiv[2];          // ..SOSI-NIV≈ fra fil-hodet
+   char    SosiNiv[2];          // ..SOSI-NIVÅ fra fil-hodet
                                  // SosiNiv[0] = nivÂ fra filÂpningen
                                  // SosiNiv[1] = nivÂ fra senere handtering
                                  // Filhodet oppdateres nÂr filen stenges
@@ -1051,7 +1051,7 @@ typedef struct dLC_POL_OMKR {
 
 /*
  *!--------------------------------------------------------------!
- *! ÿy (i polygon) element  (en for hver ¯y)                    !
+ *! Øy (i polygon) element  (en for hver ¯y)                    !
  *!--------------------------------------------------------------!
  */
 typedef struct dLC_OY_ELEMENT{

@@ -31,7 +31,7 @@
 
 
  /* Basetype */
- /* #define LC_START_KLADD       2  */  /* ≈pning av kladdebase */
+ /* #define LC_START_KLADD       2  */  /* Åpning av kladdebase */
  /* (LC_BASE og LC_KLADD er definert i FYBA.H) */
 
  /* Filtabell */
@@ -181,7 +181,7 @@ typedef struct dLC_SYSTEMADM {
    LC_GINFO_BUFFER Hode;     // Hodebuffer
    unsigned short usHoLen;   // Ant tegn i hodebuffer
    LC_GINFO_BUFFER Ginfo;    // GINFO-buffer
-   double *pdAust;    // ÿst koordinat
+   double *pdAust;    // Øst koordinat
    double *pdNord;    // Nord koordinat
    LB_INFO * pInfo;    // H¯yde,KP og PINFO-peker
    char *pszPinfo;    // PINFO buffer

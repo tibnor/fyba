@@ -1,8 +1,8 @@
 /* === 911001 ============================================================ */
 /*  STATENS KARTVERK  -  FYSAK-PC                                          */
 /*  Fil: fylr.c                                                            */
-/*  Ansvarlig: Andreas Røstad                                              */
-/*  Innhold: Rutiner for geografisk søking mm. i fysak-pc                  */
+/*  Ansvarlig: Andreas RÂ¯stad                                              */
+/*  Innhold: Rutiner for geografisk sÂ¯king mm. i fysak-pc                  */
 /* ======================================================================= */
 
 #include "stdafx.h"
@@ -45,7 +45,7 @@ static void LR_R_DumpNode(LC_R_NODE * pRN, LC_FILADM *pDumpFil, int iNivo, doubl
 AR:2000-07-25
 CH LC_GetGrWin                           Hent omskrevet rektangel for gruppe
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Henter omskrevet rektangel for gitt gruppe.
 CD For flater er refererte grupper medregnet.
 CD
@@ -98,8 +98,8 @@ SK_EntPnt_FYBA short LC_GetGrWin(LC_BGR * pBgr,double *nva,double *nvn,double *o
 AR-930608
 CH LR_Indx                               Beregn geografiske ruter for gruppe
 CD ==========================================================================
-CD Formål:
-CD Beregner og lagrer omskrevet boks for koordinatene på aktuell gruppe.
+CD FormÃ‚l:
+CD Beregner og lagrer omskrevet boks for koordinatene pÃ‚ aktuell gruppe.
 CD
 CD Parametre: ingen
 CD
@@ -139,7 +139,7 @@ void LR_Indx(void)
                UT_FPRINTF(stderr,"Ulovlig forhold mellom koordinater og radius i: %s : %s\n",Sys.GrId.pFil->pszNavn,LX_GetGi(1));
             }
 
-            // Spesialhandtering av ulogiske sirkler og buer. Håndteres som KURVE
+            // Spesialhandtering av ulogiske sirkler og buer. HÃ‚ndteres som KURVE
             for (pt=0; pt<Sys.pGrInfo->nko; pt++) {
                min_a = min(min_a,*(Sys.pdAust + pt));
                min_n = min(min_n,*(Sys.pdNord + pt));
@@ -163,13 +163,13 @@ void LR_Indx(void)
       /* Nedre venstre justeres ut en enhet */
       Boks.dMinAust = min_a - Sys.pGrInfo->dEnhet;
       Boks.dMinNord = min_n - Sys.pGrInfo->dEnhet;
-         /* Øvre høyre justeres ut en enhet */
+         /* Ã˜vre hÂ¯yre justeres ut en enhet */
       Boks.dMaxAust = max_a + Sys.pGrInfo->dEnhet;
       Boks.dMaxNord = max_n + Sys.pGrInfo->dEnhet;
 
-      // Finnes ikke i treet fra før
+      // Finnes ikke i treet fra fÂ¯r
       if (Sys.pGrInfo->pRL == NULL ) { 
-         /* Lagre omskrevet boks i søketreet */
+         /* Lagre omskrevet boks i sÂ¯ketreet */
          Sys.pGrInfo->pRL = LR_InsertGeo(Sys.GrId.pFil,Sys.GrId.lNr,&Boks);
 
       // Sjekk om boksen avviker fra gammel boks
@@ -178,7 +178,7 @@ void LR_Indx(void)
          /* Fjern eventuell gammel forekomst i R-treet */
          LR_R_Delete(Sys.pGrInfo->pRL);
 
-         /* Lagre omskreven firkant i søketreet */
+         /* Lagre omskreven firkant i sÂ¯ketreet */
          Sys.pGrInfo->pRL = LR_InsertGeo(Sys.GrId.pFil,Sys.GrId.lNr,&Boks);
       }
 
@@ -197,7 +197,7 @@ SK_EntPnt_FYBA void LC_DumpGeoRtre(LC_FILADM *pFil)
    LC_FILADM *pDumpFil;
    long lAntBarn = 0;
 
-   // Åpner ny SOSI-fil for dump
+   // Ã…pner ny SOSI-fil for dump
    HO_New("Indeksdump.sos", 99, 0.0, 0.0, 0.001, 0.001, 0.001,
           -151000, -151000, 151000, 1000);
    if (LC_OpenSos("Indeksdump.sos",LC_BASE_FRAMGR,LC_NY_IDX,LC_INGEN_STATUS,&pDumpFil,&ostat))
@@ -232,7 +232,7 @@ static void LR_R_DumpNode(LC_R_NODE * pRN, LC_FILADM *pDumpFil, int iNivo, doubl
    long lBarn = 0;
 
    iNivo++;
-   /* Rekursiv sjekk av de underliggende løv eller nodene */
+   /* Rekursiv sjekk av de underliggende lÂ¯v eller nodene */
    for (i=0; i<pRN->sSonAnt; i++) { 
       LC_NyGr(pDumpFil,".LINJE",&Bgr,&lSnr);
       LC_PutGi(LC_AppGiL(), "..LTEMA 1000");
@@ -276,16 +276,16 @@ static void LR_R_DumpNode(LC_R_NODE * pRN, LC_FILADM *pDumpFil, int iNivo, doubl
    LC_PutGi(LC_AppGiL(), "..PTEMA 3000");
    LC_PutGi(LC_AppGiL(), "..NODE 1");
    
-   UT_SNPRINTF(szTx,100,"..NIVÅ %d", iNivo-1);
+   UT_SNPRINTF(szTx,100,"..NIVÃ… %d", iNivo-1);
    LC_PutGi(LC_AppGiL(), szTx);
    
-   UT_SNPRINTF(szTx,100,"..MIN-NØ %f %f", pRN->Boks.dMinNord, pRN->Boks.dMinAust);
+   UT_SNPRINTF(szTx,100,"..MIN-NÃ˜ %f %f", pRN->Boks.dMinNord, pRN->Boks.dMinAust);
    LC_PutGi(LC_AppGiL(), szTx);
 
-   UT_SNPRINTF(szTx,100,"..MAX-NØ %f %lf", pRN->Boks.dMaxNord, pRN->Boks.dMaxAust);
+   UT_SNPRINTF(szTx,100,"..MAX-NÃ˜ %f %lf", pRN->Boks.dMaxNord, pRN->Boks.dMaxAust);
    LC_PutGi(LC_AppGiL(), szTx);
 
-   UT_SNPRINTF(szTx,100,"..DELTA-NØ %f %f",
+   UT_SNPRINTF(szTx,100,"..DELTA-NÃ˜ %f %f",
             pRN->Boks.dMaxNord - pRN->Boks.dMinNord,
             pRN->Boks.dMaxAust - pRN->Boks.dMinAust);
    LC_PutGi(LC_AppGiL(), szTx);
@@ -310,24 +310,24 @@ static void LR_R_DumpLov(LC_R_LEAF * pRL, LC_FILADM *pDumpFil, int iNivo, double
 
 
    (*plAntBarn)++;
-   // Skriv ut løvet
+   // Skriv ut lÂ¯vet
    LC_NyGr(pDumpFil,".PUNKT",&Bgr,&lSnr);
    LC_PutGi(LC_AppGiL(), "..PTEMA 5000");
-   LC_PutGi(LC_AppGiL(), "..LØV 1");
+   LC_PutGi(LC_AppGiL(), "..LÃ˜V 1");
 
    UT_SNPRINTF(szTx,100,"..NR %ld", pRL->lNr);
    LC_PutGi(LC_AppGiL(), szTx);
    
-   UT_SNPRINTF(szTx,100,"..NIVÅ %d", iNivo);
+   UT_SNPRINTF(szTx,100,"..NIVÃ… %d", iNivo);
    LC_PutGi(LC_AppGiL(), szTx);
    
-   UT_SNPRINTF(szTx,100,"..MIN-NØ %f %f", pRL->Boks.dMinNord, pRL->Boks.dMinAust);
+   UT_SNPRINTF(szTx,100,"..MIN-NÃ˜ %f %f", pRL->Boks.dMinNord, pRL->Boks.dMinAust);
    LC_PutGi(LC_AppGiL(), szTx);
 
-   UT_SNPRINTF(szTx,100,"..MAX-NØ %f %f", pRL->Boks.dMaxNord, pRL->Boks.dMaxAust);
+   UT_SNPRINTF(szTx,100,"..MAX-NÃ˜ %f %f", pRL->Boks.dMaxNord, pRL->Boks.dMaxAust);
    LC_PutGi(LC_AppGiL(), szTx);
 
-   UT_SNPRINTF(szTx,100,"..DELTA-NØ %f %f",
+   UT_SNPRINTF(szTx,100,"..DELTA-NÃ˜ %f %f",
             pRL->Boks.dMaxNord - pRL->Boks.dMinNord,
             pRL->Boks.dMaxAust - pRL->Boks.dMinAust);
    LC_PutGi(LC_AppGiL(), szTx);
@@ -341,7 +341,7 @@ static void LR_R_DumpLov(LC_R_LEAF * pRL, LC_FILADM *pDumpFil, int iNivo, double
 AR-900214
 CH LR_IndxFlate                            Beregn geografisk indeks for flate
 CD =============================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Utvider omskrevet boks for aktuell gruppe, slik at den tar hensyn til
 CD referanser.
 CD
@@ -376,7 +376,7 @@ void LR_IndxFlate(void)
       min_a = min_n = (double)LONG_MAX;
       max_a = max_n = (double)LONG_MIN;
 
-      /* Koordinater direkte på denne gruppen */
+      /* Koordinater direkte pÃ‚ denne gruppen */
       if (nko > 0) {
          pRL = LI_GetGeo(pFi,Sys.GrId.lNr);
          if (pRL != NULL) {
@@ -386,7 +386,7 @@ void LR_IndxFlate(void)
             max_n = pRL->Boks.dMaxNord;
 
          } else {
-            /* Initier med inverse område fra filhodet */
+            /* Initier med inverse omrÃ‚de fra filhodet */
             min_a = Sys.GrId.pFil->Omraade.dMaxAust;
             min_n = Sys.GrId.pFil->Omraade.dMaxNord;
             max_a = Sys.GrId.pFil->Omraade.dMinAust;
@@ -394,7 +394,7 @@ void LR_IndxFlate(void)
          }
 
       } else {
-         /* Initier med inverse område fra filhodet */
+         /* Initier med inverse omrÃ‚de fra filhodet */
          min_a = Sys.GrId.pFil->Omraade.dMaxAust;
          min_n = Sys.GrId.pFil->Omraade.dMaxNord;
          max_a = Sys.GrId.pFil->Omraade.dMinAust;
@@ -404,7 +404,7 @@ void LR_IndxFlate(void)
       LC_InitGetRefFlate(&GrfStat);
       /*
        * Bygger opp omskreven firkant for gruppen ut fra omskreven
-       * firkant for gruppene som inngår.
+       * firkant for gruppene som inngÃ‚r.
        * (Behandle bare ytre avgrensing.)
        */
       ant_ref = LC_GetRefFlate(&GrfStat,GRF_YTRE,ref_arr,ref_status,MAX_REF);
@@ -426,7 +426,7 @@ void LR_IndxFlate(void)
          ant_ref = LC_GetRefFlate(&GrfStat,GRF_YTRE,ref_arr,ref_status,MAX_REF);
       } while (ant_ref > 0);
 
-      /* Lagre omskreven firkant i søketreet */
+      /* Lagre omskreven firkant i sÂ¯ketreet */
       Boks.dMinAust = min_a;
       Boks.dMinNord = min_n;
       Boks.dMaxAust = max_a;
@@ -449,20 +449,20 @@ void LR_IndxFlate(void)
    
 /*
 AR-911003
-CH LC_SBGeo                             Sett søkegrense for grov geografisk søk
+CH LC_SBGeo                             Sett sÂ¯kegrense for grov geografisk sÂ¯k
 CD =============================================================================
-CD Formål:
-CD Definerer geografisk område for geografisk søk.
+CD FormÃ‚l:
+CD Definerer geografisk omrÃ‚de for geografisk sÂ¯k.
 CD
 CD Parametre:
 CD Type           Navn      I/U  Forklaring
 CD -----------------------------------------------------------------------------
-CD LC_GEO_STATUS * pGeoStat  iu   Peker til struktur for søkestatus.
-CD unsigned short usLag      i   Velg hvilke "lag" det skal søkes i.
+CD LC_GEO_STATUS * pGeoStat  iu   Peker til struktur for sÂ¯kestatus.
+CD unsigned short usLag      i   Velg hvilke "lag" det skal sÂ¯kes i.
 CD                               LC_FRAMGR og /eller LC_BAKGR
-CD double         nv_a       i   Koordinat nedre venstre hjørne.
+CD double         nv_a       i   Koordinat nedre venstre hjÂ¯rne.
 CD double         nv_n       i
-CD double         oh_a       i   Koordinat øvre høyre hjørne.
+CD double         oh_a       i   Koordinat Â¯vre hÂ¯yre hjÂ¯rne.
 CD double         oh_n       i
 CD
 CD Bruk:
@@ -485,11 +485,11 @@ SK_EntPnt_FYBA void LC_SBGeo(LC_GEO_STATUS * pGeoStat,unsigned short usLag,
    /* Normaliserer vinduet */
    GM_NormVindu(&nv_a,&nv_n,&oh_a,&oh_n);
 
-   /* Avrunder ut til nærmeste meter utover */
-   /* Nedre venstre ut til nærneste heltall under */
+   /* Avrunder ut til nÃŠrmeste meter utover */
+   /* Nedre venstre ut til nÃŠrneste heltall under */
    //pGeoStat->nvn = (long)floor(nv_n);
    //pGeoStat->nva = (long)floor(nv_a);
-   /* Øvre høyre ut til nærneste heltall over */
+   /* Ã˜vre hÂ¯yre ut til nÃŠrneste heltall over */
    //pGeoStat->ohn = (long)ceil(oh_n);
    //pGeoStat->oha = (long)ceil(oh_a);
 
@@ -506,24 +506,24 @@ SK_EntPnt_FYBA void LC_SBGeo(LC_GEO_STATUS * pGeoStat,unsigned short usLag,
    pGeoStat->pSisteKB = NULL;
    pGeoStat->pAktuellKB = NULL;
 
-   /* Velg søkemetode */
+   /* Velg sÂ¯kemetode */
    LR_VelgMetode(pGeoStat);
 }
 
 
 /*
 AR-911003
-CH LC_FFGeo                                   Finn første ved geografisk søk
+CH LC_FFGeo                                   Finn fÂ¯rste ved geografisk sÂ¯k
 CD ==========================================================================
-CD Formål:
-CD Finner første gruppe i det definerte området for kombinert geografisk søk.
+CD FormÃ‚l:
+CD Finner fÂ¯rste gruppe i det definerte omrÃ‚det for kombinert geografisk sÂ¯k.
 CD
 CD Parametre:
 CD Type     Navn      I/U  Forklaring
 CD --------------------------------------------------------------------------
-CD LC_GEO_STATUS * pGeoStat  iu   Peker til struktur for søkestatus
+CD LC_GEO_STATUS * pGeoStat  iu   Peker til struktur for sÂ¯kestatus
 CD LC_BGR *        pBgr       u   Funnet gruppe
-CD short          sstat      r   Søkestatus (UT_TRUE=Funnet, UT_FALSE=Ingen funnet)
+CD short          sstat      r   SÂ¯kestatus (UT_TRUE=Funnet, UT_FALSE=Ingen funnet)
 CD
 CD Bruk:
 CD Se under LC_SBGeo.
@@ -536,7 +536,7 @@ SK_EntPnt_FYBA short LC_FFGeo(LC_GEO_STATUS * pGeoStat,LC_BGR * pBgr)
       LC_BOKS Boks;
       LC_FILADM *pFil;
 
-      /* Beregn søkeboksen */
+      /* Beregn sÂ¯keboksen */
       Boks.dMinAust = pGeoStat->nva;
       Boks.dMinNord = pGeoStat->nvn;
       Boks.dMaxAust = pGeoStat->oha;
@@ -548,7 +548,7 @@ SK_EntPnt_FYBA short LC_FFGeo(LC_GEO_STATUS * pGeoStat,LC_BGR * pBgr)
       /* Sjekker alle filer */
       LC_InitNextFil(&pFil);
 	   while (LC_NextFil(&pFil,pGeoStat->usLag)) {
-         /* Filen inneholder data, må sjekke alle berørte noder */
+         /* Filen inneholder data, mÃ‚ sjekke alle berÂ¯rte noder */
          if (pFil->pGeoRN != NULL) {
             LR_R_SjekkNode(pGeoStat,&Boks,pFil,pFil->pGeoRN);
          }   
@@ -570,7 +570,7 @@ SK_EntPnt_FYBA short LC_FFGeo(LC_GEO_STATUS * pGeoStat,LC_BGR * pBgr)
       while (LC_NextBgr(&Bgr,pGeoStat->usLag)) {
          pRL = LI_GetGeo(Bgr.pFil,Bgr.lNr);
          if (pRL != NULL) {
-            /* Sjekk område-tabellen */
+            /* Sjekk omrÃ‚de-tabellen */
             if (pGeoStat->ohn >= pRL->Boks.dMinNord && pGeoStat->oha >= pRL->Boks.dMinAust &&
                 pGeoStat->nvn <= pRL->Boks.dMaxNord && pGeoStat->nva <= pRL->Boks.dMaxAust) {
                *pBgr = pGeoStat->Bgr = Bgr;            /* Tilslag */
@@ -592,16 +592,16 @@ SK_EntPnt_FYBA short LC_FFGeo(LC_GEO_STATUS * pGeoStat,LC_BGR * pBgr)
 AR-911003
 CH LR_R_SjekkNode                          Sjekker node om overlappende boks
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Sjekker en node og underliggende noder om de har lagret bokser
-CD som overlapper søkerektanglet. De gruppene som blir funnet blir hengt på
-CD kjeden med søkeresultat i pGeoStat.
+CD som overlapper sÂ¯kerektanglet. De gruppene som blir funnet blir hengt pÃ‚
+CD kjeden med sÂ¯keresultat i pGeoStat.
 CD
 CD Parametre:
 CD Type     Navn      I/U  Forklaring
 CD --------------------------------------------------------------------------
-CD LC_GEO_STATUS * pGeoStat   i   Peker til struktur for søkestatus
-CD LC_BOKS *       pB         i   Søkeboks
+CD LC_GEO_STATUS * pGeoStat   i   Peker til struktur for sÂ¯kestatus
+CD LC_BOKS *       pB         i   SÂ¯keboks
 CD LC_FILADM *    pFil       i   Filpeker
 CD LC_R_NODE *     pRN        i   Peker til node som skal sjekkes
 CD
@@ -614,10 +614,10 @@ static void LR_R_SjekkNode(LC_GEO_STATUS * pGeoStat,LC_BOKS * pB,LC_FILADM *pFil
    int i;
 
 
-   /* Sjekk om denne noden berører søkeboksen */
+   /* Sjekk om denne noden berÂ¯rer sÂ¯keboksen */
    if (LR_R_BoksTestIntersect(&(pRN->Boks),pB)) {
 
-      /* Har kommet til ytterste nivå */
+      /* Har kommet til ytterste nivÃ‚ */
       if (pRN->sSonType == LC_LEAF) {
 
          /* Sjekk de gruppene som er lagret under denne noden */
@@ -641,17 +641,17 @@ static void LR_R_SjekkNode(LC_GEO_STATUS * pGeoStat,LC_BOKS * pB,LC_FILADM *pFil
 
 /*
 AR-911003
-CH LR_R_BoksTestIntersect             Sjekker om to bokser "berører" hverandre
+CH LR_R_BoksTestIntersect             Sjekker om to bokser "berÂ¯rer" hverandre
 CD ==========================================================================
-CD Formål:
-CD Sjekker om to bokser "berører" hverandre.
+CD FormÃ‚l:
+CD Sjekker om to bokser "berÂ¯rer" hverandre.
 CD
 CD Parametre:
 CD Type     Navn     I/U  Forklaring
 CD --------------------------------------------------------------------------
 CD LC_BOKS *  pB1      i   Rektangel 1
 CD LC_BOKS *  pB2      i   Rektangel 2
-CD short     sStatus  r   UT_TRUE=Berører,  UT_FALSE=Ikke berøring 
+CD short     sStatus  r   UT_TRUE=BerÂ¯rer,  UT_FALSE=Ikke berÂ¯ring 
 CD
 CD Bruk:
 CD LR_R_BoksTestIntersect(...);
@@ -674,17 +674,17 @@ static short LR_R_BoksTestIntersect(LC_BOKS * pB1,LC_BOKS * pB2)
 
 /*
 AR-911003
-CH LC_FNGeo                                    Finn neste ved geografisk søk
+CH LC_FNGeo                                    Finn neste ved geografisk sÂ¯k
 CD ==========================================================================
-CD Formål:
-CD Finner neste gruppe i det definerte området for geografisk søk.
+CD FormÃ‚l:
+CD Finner neste gruppe i det definerte omrÃ‚det for geografisk sÂ¯k.
 CD
 CD Parametre:
 CD Type           Navn      I/U  Forklaring
 CD --------------------------------------------------------------------------
-CD LC_GEO_STATUS * pGeoStat  iu   Peker til struktur for søkestatus
+CD LC_GEO_STATUS * pGeoStat  iu   Peker til struktur for sÂ¯kestatus
 CD LC_BGR *        pBgr       u   Funnet gruppe
-CD short          sstat      r   Søkestatus (UT_TRUE=Funnet, UT_FALSE=Ingen funnet)
+CD short          sstat      r   SÂ¯kestatus (UT_TRUE=Funnet, UT_FALSE=Ingen funnet)
 CD
 CD Bruk:
 CD Se under LC_SBGeo.
@@ -694,7 +694,7 @@ SK_EntPnt_FYBA short LC_FNGeo(LC_GEO_STATUS * pGeoStat,LC_BGR * pBgr)
 {
    /* Bruker R-tre */
    if (pGeoStat->usMetode == LC_GEO_RTRE) {
-      /* Søket er utført og ligger som en kjede */
+      /* SÂ¯ket er utfÂ¯rt og ligger som en kjede */
       if (pGeoStat->pAktuellKB != NULL) {
          pGeoStat->pAktuellKB = pGeoStat->pAktuellKB->pNesteKB;
          if (pGeoStat->pAktuellKB != NULL) {
@@ -712,7 +712,7 @@ SK_EntPnt_FYBA short LC_FNGeo(LC_GEO_STATUS * pGeoStat,LC_BGR * pBgr)
       while (LC_NextBgr(&Bgr,pGeoStat->usLag)) {
          pRL = LI_GetGeo(Bgr.pFil,Bgr.lNr);
          if (pRL != NULL) {
-            /* Sjekk område-tabellen */
+            /* Sjekk omrÃ‚de-tabellen */
             if (pGeoStat->ohn >= pRL->Boks.dMinNord && pGeoStat->oha >= pRL->Boks.dMinAust &&
                 pGeoStat->nvn <= pRL->Boks.dMaxNord && pGeoStat->nva <= pRL->Boks.dMaxAust) {
                *pBgr = pGeoStat->Bgr = Bgr;            /* Tilslag */
@@ -732,19 +732,19 @@ SK_EntPnt_FYBA short LC_FNGeo(LC_GEO_STATUS * pGeoStat,LC_BGR * pBgr)
 
 /*
 AR-911003
-CH LC_FFGeoFil                       Finn første ved geografisk søk i en fil
+CH LC_FFGeoFil                       Finn fÂ¯rste ved geografisk sÂ¯k i en fil
 CD ==========================================================================
-CD Formål:
-CD Finner første gruppe i det definerte området for kombinert geografisk søk.
-CD Søker bare i en gitt fil.
+CD FormÃ‚l:
+CD Finner fÂ¯rste gruppe i det definerte omrÃ‚det for kombinert geografisk sÂ¯k.
+CD SÂ¯ker bare i en gitt fil.
 CD
 CD Parametre:
 CD Type           Navn       I/U  Forklaring
 CD --------------------------------------------------------------------------
-CD LC_GEO_STATUS * pGeoStat   iu   Peker til struktur for søkestatus
-CD LC_FILADM *    pOnsketFil  i   Filpeker til den filen det skal søkes i.
+CD LC_GEO_STATUS * pGeoStat   iu   Peker til struktur for sÂ¯kestatus
+CD LC_FILADM *    pOnsketFil  i   Filpeker til den filen det skal sÂ¯kes i.
 CD LC_BGR *        pBgr        u   Funnet gruppe
-CD short          sstat       r   Søkestatus (UT_TRUE=Funnet, UT_FALSE=Ingen funnet)
+CD short          sstat       r   SÂ¯kestatus (UT_TRUE=Funnet, UT_FALSE=Ingen funnet)
 CD
 CD Bruk:
 CD Se under LC_SBGeo.
@@ -756,7 +756,7 @@ SK_EntPnt_FYBA short LC_FFGeoFil(LC_GEO_STATUS * pGeoStat,LC_FILADM *pOnsketFil,
    if (pGeoStat->usMetode == LC_GEO_RTRE) {
       LC_BOKS Boks;
 
-      /* Beregn søkeboksen */
+      /* Beregn sÂ¯keboksen */
       Boks.dMinAust = pGeoStat->nva;
       Boks.dMinNord = pGeoStat->nvn;
       Boks.dMaxAust = pGeoStat->oha;
@@ -767,7 +767,7 @@ SK_EntPnt_FYBA short LC_FFGeoFil(LC_GEO_STATUS * pGeoStat,LC_FILADM *pOnsketFil,
 
       /* Sjekker den aktuelle filen */
 	   if (pOnsketFil->usLag & pGeoStat->usLag) {
-         /* File inneholder data, må sjekke alle berørte noder */
+         /* File inneholder data, mÃ‚ sjekke alle berÂ¯rte noder */
          if (pOnsketFil->pGeoRN != NULL) {
             LR_R_SjekkNode(pGeoStat,&Boks,pOnsketFil,pOnsketFil->pGeoRN);
          }   
@@ -791,7 +791,7 @@ SK_EntPnt_FYBA short LC_FFGeoFil(LC_GEO_STATUS * pGeoStat,LC_FILADM *pOnsketFil,
          if (Bgr.pFil == pOnsketFil) {
             pRL = LI_GetGeo(Bgr.pFil,Bgr.lNr);
             if (pRL != NULL) {
-               /* Sjekk område-tabellen */
+               /* Sjekk omrÃ‚de-tabellen */
                if (pGeoStat->ohn >= pRL->Boks.dMinNord && pGeoStat->oha >= pRL->Boks.dMinAust &&
                    pGeoStat->nvn <= pRL->Boks.dMaxNord && pGeoStat->nva <= pRL->Boks.dMaxAust) {
                   *pBgr = pGeoStat->Bgr = Bgr;            /* Tilslag */
@@ -812,19 +812,19 @@ SK_EntPnt_FYBA short LC_FFGeoFil(LC_GEO_STATUS * pGeoStat,LC_FILADM *pOnsketFil,
 
 /*
 AR-911003
-CH LC_FNGeoFil                        Finn neste ved geografisk søk i en fil
+CH LC_FNGeoFil                        Finn neste ved geografisk sÂ¯k i en fil
 CD ==========================================================================
-CD Formål:
-CD Finner neste gruppe i det definerte området for geografisk søk.
-CD Søker bare i en gitt fil.
+CD FormÃ‚l:
+CD Finner neste gruppe i det definerte omrÃ‚det for geografisk sÂ¯k.
+CD SÂ¯ker bare i en gitt fil.
 CD
 CD Parametre:
 CD Type           Navn      I/U  Forklaring
 CD --------------------------------------------------------------------------
-CD LC_GEO_STATUS * pGeoStat  iu   Peker til struktur for søkestatus
-CD LC_FILADM *    pFil      i    Filpeker til den filen det skal søkes i.
+CD LC_GEO_STATUS * pGeoStat  iu   Peker til struktur for sÂ¯kestatus
+CD LC_FILADM *    pFil      i    Filpeker til den filen det skal sÂ¯kes i.
 CD LC_BGR *        pBgr       u   Funnet gruppe
-CD short          sstat      r   Søkestatus (UT_TRUE=Funnet, UT_FALSE=Ingen funnet)
+CD short          sstat      r   SÂ¯kestatus (UT_TRUE=Funnet, UT_FALSE=Ingen funnet)
 CD
 CD Bruk:
 CD Se under LC_SBGeo.
@@ -853,7 +853,7 @@ SK_EntPnt_FYBA short LC_FNGeoFil(LC_GEO_STATUS * pGeoStat,LC_FILADM *pFil,LC_BGR
          if (Bgr.pFil == pFil) {
             pRL = LI_GetGeo(Bgr.pFil,Bgr.lNr);
             if (pRL != NULL) {
-               /* Sjekk område-tabellen */
+               /* Sjekk omrÃ‚de-tabellen */
                if (pGeoStat->ohn >= pRL->Boks.dMinNord && pGeoStat->oha >= pRL->Boks.dMinAust &&
                    pGeoStat->nvn <= pRL->Boks.dMaxNord && pGeoStat->nva <= pRL->Boks.dMaxAust) {
                   *pBgr = pGeoStat->Bgr = Bgr;            /* Tilslag */
@@ -874,16 +874,16 @@ SK_EntPnt_FYBA short LC_FNGeoFil(LC_GEO_STATUS * pGeoStat,LC_FILADM *pFil,LC_BGR
 
 /*
 AR-911002
-CH LC_FAGeo                                     Finn alle ved geografisk søk
+CH LC_FAGeo                                     Finn alle ved geografisk sÂ¯k
 CD ==========================================================================
-CD Formål:
-CD Finn alle i geografisk søkeområde.
+CD FormÃ‚l:
+CD Finn alle i geografisk sÂ¯keomrÃ‚de.
 CD Tilslag merkes i brukttabellen kolonne BT_GEOSOK (15).
 CD
 CD Parametre:
 CD Type           Navn      I/U  Forklaring
 CD --------------------------------------------------------------------------
-CD LC_GEO_STATUS * pGeoStat  iu   Peker til struktur for søkestatus
+CD LC_GEO_STATUS * pGeoStat  iu   Peker til struktur for sÂ¯kestatus
 CD long           lAntall    r   Antall funnet.
 CD
 CD Bruk:
@@ -908,7 +908,7 @@ SK_EntPnt_FYBA long LC_FAGeo(LC_GEO_STATUS * pGeoStat)
    /* Blanker brukttabellen */
    LI_EraseBt(BT_GEOSOK,BT_GEOSOK);
    
-   /* Utfører søket */
+   /* UtfÂ¯rer sÂ¯ket */
    if (LC_FFGeo(pGeoStat,&Bgr)) {
       do {
          LC_RxGr(&Bgr,LES_OPTIMALT,&ngi,&nko,&info);
@@ -928,20 +928,20 @@ SK_EntPnt_FYBA long LC_FAGeo(LC_GEO_STATUS * pGeoStat)
 
 /*
 AR-911003
-CH LC_SBFlate                     Sett søkegrense for geografisk søk på flate
+CH LC_SBFlate                     Sett sÂ¯kegrense for geografisk sÂ¯k pÃ‚ flate
 CD =============================================================================
-CD Formål:
-CD Definerer punkt for geografisk søk på flate.
+CD FormÃ‚l:
+CD Definerer punkt for geografisk sÂ¯k pÃ‚ flate.
 CD
 CD Parametre:
 CD Type     Navn      I/U  Forklaring
 CD -----------------------------------------------------------------------------
-CD LC_GEO_STATUS * pGeoStat  iu   Peker til struktur for søkestatus
-CD unsigned short usLag      i   Velg hvilke "lag" det skal søkes i.
+CD LC_GEO_STATUS * pGeoStat  iu   Peker til struktur for sÂ¯kestatus
+CD unsigned short usLag      i   Velg hvilke "lag" det skal sÂ¯kes i.
 CD                               LC_FRAMGR og /eller LC_BAKGR
-CD double         nv_a       i   Koordinat nedre venstre hjørne
+CD double         nv_a       i   Koordinat nedre venstre hjÂ¯rne
 CD double         nv_n       i
-CD double         oh_a       i   Koordinat øvre høyre hjørne
+CD double         oh_a       i   Koordinat Â¯vre hÂ¯yre hjÂ¯rne
 CD double         oh_n       i
 CD
 CD Bruk:
@@ -964,11 +964,11 @@ SK_EntPnt_FYBA void LC_SBFlate(LC_GEO_STATUS * pGeoStat,unsigned short usLag,
                      /* Normaliserer vinduet */
    GM_NormVindu(&nv_a,&nv_n,&oh_a,&oh_n);
 
-                          /* Avrunder ut til nærmeste meter utover */
-                          /* Nedre venstre ut til nærneste heltall under */
+                          /* Avrunder ut til nÃŠrmeste meter utover */
+                          /* Nedre venstre ut til nÃŠrneste heltall under */
    pGeoStat->nvn = (long)floor(nv_n);
    pGeoStat->nva = (long)floor(nv_a);
-                           /* Øvre høyre ut til nærneste heltall over */
+                           /* Ã˜vre hÂ¯yre ut til nÃŠrneste heltall over */
    pGeoStat->ohn = (long)ceil(oh_n);
    pGeoStat->oha = (long)ceil(oh_a);
 
@@ -980,24 +980,24 @@ SK_EntPnt_FYBA void LC_SBFlate(LC_GEO_STATUS * pGeoStat,unsigned short usLag,
    pGeoStat->pSisteKB = NULL;
    pGeoStat->pAktuellKB = NULL;
 
-   /* Velg søkemetode */
+   /* Velg sÂ¯kemetode */
    LR_VelgMetode(pGeoStat);
 }
 
 
 /*
 AR-911003
-CH LC_FFFlate                                        Finn første ved flatesøk
+CH LC_FFFlate                                        Finn fÂ¯rste ved flatesÂ¯k
 CD =============================================================================
-CD Formål:
-CD Finner første gruppe i det definerte området for flatesøk.
+CD FormÃ‚l:
+CD Finner fÂ¯rste gruppe i det definerte omrÃ‚det for flatesÂ¯k.
 CD
 CD Parametre:
 CD Type     Navn      I/U  Forklaring
 CD -----------------------------------------------------------------------------
-CD LC_GEO_STATUS * pGeoStat  iu   Peker til struktur for søkestatus
+CD LC_GEO_STATUS * pGeoStat  iu   Peker til struktur for sÂ¯kestatus
 CD LC_BGR *        pBgr       u   Funnet gruppe
-CD short          sstat      r   Søkestatus (UT_TRUE=Funnet, UT_FALSE=Ingen funnet)
+CD short          sstat      r   SÂ¯kestatus (UT_TRUE=Funnet, UT_FALSE=Ingen funnet)
 CD
 CD Bruk:
 CD Se under LC_SBFlate.
@@ -1010,7 +1010,7 @@ SK_EntPnt_FYBA short LC_FFFlate(LC_GEO_STATUS * pGeoStat,LC_BGR * pBgr)
       LC_BOKS Boks;
       LC_FILADM *pFil;
 
-      /* Beregn søkeboksen */
+      /* Beregn sÂ¯keboksen */
       Boks.dMinAust = pGeoStat->nva;
       Boks.dMinNord = pGeoStat->nvn;
       Boks.dMaxAust = pGeoStat->oha;
@@ -1023,7 +1023,7 @@ SK_EntPnt_FYBA short LC_FFFlate(LC_GEO_STATUS * pGeoStat,LC_BGR * pBgr)
       LC_InitNextFil(&pFil);
 	   while (LC_NextFil(&pFil,pGeoStat->usLag)) {
 
-         /* File inneholder data, må sjekke alle berørte kvadranter */
+         /* File inneholder data, mÃ‚ sjekke alle berÂ¯rte kvadranter */
          if (pFil->pGeoRN != NULL) {
             LR_R_SjekkNodeFlate(pGeoStat,&Boks,pFil,pFil->pGeoRN);
          }   
@@ -1048,7 +1048,7 @@ SK_EntPnt_FYBA short LC_FFFlate(LC_GEO_STATUS * pGeoStat,LC_BGR * pBgr)
          if (LI_InqBt(Bgr.pFil,Bgr.lNr,BT_REFBOX)) {
             pRL = LI_GetGeo(Bgr.pFil,Bgr.lNr);
             if (pRL != NULL) {
-               /* Sjekk område-tabellen */
+               /* Sjekk omrÃ‚de-tabellen */
                if (pGeoStat->ohn >= pRL->Boks.dMinNord && pGeoStat->oha >= pRL->Boks.dMinAust &&
                    pGeoStat->nvn <= pRL->Boks.dMaxNord && pGeoStat->nva <= pRL->Boks.dMaxAust) {
                   *pBgr = pGeoStat->Bgr = Bgr;            /* Tilslag */
@@ -1071,17 +1071,17 @@ SK_EntPnt_FYBA short LC_FFFlate(LC_GEO_STATUS * pGeoStat,LC_BGR * pBgr)
 AR-980205
 CH LR_R_SjekkNodeFlate            Sjekker node om overlappende boks (flate)
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Sjekker en node og underliggende noder om de har lagret bokser
-CD som overlapper søkerektanglet. De gruppene som blir funnet blir hengt på
-CD kjeden med søkeresultat i pGeoStat. Finner bare grupper der det er brukt
+CD som overlapper sÂ¯kerektanglet. De gruppene som blir funnet blir hengt pÃ‚
+CD kjeden med sÂ¯keresultat i pGeoStat. Finner bare grupper der det er brukt
 CD referanser for oppbygging av geografisk boks.
 CD
 CD Parametre:
 CD Type     Navn      I/U  Forklaring
 CD --------------------------------------------------------------------------
-CD LC_GEO_STATUS * pGeoStat   i   Peker til struktur for søkestatus
-CD LC_BOKS *       pB         i   Søkeboks
+CD LC_GEO_STATUS * pGeoStat   i   Peker til struktur for sÂ¯kestatus
+CD LC_BOKS *       pB         i   SÂ¯keboks
 CD LC_FILADM *    pFil       i   Filpeker
 CD LC_R_NODE *     pRN        i   Peker til node som skal sjekkes
 CD
@@ -1094,10 +1094,10 @@ static void LR_R_SjekkNodeFlate(LC_GEO_STATUS * pGeoStat,LC_BOKS * pB,LC_FILADM 
    int i;
 
 
-   /* Sjekk om denne noden berører søkeboksen */
+   /* Sjekk om denne noden berÂ¯rer sÂ¯keboksen */
    if (LR_R_BoksTestIntersect(&(pRN->Boks),pB)) {
 
-      /* Har kommet til ytterste nivå */
+      /* Har kommet til ytterste nivÃ‚ */
       if (pRN->sSonType == LC_LEAF) {
 
          /* Sjekk de gruppene som er lagret under denne noden */
@@ -1124,17 +1124,17 @@ static void LR_R_SjekkNodeFlate(LC_GEO_STATUS * pGeoStat,LC_BOKS * pB,LC_FILADM 
 
 /*
 AR-911002
-CH LC_FNFlate                                        Finn neste ved flatesøk
+CH LC_FNFlate                                        Finn neste ved flatesÂ¯k
 CD ==========================================================================
-CD Formål:
-CD Finner neste gruppe i det definerte området for flatesøk.
+CD FormÃ‚l:
+CD Finner neste gruppe i det definerte omrÃ‚det for flatesÂ¯k.
 CD
 CD Parametre:
 CD Type     Navn      I/U  Forklaring
 CD --------------------------------------------------------------------------
-CD LC_GEO_STATUS * pGeoStat  iu   Peker til struktur for søkestatus
+CD LC_GEO_STATUS * pGeoStat  iu   Peker til struktur for sÂ¯kestatus
 CD LC_BGR *        pBgr       u   Funnet gruppe
-CD short          sstat      r   Søkestatus (UT_TRUE=Funnet, UT_FALSE=Ingen funnet)
+CD short          sstat      r   SÂ¯kestatus (UT_TRUE=Funnet, UT_FALSE=Ingen funnet)
 CD
 CD Bruk:
 CD Se under LC_SBFlate.
@@ -1162,7 +1162,7 @@ SK_EntPnt_FYBA short LC_FNFlate(LC_GEO_STATUS * pGeoStat,LC_BGR * pBgr)
          if (LI_InqBt(Bgr.pFil,Bgr.lNr,BT_REFBOX)) {
             pRL = LI_GetGeo(Bgr.pFil,Bgr.lNr);
             if (pRL != NULL) {
-               /* Sjekk område-tabellen */
+               /* Sjekk omrÃ‚de-tabellen */
                if (pGeoStat->ohn >= pRL->Boks.dMinNord && pGeoStat->oha >= pRL->Boks.dMinAust &&
                    pGeoStat->nvn <= pRL->Boks.dMaxNord && pGeoStat->nva <= pRL->Boks.dMaxAust) {
                   *pBgr = pGeoStat->Bgr = Bgr;            /* Tilslag */
@@ -1185,8 +1185,8 @@ SK_EntPnt_FYBA short LC_FNFlate(LC_GEO_STATUS * pGeoStat,LC_BGR * pBgr)
 AR-890824
 CH LC_WTst                                                        Vindustest
 CD ==========================================================================
-CD Formål:
-CD Sjekk om aktuell gruppe berører gitt vindu.
+CD FormÃ‚l:
+CD Sjekk om aktuell gruppe berÂ¯rer gitt vindu.
 CD Tar hensyn til gruppenavnet. Handterer (PUNKT, LINJE, KURVE, BUE,
 CD BUEP, SIRKEL, SIRKELP, SVERM, TRASE ).
 CD
@@ -1197,8 +1197,8 @@ CD double  nva        i    Avgrensing av vinduet
 CD double  nvn        i
 CD double  oha        i
 CD double  ohn        i
-CD short   ist        r    status: 0 = ikke berøring
-CD                                 1 = skjæring
+CD short   ist        r    status: 0 = ikke berÂ¯ring
+CD                                 1 = skjÃŠring
 CD
 CD Bruk:
 CD .
@@ -1206,7 +1206,7 @@ CD LC_SBGeo(&GeoStat,nv_a,nv_n,oh_a,oh_n);
 CD if (LC_FFGeo(&GeoStat,&Bgr)){
 CD     do{
 CD         LC_RxGr(&Bgr,LES_OPTIMALT,&ngi,&nko,&info);
-CD         if (LC_WTst(nv_a,nv_n,oh_a,oh_n)) {       (Nøyaktig vindustest)
+CD         if (LC_WTst(nv_a,nv_n,oh_a,oh_n)) {       (NÂ¯yaktig vindustest)
 CD             . Behandle funnet gruppe
 CD             .
 CD         }
@@ -1235,7 +1235,7 @@ SK_EntPnt_FYBA short LC_WTst(double nva,double nvn,double oha,double ohn)
              gruppenavn == L_SIRKEL  ||  gruppenavn == L_SIRKELP) {
 
             if (LC_GetBuePar(HENT_FORRFRA,&aust,&nord,&radius,&fi,&dfi,&sfeil)) {
-               /* Vindustest på buen */
+               /* Vindustest pÃ‚ buen */
                if (GM_wtstBue(aust,nord,radius,fi,dfi,nva,nvn,oha,ohn)) {
                   return(1);
                }
@@ -1243,7 +1243,7 @@ SK_EntPnt_FYBA short LC_WTst(double nva,double nvn,double oha,double ohn)
             } else {
                // Spesialhandtering av ulogiske sirkler og buer
                // Handteres som punkt/linje
-                                           // Sjekk første koordinat
+                                           // Sjekk fÂ¯rste koordinat
                if (GM_wtst(*pdAust,*pdNord,*pdAust,*pdNord,nva,nvn,oha,ohn)) {
                   return(1);
                }
@@ -1288,7 +1288,7 @@ SK_EntPnt_FYBA short LC_WTst(double nva,double nvn,double oha,double ohn)
             /* Behandle referansene */
             for (pPE = Polygon.HovedPO.pForstePE; pPE != NULL; pPE = pPE->pNestePE) {
                LC_RxGr(&pPE->Bgr,LES_OPTIMALT,&ngi,&nko,&info);
-               if (LC_WTst(nva,nvn,oha,ohn)) {      /* (Nøyaktig vindustest) */
+               if (LC_WTst(nva,nvn,oha,ohn)) {      /* (NÂ¯yaktig vindustest) */
                   /* Frigi allokerte kjeder */
                   LC_POL_FrigiPolygon(&Polygon);
 
@@ -1308,7 +1308,7 @@ SK_EntPnt_FYBA short LC_WTst(double nva,double nvn,double oha,double ohn)
 
          /* Andre gruppenavn */
          } else {
-                                           /* Sjekk første koordinat */
+                                           /* Sjekk fÂ¯rste koordinat */
             if (GM_wtst(*pdAust,*pdNord,*pdAust,*pdNord,nva,nvn,oha,ohn)) {
                return(1);
             }
@@ -1333,7 +1333,7 @@ SK_EntPnt_FYBA short LC_WTst(double nva,double nvn,double oha,double ohn)
 AR-890824
 CH LC_PTst                                                        Polygontest
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Sjekker om gitt punkt ligger innenfor polygon angitt av aktuell gruppe.
 CD Forutsetter at tabellen danner et lukket polygon
 CD
@@ -1343,7 +1343,7 @@ CD --------------------------------------------------------------------------
 CD double  a        i    Punkt som skal sjekkes
 CD double  n        i
 CD short   ist      r    status: 0 = punktet er utenfor flaten
-CD                               1 = punktet ligger inne på flaten
+CD                               1 = punktet ligger inne pÃ‚ flaten
 CD
 CD Bruk:
 CD .
@@ -1351,7 +1351,7 @@ CD LC_SBFlate(&GeoStat,a-d,n-d,a+d,n+d);
 CD if (LC_FFFlate(&GeoStat,&Bgr)) {
 CD     do{
 CD         LC_RxGr(&Bgr,LES_OPTIMALT,&ngi,&nko,&info);
-CD         if (LC_PTst(a,n)){          (Nøyaktig polygontest)
+CD         if (LC_PTst(a,n)){          (NÂ¯yaktig polygontest)
 CD             . Behandle funnet gruppe
 CD             .
 CD         }
@@ -1364,7 +1364,7 @@ CD .
 SK_EntPnt_FYBA short LC_PTst(double a,double n)
 {
    LC_POLYGON Polygon;
-   short inni = 0;   /* Returverdi: 1 = inne på flaten, 0 = utenfor  */
+   short inni = 0;   /* Returverdi: 1 = inne pÃ‚ flaten, 0 = utenfor  */
       
    // Sjekk om gruppen er flate
    if (Sys.pGrInfo->gnavn == L_FLATE)
@@ -1373,7 +1373,7 @@ SK_EntPnt_FYBA short LC_PTst(double a,double n)
       LC_POL_InitPolygon(&Polygon);
       LC_POL_GetRef(&Polygon);
 
-      // Utfør selve polygontesten
+      // UtfÂ¯r selve polygontesten
       inni = LC_POL_PTst(&Polygon,a,n);
 
       // Frigi allokerte kjeder
@@ -1388,7 +1388,7 @@ SK_EntPnt_FYBA short LC_PTst(double a,double n)
 AR-911002
 CH LC_PTstOmkrets                         Sjekk om punkt ligger inni polygon
 CD ==========================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Sjekker om gitt punkt ligger innenfor yttergrensen for polygon angitt
 CD av aktuell gruppe.
 CD Forutsetter at tabellen danner et lukket polygon
@@ -1399,7 +1399,7 @@ CD --------------------------------------------------------------------------
 CD double  a        i    Punkt som skal sjekkes
 CD double  n        i
 CD short   ist      r    status: 0 = punktet er utenfor flaten
-CD                               1 = punktet ligger inne på flaten
+CD                               1 = punktet ligger inne pÃ‚ flaten
 CD
 CD Bruk:
 CD ist = LC_PTstOmkrets(a,n);
@@ -1422,7 +1422,7 @@ SK_EntPnt_FYBA short LC_PTstOmkrets(double a,double n)
 
    double dEnhet = Sys.pGrInfo->dEnhet;
 
-   // Pluss på et lite tillegg for å unngå treff på node
+   // Pluss pÃ‚ et lite tillegg for Ã‚ unngÃ‚ treff pÃ‚ node
    a += dEnhet / 1000.0;
    n += dEnhet / 1000.0;
 
@@ -1456,9 +1456,9 @@ SK_EntPnt_FYBA short LC_PTstOmkrets(double a,double n)
 AR-921028
 CH LR_PTstGruppe                  Sjekk om punkt ligger inni polygon
 CD ==========================================================================
-CD Formål:
-CD Sjekker antall skjæringer mellom gitt gruppe og linje fra gitt punkt
-CD til "uendelig" øst.
+CD FormÃ‚l:
+CD Sjekker antall skjÃŠringer mellom gitt gruppe og linje fra gitt punkt
+CD til "uendelig" Â¯st.
 CD
 CD Parametre:
 CD Type    Navn       I/U   Forklaring
@@ -1466,7 +1466,7 @@ CD --------------------------------------------------------------------------
 CD LC_BGR * pBgr        i    Peker til datagruppe
 CD double  a           i    Punkt som skal sjekkes
 CD double  n           i
-CD short   sAntSkjaer  r    Antall skjæringer
+CD short   sAntSkjaer  r    Antall skjÃŠringer
 CD
 CD Bruk:
 CD ist = LR_PTstOmkrets(&Bgr,a,n);
@@ -1474,7 +1474,7 @@ CD ist = LR_PTstOmkrets(&Bgr,a,n);
 */
 short LR_PTstGruppe(LC_BGR * pBgr,double a,double n)
 {
-   double maxa = 99999999999.0;           /* "Uendelig" øst */
+   double maxa = 99999999999.0;           /* "Uendelig" Â¯st */
    short ngi,gruppenavn,sfeil;
    long pt,nko;
    unsigned short info;
@@ -1521,7 +1521,7 @@ short LR_PTstGruppe(LC_BGR * pBgr,double a,double n)
       /* Annen gruppe */
       } else {                    
          punkt = 1;
-         do {                       /* Finn skjæringspunkter */
+         do {                       /* Finn skjÃŠringspunkter */
             LC_GetArrayTK(HENT_FORRFRA,ARR_LEN,punkt,a_arr,n_arr,&antall);/* Henter */
             if (antall > 0) {
                for (pt=1; pt<antall; pt++) {
@@ -1550,11 +1550,11 @@ CD -----------------------------------------------------------------------
 CD LC_FILADM *   pFil   i   Filpeker
 CD long          lNr    i   Gruppenummer i filen
 CD LC_BOKS *      pB     i   Boks som skal legges inn i treet
-CD LC_R_LEAF *    pRL    r   Peker inn i geografisk søketre
+CD LC_R_LEAF *    pRL    r   Peker inn i geografisk sÂ¯ketre
 CD
-CD Formål:
+CD FormÃ‚l:
 CD Legg gruppen inn i geografisk indeks.
-CD Forutsetter at grupen ikke ligger i søketreet fra før.
+CD Forutsetter at grupen ikke ligger i sÂ¯ketreet fra fÂ¯r.
 CD =======================================================================
 */
 LC_R_LEAF * LR_InsertGeo(LC_FILADM *pFil,long lNr,LC_BOKS * pB)
@@ -1563,10 +1563,10 @@ LC_R_LEAF * LR_InsertGeo(LC_FILADM *pFil,long lNr,LC_BOKS * pB)
    LC_R_LEAF * pRL;
 
 
-   /* Lagre omskrevet boks i søketreet */
+   /* Lagre omskrevet boks i sÂ¯ketreet */
    pRL = LR_R_Insert(lNr,pB,NULL,pFil->pGeoRN,&pNyRN);
 
-   /* Hvis rot-noden er splittet må det lages ny rot-node */
+   /* Hvis rot-noden er splittet mÃ‚ det lages ny rot-node */
    if (pNyRN != NULL) {
       if (pFil->pGeoRN != NULL) {
          /* Lag ny rot-node */
@@ -1579,7 +1579,7 @@ LC_R_LEAF * LR_InsertGeo(LC_FILADM *pFil,long lNr,LC_BOKS * pB)
          pRotRN->Boks = pFil->pGeoRN->Boks;
          LR_R_BoksSum(&(pRotRN->Boks),&(pNyRN->Boks));
 
-         /* Oppdater far i sønnene */
+         /* Oppdater far i sÂ¯nnene */
          pFil->pGeoRN->pFar = pRotRN;
          pNyRN->pFar = pRotRN;
 
@@ -1610,9 +1610,9 @@ CD LC_R_NODE   *pRN    i   Peker til node i R-treet
 CD LC_R_NODE  **ppNyRN u   Peker til peker til nyopprettet node i R-treet
 CD LC_R_LEAF   *pRL    r   Peker til forekomst i R-treet
 CD
-CD Formål:
+CD FormÃ‚l:
 CD Leger inn et rektangl i R-treet med rot i node pRN.
-CD Hvis pRN == NULL (Tomt tre) settes *ppNyRN til å peke til et nyt tre.
+CD Hvis pRN == NULL (Tomt tre) settes *ppNyRN til Ã‚ peke til et nyt tre.
 CD =======================================================================
 */
 static LC_R_LEAF * LR_R_Insert(long lGrNr,LC_BOKS *pB,LC_R_NODE *pFar,LC_R_NODE *pRN,LC_R_NODE **ppNyRN)
@@ -1626,18 +1626,18 @@ static LC_R_LEAF * LR_R_Insert(long lGrNr,LC_BOKS *pB,LC_R_NODE *pFar,LC_R_NODE 
    // Test
    //static int iNivo;
    //iNivo++;
-   //UT_FPRINTF(stderr,"LR_R_Insert nivå :%d\n",iNivo);
+   //UT_FPRINTF(stderr,"LR_R_Insert nivÃ‚ :%d\n",iNivo);
 
    
    *ppNyRN = NULL;
 
 
-   /* Treet er tomt, må allokere ny node */
+   /* Treet er tomt, mÃ‚ allokere ny node */
    if (pRN == NULL) {
       *ppNyRN = pRN = LR_R_CreateRNode(NULL,LC_LEAF);
    }
 
-   /* Har kommet til ytterste nivå */
+   /* Har kommet til ytterste nivÃ‚ */
    if (pRN->sSonType == LC_LEAF) {
 
       pRL = LR_R_CreateRLeaf(lGrNr,pB,pRN);
@@ -1651,11 +1651,11 @@ static LC_R_LEAF * LR_R_Insert(long lGrNr,LC_BOKS *pB,LC_R_NODE *pFar,LC_R_NODE 
          /* Oppdaterer omskrevet boks */
          LR_R_BoksSum(&(pRN->Boks),pB);
 
-      /* Fullt, må opprett ny node */
+      /* Fullt, mÃ‚ opprett ny node */
       } else {
          *ppNyRN = pNyRN = LR_R_CreateRNode(pRN->pFar,LC_LEAF);
 
-         /* Fordel boksene på de to nodene etter lineær kost algoritmen */
+         /* Fordel boksene pÃ‚ de to nodene etter lineÃŠr kost algoritmen */
 
          /* Beregn "ekstrem-bokser" */
          dMinAust = LONG_MAX;
@@ -1701,7 +1701,7 @@ static LC_R_LEAF * LR_R_Insert(long lGrNr,LC_BOKS *pB,LC_R_NODE *pFar,LC_R_NODE 
          pKandidatRL[iIdxMin]->pFar = pNyRN;
          pKandidatRL[iIdxMin] = NULL;
 
-         /* Resten av boksene plasseres der de fører til minst utvielse av boksen */
+         /* Resten av boksene plasseres der de fÂ¯rer til minst utvielse av boksen */
          for (i=0; i<=LC_R_MAX_SON; i++) {
             if (pKandidatRL[i] != NULL) {
 
@@ -1741,7 +1741,7 @@ static LC_R_LEAF * LR_R_Insert(long lGrNr,LC_BOKS *pB,LC_R_NODE *pFar,LC_R_NODE 
       /* Legger inn rektanglet i den noden med minst utvdelse */
       pRL = LR_R_Insert(lGrNr,pB,pRN,pRN->Son.pNode[iIdxMin],ppNyRN);
 
-      /* Denne noden har blitt splittet, dette må tas vare på her */
+      /* Denne noden har blitt splittet, dette mÃ‚ tas vare pÃ‚ her */
       if (*ppNyRN != NULL) {
 
          /* Hvis ledig plass */
@@ -1753,14 +1753,14 @@ static LC_R_LEAF * LR_R_Insert(long lGrNr,LC_BOKS *pB,LC_R_NODE *pFar,LC_R_NODE 
             /* Oppdaterer omskrevet boks */
             LR_R_BoksSum(&(pRN->Boks),pB);
 
-            /* Ingen splitting på nivået over */
+            /* Ingen splitting pÃ‚ nivÃ‚et over */
             *ppNyRN = NULL;
 
-         /* Fullt, må opprett ny node */
+         /* Fullt, mÃ‚ opprett ny node */
          } else {
             pNyRN = LR_R_CreateRNode(pFar,LC_NODE);
 
-            /* Fordel boksene på de to nodene etter lineær kost algoritmen */
+            /* Fordel boksene pÃ‚ de to nodene etter lineÃŠr kost algoritmen */
 
             /* Beregn "ekstrem-bokser" */
             dMinAust = LONG_MAX;
@@ -1801,7 +1801,7 @@ static LC_R_LEAF * LR_R_Insert(long lGrNr,LC_BOKS *pB,LC_R_NODE *pFar,LC_R_NODE 
             pKandidatRN[iIdxMin]->pFar = pNyRN;
             pKandidatRN[iIdxMin] = NULL;
 
-            /* Resten av boksene plasseres der de fører til minst utvielse av boksen */
+            /* Resten av boksene plasseres der de fÂ¯rer til minst utvielse av boksen */
             for (i=0; i<=LC_R_MAX_SON; i++) {
                if (pKandidatRN[i] != NULL) {
 
@@ -1822,7 +1822,7 @@ static LC_R_LEAF * LR_R_Insert(long lGrNr,LC_BOKS *pB,LC_R_NODE *pFar,LC_R_NODE 
                }
             }
 
-            /* Husk den nye noden til nivået over */
+            /* Husk den nye noden til nivÃ‚et over */
             *ppNyRN = pNyRN;
          }
 
@@ -1844,8 +1844,8 @@ static LC_R_LEAF * LR_R_Insert(long lGrNr,LC_BOKS *pB,LC_R_NODE *pFar,LC_R_NODE 
 AR-980108
 CH LR_R_BoksSum                                        Summerer to bokser
 CD =======================================================================
-CD Formål:
-CD Summerer to bokser ved at boks1 blir utvidet slik at den også dekker 
+CD FormÃ‚l:
+CD Summerer to bokser ved at boks1 blir utvidet slik at den ogsÃ‚ dekker 
 CD boks2.
 CD
 CD Parametere:
@@ -1868,7 +1868,7 @@ static void LR_R_BoksSum(LC_BOKS * pB1,LC_BOKS * pB2)
 AR-980108
 CH LR_BoksDeltaArealSum                   Bereg arealendring ved sumering
 CD =======================================================================
-CD Formål:
+CD FormÃ‚l:
 CD Beregner hvor mye arealet av boks1 blir utvidet hvis den blir
 CD summert med boks2.
 CD
@@ -1895,7 +1895,7 @@ static double LR_BoksDeltaArealSum(LC_BOKS * pB1,LC_BOKS * pB2)
 
 /*
 AR-980108
-CH LR_R_Delete                                       Fjern fra "søketreet"
+CH LR_R_Delete                                       Fjern fra "sÂ¯ketreet"
 CD =======================================================================
 CD Bruk:
 CD
@@ -1904,8 +1904,8 @@ CD Type        Navn  I/U  Forklaring
 CD -----------------------------------------------------------------------
 CD LC_R_LEAF *  pRL    i   Peker til forekomst i R-treet
 CD
-CD Formål:
-CD Fjern et gitt element fra R-treet for geografisk søk.
+CD FormÃ‚l:
+CD Fjern et gitt element fra R-treet for geografisk sÂ¯k.
 CD =======================================================================
 */
 void LR_R_Delete(LC_R_LEAF * pRL)
@@ -1921,7 +1921,7 @@ void LR_R_Delete(LC_R_LEAF * pRL)
       /* Fjerner pekeren fra gruppetabellen */
       Sys.pGrInfo->pRL = NULL;
 
-      /* Fjern pekeren til løvet */
+      /* Fjern pekeren til lÂ¯vet */
       pRN = pFar;
       iFunnet = UT_FALSE;
 
@@ -1944,17 +1944,17 @@ void LR_R_Delete(LC_R_LEAF * pRL)
          (pRN->sSonAnt)--;
       }
 
-      // Frigir det aktuelle "løvet"
+      // Frigir det aktuelle "lÂ¯vet"
       UT_FREE((char *)pRL);
 
       /* Sjekk om det er mere som skal fjernes oppover i treet */
       iFerdig = UT_FALSE;
       while ( iFerdig == UT_FALSE) {
 
-         /* Antall sønner er 0, denne noden skal fjernes på nivået over */
+         /* Antall sÂ¯nner er 0, denne noden skal fjernes pÃ‚ nivÃ‚et over */
          if (pRN->sSonAnt == 0) {
 
-            // Er ikke på øverste nivå
+            // Er ikke pÃ‚ Â¯verste nivÃ‚
             if (pRN->pFar != NULL)  {
 
                /* Husk noden */
@@ -1991,7 +1991,7 @@ void LR_R_Delete(LC_R_LEAF * pRL)
             } else {
                iFerdig = UT_TRUE;
 
-               /* Treet er tomt initierer verdier på nytt */
+               /* Treet er tomt initierer verdier pÃ‚ nytt */
                pRN->sSonType = LC_LEAF;
                /* Omskrevet boks initieres til stor invers verdi */
                pRN->Boks.dMinAust =	pRN->Boks.dMinNord = LONG_MAX;
@@ -1999,7 +1999,7 @@ void LR_R_Delete(LC_R_LEAF * pRL)
             }
 
 
-         /* Har flere sønner, må beregne omskrevet boks på nytt */
+         /* Har flere sÂ¯nner, mÃ‚ beregne omskrevet boks pÃ‚ nytt */
          } else {
 
             pRN->Boks.dMinAust =	pRN->Boks.dMinNord = LONG_MAX;
@@ -2033,10 +2033,10 @@ CD Parametere:
 CD Type          Navn  I/U  Forklaring
 CD -----------------------------------------------------------------------
 CD LC_R_NODE *  pFar     i  Peker til far i R-treet
-CD short       sSonType i  Hvilken type sønner har denne noden LC_NODE / LC_LEAF
+CD short       sSonType i  Hvilken type sÂ¯nner har denne noden LC_NODE / LC_LEAF
 CD LC_R_NODE *  pRN      r  Peker til ny node i R-tre
 CD
-CD Formål:
+CD FormÃ‚l:
 CD Alloker og initier node i R-tre.
 CD =======================================================================
 */
@@ -2069,7 +2069,7 @@ static LC_R_NODE * LR_R_CreateRNode( LC_R_NODE * pFar,short sSonType)
 
 /*
 AR-980204
-CH LR_R_CreateRLeaf                         Alloker og initier R-tre-løv
+CH LR_R_CreateRLeaf                         Alloker og initier R-tre-lÂ¯v
 CD =======================================================================
 CD Bruk:
 CD
@@ -2081,8 +2081,8 @@ CD LC_BOKS *    pB      i  Boks som skal legges inn i treet
 CD LC_R_NODE *  pFar    i  Peker til far i R-treet
 CD LC_R_LEAF *  pCL     r  Peker til ny forekomst
 CD
-CD Formål:
-CD Alloker og initier løv R-tre.
+CD FormÃ‚l:
+CD Alloker og initier lÂ¯v R-tre.
 CD =======================================================================
 */
 static LC_R_LEAF * LR_R_CreateRLeaf(long lGrNr, LC_BOKS * pB,LC_R_NODE * pFar)
@@ -2099,19 +2099,19 @@ static LC_R_LEAF * LR_R_CreateRLeaf(long lGrNr, LC_BOKS * pB,LC_R_NODE * pFar)
 
 /*
 AR-980113
-CH LR_LeggTilKB                         Legg til Bgr i søkeresultat-kjede
+CH LR_LeggTilKB                         Legg til Bgr i sÂ¯keresultat-kjede
 CD =======================================================================
 CD Bruk:
 CD
 CD parametere:
 CD Type            Navn     I/U   Forklaring
 CD -----------------------------------------------------------------------
-CD LC_GEO_STATUS *  pGeoStat  i    Peker til struktur for søkestatus
+CD LC_GEO_STATUS *  pGeoStat  i    Peker til struktur for sÂ¯kestatus
 CD LC_FILADM *     pFil      i    Filpeker
 CD long            lNr       i    Gruppenummer i filen
 CD
-CD Formål:
-CD Legg til Bgr i kjede med søkeresultat.
+CD FormÃ‚l:
+CD Legg til Bgr i kjede med sÂ¯keresultat.
 CD =======================================================================
 */
 static void LR_LeggTilKB(LC_GEO_STATUS * pGeoStat,LC_FILADM *pFil,long lNr)
@@ -2140,17 +2140,17 @@ static void LR_LeggTilKB(LC_GEO_STATUS * pGeoStat,LC_FILADM *pFil,long lNr)
 
 /*
 AR-980113
-CH LC_AvsluttSok                                 Avslutter geografisk søk
+CH LC_AvsluttSok                                 Avslutter geografisk sÂ¯k
 CD =======================================================================
 CD Bruk:
 CD
 CD parametere:
 CD Type            Navn     I/U   Forklaring
 CD -----------------------------------------------------------------------
-CD LC_GEO_STATUS *  pGeoStat  i    Peker til struktur for søkestatus
+CD LC_GEO_STATUS *  pGeoStat  i    Peker til struktur for sÂ¯kestatus
 CD
-CD Formål:
-CD Avslutter geografisk søk, og frigir kjede med søkeresultat.
+CD FormÃ‚l:
+CD Avslutter geografisk sÂ¯k, og frigir kjede med sÂ¯keresultat.
 CD =======================================================================
 */
 SK_EntPnt_FYBA void LC_AvsluttSok(LC_GEO_STATUS * pGeoStat)
@@ -2174,16 +2174,16 @@ SK_EntPnt_FYBA void LC_AvsluttSok(LC_GEO_STATUS * pGeoStat)
 
 /*
 AR-980209
-CH LR_VelgMetode                         Velg søkemetode for geografisk søk
+CH LR_VelgMetode                         Velg sÂ¯kemetode for geografisk sÂ¯k
 CD ==========================================================================
-CD Formål:
-CD Velg søkemetode for geografisk søk. Bruker R-tre hvis utstrekningen av
-CD søkeområdet er mindre enn 10% av baseområdet i nord eller øst retning.
+CD FormÃ‚l:
+CD Velg sÂ¯kemetode for geografisk sÂ¯k. Bruker R-tre hvis utstrekningen av
+CD sÂ¯keomrÃ‚det er mindre enn 10% av baseomrÃ‚det i nord eller Â¯st retning.
 CD
 CD Parametre:
 CD Type     Navn      I/U  Forklaring
 CD --------------------------------------------------------------------------
-CD LC_GEO_STATUS * pGeoStat  iu   Peker til struktur for søkestatus
+CD LC_GEO_STATUS * pGeoStat  iu   Peker til struktur for sÂ¯kestatus
 CD
    ==========================================================================
 */
@@ -2203,7 +2203,7 @@ static void LR_VelgMetode(LC_GEO_STATUS * pGeoStat)
 
 /*
 AR-980108
-CH LR_R_FrigiGren                           Frigir en gren fra "søketreet"
+CH LR_R_FrigiGren                           Frigir en gren fra "sÂ¯ketreet"
 CD =======================================================================
 CD Bruk:
 CD
@@ -2212,17 +2212,17 @@ CD Type        Navn  I/U  Forklaring
 CD -----------------------------------------------------------------------
 CD LC_R_NODE *  pRN    i   Peker til node i R-treet
 CD
-CD Formål:
-CD Frigir en gren fra R-treet for geografisk søk.
+CD FormÃ‚l:
+CD Frigir en gren fra R-treet for geografisk sÂ¯k.
 CD =======================================================================
 */
 void LR_R_FrigiGren(LC_R_NODE * pRN)
 {
    int i;
 
-   /* Har kommet til ytterste nivå */
+   /* Har kommet til ytterste nivÃ‚ */
    if (pRN->sSonType == LC_LEAF) {
-      /* Sjekk løvene som er lagret under denne noden */
+      /* Sjekk lÂ¯vene som er lagret under denne noden */
       for (i=0; i<pRN->sSonAnt; i++) { 
          UT_FREE((char *)pRN->Son.pLeaf[i]);
       }
@@ -2231,7 +2231,7 @@ void LR_R_FrigiGren(LC_R_NODE * pRN)
    } else {
       /* Rekursiv sjekk av de underliggende nodene */
       for (i=0; i<pRN->sSonAnt; i++) { 
-         // Vis alle underliggende nivåer
+         // Vis alle underliggende nivÃ‚er
          LR_R_FrigiGren(pRN->Son.pNode[i]);
       }
    }
