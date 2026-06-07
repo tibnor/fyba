@@ -30,9 +30,9 @@
 #pragma once
 
 //
-// Når FYBA brukes som DLL, defineres FYBA_DLL_IMPORTS
-// Når FYBA brukes som lib er det ikke nødvendig med noen spesiell definisjon.
-// (Når FYBA skal kompileres/lages som DLL defineres FYBA_DLL_EXPORTS)
+// Nï¿½r FYBA brukes som DLL, defineres FYBA_DLL_IMPORTS
+// Nï¿½r FYBA brukes som lib er det ikke nï¿½dvendig med noen spesiell definisjon.
+// (Nï¿½r FYBA skal kompileres/lages som DLL defineres FYBA_DLL_EXPORTS)
 //
 
 
@@ -96,7 +96,7 @@
 #define LC_MAX_GRU        10000000  /* Max grupper i en base */
 #define LC_MAX_GINFO          6000  /* Max linjer GINFO i en gruppe */
 #define LC_MAX_GINFO_BUFFER 250000  /* GINFO-buffer */
-#define LC_MAX_KOORD         90000  /* Max antall koordinater i en gruppe */
+#define LC_MAX_KOORD        500000  /* Max antall koordinater i en gruppe */
 #define LC_MAX_PINFO_BUFFER 250000  /* PINFO-buffer */
 #define LC_MAX_ANT_PRIOR       128  /* Max antall prioriteter */
 #define LC_DATO_LEN              9  /* Max lengde dato (inkl. '\0') */
@@ -114,7 +114,7 @@
 #define  LC_KLADD  3   /* Kladdebase */
 #define  LC_BASE   1   /* Vanlig base */
 
-   /* Konstanter for åpning av eksisterende base */
+   /* Konstanter for ï¿½pning av eksisterende base */
 #define  UKJENT_BASE     -1
 #define  FEIL_VERSJON    -2
 #define  IKKE_STENGT     -3
@@ -148,17 +148,17 @@
 
    /* Status fra LC_OpenSos */
 #define LC_CANCEL   -3  // Avbrutt med [Esc], eller lesefeil
-#define LC_DUBLIKAT -4  // Filen er i basen fra før
-#define LC_OPPTATT  -5  // Filen er åpen i annet program 
+#define LC_DUBLIKAT -4  // Filen er i basen fra fï¿½r
+#define LC_OPPTATT  -5  // Filen er ï¿½pen i annet program 
 
 	/* Konstanter for LC_SetNgisModus */
 #define NGIS_NORMAL   0   /* Vanlig modus */
-#define NGIS_SPESIAL  1   /* Spesialmodus der det er mulig å finne og
+#define NGIS_SPESIAL  1   /* Spesialmodus der det er mulig ï¿½ finne og
                                 lese grupper som er merka som sletta */
 
 	/* Konstanter for LC_SetUtvidModus */
-#define LC_UTVID_SIKKER 0 /* SOSI-filen stenges og filstørrelsen oppdateres */
-                          /* etter hver gruppe som er skrevet på slutten av filen */
+#define LC_UTVID_SIKKER 0 /* SOSI-filen stenges og filstï¿½rrelsen oppdateres */
+                          /* etter hver gruppe som er skrevet pï¿½ slutten av filen */
 #define LC_UTVID_RASK   1 /* SOSI-filen stenges IKKE etter hver oppdatering*/
 
    /* Konstanter til QueryGP mfl. */
@@ -166,71 +166,71 @@
 #define LC_GINFO  2
 #define LC_PINFO  4
 
-/* Konstanter til bruk ved kombinert flatesøk. JA¯-20000516 */
+/* Konstanter til bruk ved kombinert flatesï¿½k. JAï¿½-20000516 */
 #define LC_INGEN 0
 #define LC_NOEN  1
 #define LC_ALLE  2
 
-   /* Gruppenummer når det ikke er noen aktuell gruppe */
-#define INGEN_GRUPPE  -1L    /* bgr når det ikke er noen akt. gruppe */
+   /* Gruppenummer nï¿½r det ikke er noen aktuell gruppe */
+#define INGEN_GRUPPE  -1L    /* bgr nï¿½r det ikke er noen akt. gruppe */
 
    /* Lesemetode for LC_RxGr */
 #define LES_OPTIMALT   0     /* Les mest effektivt base/SOSI */
 #define LES_SOSI       1     /* Les alltid fra SOSI-filen */
 
    /* Skrivemetode for LC_WxGr */
-#define SKRIV_OPTIMALT 0     /* Skriv mest effektivt kø/SOSI */
+#define SKRIV_OPTIMALT 0     /* Skriv mest effektivt kï¿½/SOSI */
 #define SKRIV_SOSI     1     /* Skriv direkte til SOSI-filen */
 
-   /* Handteringmetode for NGIS-nøkkel for LC_CopyGr */
-#define OPPDATER_NGIS 0  /* NGIS-nøkkel oppdateres i henhold til hodet i filen det kopieres til */
-#define BEVAR_NGIS    1  /* NGIS-nøkkel bevares uforandret i kopien */
+   /* Handteringmetode for NGIS-nï¿½kkel for LC_CopyGr */
+#define OPPDATER_NGIS 0  /* NGIS-nï¿½kkel oppdateres i henhold til hodet i filen det kopieres til */
+#define BEVAR_NGIS    1  /* NGIS-nï¿½kkel bevares uforandret i kopien */
 
    /* Manglende kvalitetsopplysninger */
 #define KVAL_MET_UNDEF  -1   /* Udefinert metode */
-#define KVAL_MET_STD    -2   /* Standard metode fra nivå over */
+#define KVAL_MET_STD    -2   /* Standard metode fra nivï¿½ over */
 
-#define KVAL_NOY_UNDEF  -1L  // Udefinert nøyaktighet. -  OBS! Denne skal utgå
-#define KVAL_NOY_STD    -2L  /* Standard nøyaktighet fra nivå over */
-#define KVAL_NOY_UKJENT  999999L  // Ukjent nøyaktighet 
+#define KVAL_NOY_UNDEF  -1L  // Udefinert nï¿½yaktighet. -  OBS! Denne skal utgï¿½
+#define KVAL_NOY_STD    -2L  /* Standard nï¿½yaktighet fra nivï¿½ over */
+#define KVAL_NOY_UKJENT  999999L  // Ukjent nï¿½yaktighet 
 
 
 #define KVAL_SYN_GOD     0   /* Godt synlig */
 #define KVAL_SYN_UNDEF  -1   /* Udefinert synbarhet */
-#define KVAL_SYN_STD    -2   /* Standard synbarhet fra nivå over */
+#define KVAL_SYN_STD    -2   /* Standard synbarhet fra nivï¿½ over */
 
    /* For LC_GetTH og LC_PutTH */
-   /* Konstant for å si at punktet ikke har høyde */
-   /* OBS! Denne må stemme med definisjonen i filen port.h */
+   /* Konstant for ï¿½ si at punktet ikke har hï¿½yde */
+   /* OBS! Denne mï¿½ stemme med definisjonen i filen port.h */
 #ifndef HOYDE_MANGLER
-#   define HOYDE_MANGLER        -9999.999   /* Høyde mangler i punktet */
+#   define HOYDE_MANGLER        -9999.999   /* Hï¿½yde mangler i punktet */
 #endif
 
 #define KOORD_MANGLER           -9999.999   /* Koordinat mangler i punktet */
 
    /* Gruppeinformasjon */
 #define GI_PINFO     ((unsigned short)0x0001) /* Har PINFO */
-#define GI_NAH       ((unsigned short)0x0002) /* Gruppen har høyde informasjon (..N¯H) */
+#define GI_NAH       ((unsigned short)0x0002) /* Gruppen har hï¿½yde informasjon (..Nï¿½H) */
 #define GI_KP        ((unsigned short)0x0004) /* Har knutepunkt (...KP n) */
 #define GI_REF       ((unsigned short)0x0008) /* Har referanser (.. :n) */
-#define GI_OY_REF    ((unsigned short)0x0010) /* Har referanser med øy */
+#define GI_OY_REF    ((unsigned short)0x0010) /* Har referanser med ï¿½y */
 #define GI_SLETTA    ((unsigned short)0x0020) /* Er sletta (merka som sletta) */
 #define GI_NGIS      ((unsigned short)0x0040) /* Er tatt ut fra NGIS */
-#define GI_NAD       ((unsigned short)0x0080) /* Har dybde informasjon (..N¯D) */
+#define GI_NAD       ((unsigned short)0x0080) /* Har dybde informasjon (..Nï¿½D) */
 #define GI_READ_ONLY ((unsigned short)0x0100) /* Bare leseaksess (kan ikke endres) */
 
    /* Avgrensing av brukttabellen */
-#define  BT_MIN_BT    0       /* Første kolonne i brukttabellen */
+#define  BT_MIN_BT    0       /* Fï¿½rste kolonne i brukttabellen */
 #define  BT_MAX_BT   31       /* Siste kolonne i brukttabellen */
-#define  BT_MIN_USER  1       /* Første tilgjengelig for brukerprogram */
+#define  BT_MIN_USER  1       /* Fï¿½rste tilgjengelig for brukerprogram */
 #define  BT_MAX_USER 26       /* Siste tilgjengelig for brukerprogram */
    /* Spesielle posisjoner i brukttabellen */
-#define  BT_SKRKO     0       /* I skrivekø */
+#define  BT_SKRKO     0       /* I skrivekï¿½ */
 #define  BT_REFBOX   27       /* Referanser er brukt i omskrevet boks */
 #define  BT_X        28       /* Reserve systemposisjon */
-#define  BT_SNRSOK   29       /* Funnet ved SNR-søk */
-#define  BT_GISOK    30       /* Funnet ved GINFO-søk */
-#define  BT_GEOSOK   31       /* Funnet ved geografisk søk */
+#define  BT_SNRSOK   29       /* Funnet ved SNR-sï¿½k */
+#define  BT_GISOK    30       /* Funnet ved GINFO-sï¿½k */
+#define  BT_GEOSOK   31       /* Funnet ved geografisk sï¿½k */
 
    /* Logiske operasjoner mellom kolonner i brukttabellen */
 #define BC_AND      0
@@ -241,8 +241,8 @@
 
 
    /* Konstanter for get og put referansenummer */
-#define START_OY   9999999L      /* Start øy */
-#define SLUTT_OY  -9999999L      /* Slutt øy */
+#define START_OY   9999999L      /* Start ï¿½y */
+#define SLUTT_OY  -9999999L      /* Slutt ï¿½y */
 
    /* Konstanter for GetArrayTK() */
 #define HENT_FORRFRA  1          /* Vanlig */
@@ -256,30 +256,30 @@
 
 
  // Utvalgsmetoder
-#define LC_U_IKKE         0     //  !     Ikke (Tilslag når SOSI-navnet     
+#define LC_U_IKKE         0     //  !     Ikke (Tilslag nï¿½r SOSI-navnet     
                              //             ikke finnes. Bare GINFO.)    
 #define LC_U_ALLE         1     //  AL    Alle                              
 #define LC_U_FRATIL       2     //  <>    Fra-til                           
 #define LC_U_UTENFOR      3     //  ><    Utenfor                           
 #define LC_U_MINDRE       4     //  <     Mindre-enn                        
-#define LC_U_STORRE       5     //  >     Større-enn                        
+#define LC_U_STORRE       5     //  >     Stï¿½rre-enn                        
 #define LC_U_DELELIG      6     //  /     Delelig-med, eventuellt med       
-                                //        sjekk på om restverdi er 2. verdi 
+                                //        sjekk pï¿½ om restverdi er 2. verdi 
 #define LC_U_UDELELIG     7     //  !/    Ikke-delelig-med                  
 #define LC_U_CONTEIN      8     //  ()    Inneholder                        
-#define LC_U_IKKECONTEIN  9     //  !()   Inneholder ikke (Tilslag når      
+#define LC_U_IKKECONTEIN  9     //  !()   Inneholder ikke (Tilslag nï¿½r      
                                 //        denne navn og verdi kombinasjonen 
                                 //        ikke finnes)                      
 #define LC_U_LIK         10     //  =     Lik                               
-#define LC_U_IKKEVALGT   11     //  IV    Ikke valgt (Tilslag når gruppen   
-                                //        ikke er tegnet ennå. Kombineres   
+#define LC_U_IKKEVALGT   11     //  IV    Ikke valgt (Tilslag nï¿½r gruppen   
+                                //        ikke er tegnet ennï¿½. Kombineres   
                                 //        med SOSI-navnet "..*")            
-#define LC_U_IKKELIK     12     //  !=    Ikke lik (Tilslag når denne       
+#define LC_U_IKKELIK     12     //  !=    Ikke lik (Tilslag nï¿½r denne       
                                 //        navn og verdi kombinasjonen ikke  
                                 //        finnes)                           
-#define LC_U_FLERE       13     //  FL    Flere (Tilslag når SOSI-navnet    
+#define LC_U_FLERE       13     //  FL    Flere (Tilslag nï¿½r SOSI-navnet    
                                 //        forekommer flere ganger.)         
-#define LC_U_IKKEFLERE   14     //  !FL   Ikke flere enn (Tilslag når       
+#define LC_U_IKKEFLERE   14     //  !FL   Ikke flere enn (Tilslag nï¿½r       
                                 //        SOSI-navnet IKKE forekommer       
                                 //        flere ganger enn gitt antall.)    
 
@@ -319,9 +319,9 @@ typedef struct dLB_LESEBUFFER {
    char *pp;                        /* Peker til start parameter */
    char *ep;                        /* Peker til posisjon etter aktuellt ord */
 	char *np;                        /* Peker til posisjon etter parameter (neste cp) */
-   short cur_navn[6];               /* Aktuellt SOSI-navn på dette nivå */
-   short cur_niv;                   /* Aktuellt nivå (der cp peker) (Ant. prikker) */
-   short cur_ant_par;               /* Antall parametre på aktuellt nivå */
+   short cur_navn[6];               /* Aktuellt SOSI-navn pï¿½ dette nivï¿½ */
+   short cur_niv;                   /* Aktuellt nivï¿½ (der cp peker) (Ant. prikker) */
+   short cur_ant_par;               /* Antall parametre pï¿½ aktuellt nivï¿½ */
    short cur_type;                  /* Viser hva aktuellt set inneholder */
    short set_brukt;                 /* Status som viser om aktuellt "sett" er brukt */
    short sTegnsett;                 /* SOSI-filens tegnsett */
@@ -336,11 +336,11 @@ typedef struct dLB_LESEBUFFER {
 */
 
 /*
-CH SOSI-buffer                 Binær kopi av SOSI-filen
-CD For å øke hastigheten holder FYBA en binær kopi av SOSI-filen.
-CD Denne kopien ligger delevis i minne og delevis på disk.
+CH SOSI-buffer                 Binï¿½r kopi av SOSI-filen
+CD For ï¿½ ï¿½ke hastigheten holder FYBA en binï¿½r kopi av SOSI-filen.
+CD Denne kopien ligger delevis i minne og delevis pï¿½ disk.
 CD
-CD Denne kopien består av gruppeinformasjon, koordinater og punktinformasjon.
+CD Denne kopien bestï¿½r av gruppeinformasjon, koordinater og punktinformasjon.
 CD
 CD Gruppeinformasjonen for en gruppe handteres som en lang streng med pekere
 CD til startposisjon for hver GINFO-linje.
@@ -360,16 +360,16 @@ CD !        !-----------------
 CD
 CD Koordinatene lagres i egne array. Punktinformasjonen lagres som
 CD en lang streng for hele gruppen med peker for hvert punkt til startposisjon
-CD for PINFO for hvert punkt på samme måte som GINFO.
+CD for PINFO for hvert punkt pï¿½ samme mï¿½te som GINFO.
 CD
 CD !--------! !--------! !--------:-------:--------!
-CD ! ¯st    ! ! Nord   ! ! Høyde  !  KP   ! PINFO  !
+CD ! ï¿½st    ! ! Nord   ! ! Hï¿½yde  !  KP   ! PINFO  !
 CD !--------! !--------! !--------!-------!--------!
 CD ! double ! ! double ! ! double ! short ! ushort !
 CD !   m    ! !   m    ! !   m    !       !  ofset !
 */
 typedef struct d_LB_INFO {
-   double dHoyde;            // Høyde
+   double dHoyde;            // Hï¿½yde
    short sKp;                // Knutepunkt (0=ikke knutepunkt)
    unsigned long ulPiOfset;  // PINFO ofset i eget buffer
 } LB_INFO;
@@ -386,8 +386,8 @@ typedef struct d_LB_INFO {
 typedef struct dSOSINAVN {            /* Navnetabellen */
    char szNavn[LC_MAX_SOSINAVN_LEN];   /* Sosi-navn */
    unsigned char ucAntPar;      /* Antall parametre til dette navnet */
-   char cNivo;                  /* "Prikk-nivå"  (1 = Gruppenavn) */
-   bool bBrukt;                 // Viser om navnet er vært brukt
+   char cNivo;                  /* "Prikk-nivï¿½"  (1 = Gruppenavn) */
+   bool bBrukt;                 // Viser om navnet er vï¿½rt brukt
 } SOSINAVN;
 
 typedef struct dLC_NAVNETABELL {
@@ -421,7 +421,7 @@ typedef struct dLC_NAVNETABELL {
 #define L_STRUKTUR   18
 #define L_OBJEKT     19
 #define L_SYMBOL     20
-#define L_HODE       21  /* L_HODE må alltid ligge sist av gruppenavnene */
+#define L_HODE       21  /* L_HODE mï¿½ alltid ligge sist av gruppenavnene */
 
 #define L_NA         22  /* Andre definerte navn */
 #define L_NAH        23
@@ -441,7 +441,7 @@ typedef struct dLC_NAVNETABELL {
 #define L_NGISFLAGG  37
 #define L_NGISLAG    38
 #define L_OBJTYPE    39
-#define L_KP         40   /* L_KP må alltid ligge sist av de forhåndsdefierte navnene */
+#define L_KP         40   /* L_KP mï¿½ alltid ligge sist av de forhï¿½ndsdefierte navnene */
 
 
 
@@ -460,15 +460,15 @@ CD *-------------*
 
 
 /*
-CH Geografisk-søketabell                               Geografisk søketabell
+CH Geografisk-sï¿½ketabell                               Geografisk sï¿½ketabell
 CD
-CD Geografisk søk er basert på omskrevet boks.
+CD Geografisk sï¿½k er basert pï¿½ omskrevet boks.
 CD Boksene organiseres i et R-tre. 
 CD
 CD !-----------------------------------*
 CD !      Omskreven boks               !
 CD !                                   !
-CD ! min-N  ! min-¯  ! max-N  ! max-¯  !
+CD ! min-N  ! min-ï¿½  ! max-N  ! max-ï¿½  !
 CD !        !        !        !        !
 CD !--------!--------!--------!--------!
 CD !dMinNord!dMinAust!dMaxNord!dMaxAust!
@@ -479,7 +479,7 @@ CD *-----------------------------------*
 
 /*
  *!--------------------------------------------------------------!
- *! Boks for geografisk søk                                      !
+ *! Boks for geografisk sï¿½k                                      !
  *!--------------------------------------------------------------!
  */
 typedef struct dLC_BOKS{
@@ -489,16 +489,16 @@ typedef struct dLC_BOKS{
    double dMaxNord;      
 } LC_BOKS;
 
-#define LC_R_MAX_SON  3      /* Max antall sønner for hver node i R-treet */
+#define LC_R_MAX_SON  3      /* Max antall sï¿½nner for hver node i R-treet */
 
 typedef struct dLC_R_NODE{
    struct dLC_R_NODE *pFar;  /* Far i treet (node) */
-   LC_BOKS Boks;             /* Sum av omskreven boks for sønnene */
-   short sSonType;  /* Hvilken type sønner har denne noden LC_NODE / LC_LEAF */
-   short sSonAnt;   /* Antall sønner */
+   LC_BOKS Boks;             /* Sum av omskreven boks for sï¿½nnene */
+   short sSonType;  /* Hvilken type sï¿½nner har denne noden LC_NODE / LC_LEAF */
+   short sSonAnt;   /* Antall sï¿½nner */
    union {
-      struct dLC_R_NODE *pNode[LC_R_MAX_SON];  /* Sønner i treet (node) */
-      struct dLC_R_LEAF *pLeaf[LC_R_MAX_SON];  /* Sønner i treet (løv) */
+      struct dLC_R_NODE *pNode[LC_R_MAX_SON];  /* Sï¿½nner i treet (node) */
+      struct dLC_R_LEAF *pLeaf[LC_R_MAX_SON];  /* Sï¿½nner i treet (lï¿½v) */
    } Son;
 } LC_R_NODE;
 
@@ -520,13 +520,13 @@ typedef struct dLC_R_LEAF{
  */
 /*
 CH Gruppetabell                                     Gruppetabell
-CD Dette er hovedtabellen med informasjon om hver enkelt gruppe på SOSI-filen. 
+CD Dette er hovedtabellen med informasjon om hver enkelt gruppe pï¿½ SOSI-filen. 
 CD
 CD !------------------------------:-----------------------------------------------*
 CD !Start  !Start !Ant.   !Ant.   !            Gruppeinnhold                      !
-CD ! på    ! i    !tegn   !tegn   !-----------------------------------------------!
+CD ! pï¿½    ! i    !tegn   !tegn   !-----------------------------------------------!
 CD !SOSI-  ! RB   !GINFO- !PINFO- !Gruppe!ant. !ant. !Kvali-  !Enhet ! Div. info  !
-CD !fil    !      !buffer !buffer !navn  !GINFO! N¯  ! tet    !      ! (bit def.) !
+CD !fil    !      !buffer !buffer !navn  !GINFO! Nï¿½  ! tet    !      ! (bit def.) !
 CD !-------!------!-------!-------!------!-----!-----!--------!------!------------!
 CD !sosi_st!rb_st !ulGiLen!ulPiLen!gnavn !ngi  !nko  !Kvalitet!dEnhet! info       !
 CD !  n64  ! n64  !  ul   !  ul   ! s    !  s  ! l   ! struct !  d   ! us         !
@@ -534,7 +534,7 @@ CD !       !      !       !       !      !     !     !        !      !0=i       
 CD !       !      !       !       !      !     !     !        !      !1=H         !
 CD !       !      !       !       !      !     !     !        !      !2=KP        !
 CD !       !      !       !       !      !     !     !        !      !3=REF       !
-CD !       !      !       !       !      !     !     !        !      !4=REF med ¯Y!
+CD !       !      !       !       !      !     !     !        !      !4=REF med ï¿½Y!
 CD !       !      !       !       !      !     !     !        !      !5=sletta    !
 CD !       !      !       !       !      !     !     !        !      !6=NGIS oppd !
 CD *------------------------------------------------------------------------------*
@@ -557,7 +557,7 @@ typedef struct dLC_GRTAB_LINJE{
    double dEnhetDybde;   /* Aktuell enhet-D for gruppen i bufferet */
    unsigned long ulGiLen; /* Antall tegn i GINFO-buffer (inkl. \0) */
    unsigned long ulPiLen; /* Antall tegn i PINFO-buffer (inkl. \0) */
-   LC_R_LEAF *pRL;        /* Peker inn i geografisk søketre */
+   LC_R_LEAF *pRL;        /* Peker inn i geografisk sï¿½ketre */
 
 } LC_GRTAB_LINJE;
 
@@ -566,11 +566,11 @@ typedef struct dLC_GRTAB_LINJE{
 CH Brukttabell                                            Merking av grupper
 CD Denne tabellen brukes delevis internt av FYBA, og delevis av brukerprogrammet.
 CD
-CD Følgende bit er definert:
+CD Fï¿½lgende bit er definert:
 CD -------------------------------------------------------------------------
-CD  31  Gruppen er funnet ved geografisk søk   -----! Brukere kan lese/bruke
+CD  31  Gruppen er funnet ved geografisk sï¿½k   -----! Brukere kan lese/bruke
 CD  30  Gruppen er funnet ved GINFO-utvalg          ! disse, men det er ikke
-CD  29  Gruppen er funnet ved serienummer-søk       ! lov til å endre dem.
+CD  29  Gruppen er funnet ved serienummer-sï¿½k       ! lov til ï¿½ endre dem.
 CD  28  Gruppen er i ringbufferet                   !
 CD  27  Referanser er brukt i omskrevet blokk ------!
 CD  26                              -----!
@@ -578,7 +578,7 @@ CD   .                                   ! Brukere har
 CD   .                                   ! full tilgang
 CD   2                                   ! til disse.
 CD   1                              -----!
-CD   0  Gruppen ligger i kø for skriving til SOSI-filen
+CD   0  Gruppen ligger i kï¿½ for skriving til SOSI-filen
 */
 
 
@@ -609,8 +609,8 @@ typedef struct dLC_IDX_TABELL{
  *! Koordinat 2D                                                 !
  *!--------------------------------------------------------------!
  */
-typedef struct dLC_KOORD_2D {  /* (ø,n) Koordinatpar */
-   double dAust;     /* øst-koordinat */
+typedef struct dLC_KOORD_2D {  /* (ï¿½,n) Koordinatpar */
+   double dAust;     /* ï¿½st-koordinat */
    double dNord;     /* nord-koordinat */
 } LC_KOORD_2D;
 
@@ -619,10 +619,10 @@ typedef struct dLC_KOORD_2D {  /* (ø,n) Koordinatpar */
  *! Koordinat 3D                                                 !
  *!--------------------------------------------------------------!
  */
-typedef struct dLC_KOORD_3D {  /* (ø,n,h) Koordinatpar */
-   double dAust;     /* øst-koordinat */
+typedef struct dLC_KOORD_3D {  /* (ï¿½,n,h) Koordinatpar */
+   double dAust;     /* ï¿½st-koordinat */
    double dNord;     /* nord-koordinat */
-   double dHoyde;    /* Høyde */
+   double dHoyde;    /* Hï¿½yde */
 } LC_KOORD_3D;
 
 /*
@@ -648,7 +648,7 @@ typedef struct dLC_REKT {
 #define LC_TR_TRANSSYS  ((unsigned short)0x0002)  /* Transsys */
 #define LC_TR_GEOSYS    ((unsigned short)0x0004)  /* Geosys   */  
 #define LC_TR_GEOKOORD  ((unsigned short)0x0008)  /* Geokoord */  
-#define LC_TR_ORIGO     ((unsigned short)0x0010)  /* Origo-nø */  
+#define LC_TR_ORIGO     ((unsigned short)0x0010)  /* Origo-nï¿½ */  
 #define LC_TR_ENHET     ((unsigned short)0x0020)  /* Enhet    */  
 #define LC_TR_ENHETH    ((unsigned short)0x0040)  /* Enhet-h  */  
 #define LC_TR_ENHETD    ((unsigned short)0x0080)  /* Enhet-d  */  
@@ -679,7 +679,7 @@ typedef struct dLC_TRANSPAR {
    short sGeosysSone;
    /*...GEOKOORD */
    short sGeoKoord;
-   /* ...ORIGO-N¯ */
+   /* ...ORIGO-Nï¿½ */
    LC_KOORD_2D Origo;
    //double dOrigoAust;
    //double dOrigoNord;
@@ -704,9 +704,9 @@ typedef struct dLC_TRANSPAR {
 } LC_TRANSPAR;
 
 
-#define LC_TR_GEOSYS_INGEN_VERDI  -9999  // Brukes  for å angi at projeksjon og sone under geosys ikke er gitt
+#define LC_TR_GEOSYS_INGEN_VERDI  -9999  // Brukes  for ï¿½ angi at projeksjon og sone under geosys ikke er gitt
 
-// Konstanter for definering av filtype (primært for bruk i GabEdit) JA¯-20010306
+// Konstanter for definering av filtype (primï¿½rt for bruk i GabEdit) JAï¿½-20010306
 #define LC_FILTYPE_UKJENT        0
 #define LC_FILTYPE_INAKTIV       1
 #define LC_FILTYPE_GAB_EIENDOM   2
@@ -731,9 +731,9 @@ typedef struct dLC_TRANSPAR {
 typedef struct dLC_FILADM{
    char     szBaseVer[LC_BASEVER_LEN]; // Versjon og dato for aktuell versjon av FYBA
    char     szIdxVer[5];    // Indeksfil-versjon
-   short    sIdxOpen;       // UT_FALSE/UT_TRUE - Flagg som viser at indeks er åpnet
-   unsigned long ulPid;     // Prosess ID for programmet som har åpnet filen
-   short    sFilType;       // Primært tenkt brukt i GabEdit, definerer hvilken type arbeidsfil dette er.
+   short    sIdxOpen;       // UT_FALSE/UT_TRUE - Flagg som viser at indeks er ï¿½pnet
+   unsigned long ulPid;     // Prosess ID for programmet som har ï¿½pnet filen
+   short    sFilType;       // Primï¿½rt tenkt brukt i GabEdit, definerer hvilken type arbeidsfil dette er.
    unsigned short  usLag;   // Lag: (LC_SEKV,LC_FRAMGR,LC_BAKGR)
    char     szNgisLag[LC_NGISLAG_LEN]; // Ngislag i filhodet
    short    sAccess;        // Aksess: (READ / UPDATE)
@@ -743,14 +743,14 @@ typedef struct dLC_FILADM{
    FTID     SosiTid;        // Oppdateringstidspunkt for SOSI-filen
    LC_TRANSPAR TransPar;       // Transformasjonsparametre fra filhodet
    unsigned short TransMaske;  // Maske som viser hvilke deler av TransPar som inneholder data
-   LC_REKT Omr;                // ..OMRDE fra filhodet
+   LC_REKT Omr;                // ..OMRï¿½DE fra filhodet
    short   sTegnsett;          // Tegnsett fra filhodet eller standardverdi
    char    szDato[LC_DATO_LEN]; // ..DATO fra fil-hodet
    short   sSosiVer;            // ..SOSI-VERSJON fra fil-hodet * 100
-   char    SosiNiv[2];          // ..SOSI-NIV fra fil-hodet
-                                 // SosiNiv[0] = nivå fra filåpningen
-                                 // SosiNiv[1] = nivå fra senere handtering
-                                 // Filhodet oppdateres når filen stenges
+   char    SosiNiv[2];          // ..SOSI-NIVï¿½ fra fil-hodet
+                                 // SosiNiv[0] = nivï¿½ fra filï¿½pningen
+                                 // SosiNiv[1] = nivï¿½ fra senere handtering
+                                 // Filhodet oppdateres nï¿½r filen stenges
    // short usUlovligRef;  // Bryter som viser om det er ulovlige
    //                      // referanser i filen (Indeksoppbygging)
    unsigned short usDataFeil;  // Flagg som viser om det er datafeil
@@ -761,14 +761,14 @@ typedef struct dLC_FILADM{
 	UT_INT64 n64NesteLedigRbPos; // Neste ledige posisjon i buffer-filen
    long lSisteGrRb;       // Siste gruppe i buffer-filen
 
-   long lMaxSnr;        // Største serienummer brukt i filen
+   long lMaxSnr;        // Stï¿½rste serienummer brukt i filen
    long    lAntGr;      // Antall grupper i filen
 
    struct dLC_NAVNETABELL  SosiNavn;   // Navnetabell
 
 	LC_IDX_TABELL *pIdx; // Starten av indekstabellen
-   LC_R_NODE *pGeoRN;   // Peker til starten av trestruktur for geografisk søk
-   LC_BOKS Omraade;     // Område angitt i filhodet ved åpning
+   LC_R_NODE *pGeoRN;   // Peker til starten av trestruktur for geografisk sï¿½k
+   LC_BOKS Omraade;     // Omrï¿½de angitt i filhodet ved ï¿½pning
 
    struct dLC_FILADM *pNesteFil;  // Peker til neste fil-adm.
    struct dLC_BASEADM *pBase;     // Peker til base-adm. for denne filen
@@ -789,21 +789,21 @@ typedef struct dLC_BASEADM{
    short  sType;        // Basetype: LC_BASE / LC_START_KLADD / LC_KLADD
 
    long   lAntGr;       // Antall grupper i basen
-   LC_BOKS Omraade;     // Summert område fra filhodene
+   LC_BOKS Omraade;     // Summert omrï¿½de fra filhodene
    short sAntFramgrFil; // Antall filer i framgrunn
    short sAntBakgrFil;  // Antall filer i bakgrunn
 
    LB_LESEBUFFER BufAdm;  // Vanlig lesebuffer mot SOSI-fil
 
-   LC_FILADM *pCurSos;    // Fil-adm for åpen SOSI-fil
-   FILE      *pfSos;      // Filhandel for åpen SOSI-fil
+   LC_FILADM *pCurSos;    // Fil-adm for ï¿½pen SOSI-fil
+   FILE      *pfSos;      // Filhandel for ï¿½pen SOSI-fil
 
-   LC_FILADM *pCurRb;    // Fil-adm for åpen Rb-fil
-	FILE      *pfRb;      // Filhandel for åpen Rb-fil
+   LC_FILADM *pCurRb;    // Fil-adm for ï¿½pen Rb-fil
+	FILE      *pfRb;      // Filhandel for ï¿½pen Rb-fil
    short      sModusRb;  // LES eller SKRIV til buffer-filen
    UT_INT64    n64FilPosRb; // Aktuell posisjon i buffer-filen 
 
-   LC_FILADM *pForsteFil;    // Peker til første fil-adm.
+   LC_FILADM *pForsteFil;    // Peker til fï¿½rste fil-adm.
    LC_FILADM *pSisteFil;     // Peker til siste fil-adm.
 
    struct dLC_BASEADM *pNesteBase;      // Peker til neste base-adm
@@ -835,33 +835,33 @@ typedef struct dLC_GRF_STAT {
    LC_GR_STATUS Omkr;
    unsigned short usOmkretsFerdig;
    LC_GR_STATUS Oy;
-   LC_BGR Bgr;      /* Aktuell øy-gruppe */
+   LC_BGR Bgr;      /* Aktuell ï¿½y-gruppe */
 } LC_GRF_STATUS;
 
 
 /*
  *!--------------------------------------------------------------!
- *! Geografisk søk, status mm.                                   !
+ *! Geografisk sï¿½k, status mm.                                   !
  *!--------------------------------------------------------------!
  */
 
-/* Kjede med resultatet av søket */
+/* Kjede med resultatet av sï¿½ket */
 typedef struct dLC_KJEDE_BGR {
    LC_BGR Bgr;
    struct dLC_KJEDE_BGR *pNesteKB;
 } LC_KJEDE_BGR;
 
-/* Søkemetode i basen */
-#define LC_GEO_SEKV  0x0000   /* Søker sekvensiellt gjennom gruppene */
-#define LC_GEO_RTRE  0x0001   /* Bruker R-tre-srukturene i søket */
+/* Sï¿½kemetode i basen */
+#define LC_GEO_SEKV  0x0000   /* Sï¿½ker sekvensiellt gjennom gruppene */
+#define LC_GEO_RTRE  0x0001   /* Bruker R-tre-srukturene i sï¿½ket */
 
 /* Status */
 typedef struct dLC_GEO_STAT {
-   unsigned short usMetode; /* Søkemetode (LC_GEO_SEKV eller LC_GEO_RTRE) */ 
-   double nvn,nva,ohn,oha; /* Rektangel for søkeområde. */
-   unsigned short usLag; /* Lag det skal søkes i. (LC_FRAMGR | LC_BAKGR) */
+   unsigned short usMetode; /* Sï¿½kemetode (LC_GEO_SEKV eller LC_GEO_RTRE) */ 
+   double nvn,nva,ohn,oha; /* Rektangel for sï¿½keomrï¿½de. */
+   unsigned short usLag; /* Lag det skal sï¿½kes i. (LC_FRAMGR | LC_BAKGR) */
    LC_BGR Bgr;           /* Aktuell gruppe */
-   /* Kjede med resultatet av søket */
+   /* Kjede med resultatet av sï¿½ket */
    LC_KJEDE_BGR *pForsteKB;
    LC_KJEDE_BGR *pSisteKB;
    LC_KJEDE_BGR *pAktuellKB;
@@ -894,7 +894,7 @@ typedef struct {
    short type;         /* LC_GETPP_KP, LC_GETPP_HOYDE, LC_GETPP_KVALITET, LC_GETPP_VANLIG */
    char pinfo_navn[LC_MAX_SOSINAVN_LEN]; /* Sosi-navn det skal finnes verdi til */
    long curr_punkt;        /* Aktuellt punkt */
-   long slutt_punkt;       /* Første punkt etter søkeområdet */
+   long slutt_punkt;       /* Fï¿½rste punkt etter sï¿½keomrï¿½det */
 	short neste_tegn;       /* Neste tegn (Ved flere PINFO i punktet) */
 } LC_GETPP_STATUS;
 /* Bruk:  LC_GETPP_STATUS  pp_stat; */
@@ -919,9 +919,9 @@ typedef struct sLC_UTVALG_ELEMENT {
    char slutt;        /* Sluttposisjon i tegnstreng (0=resten) */
    char *min;
    char *max;
-   struct sLC_UTVALG_ELEMENT *pNesteUE;       /* Neste på dette nivå */
-   struct sLC_UTVALG_ELEMENT *pForsteUE; /* Første på nivået under */
-   struct sLC_UTVALG_ELEMENT *pSisteUE;  /* Siste på nivået under */
+   struct sLC_UTVALG_ELEMENT *pNesteUE;       /* Neste pï¿½ dette nivï¿½ */
+   struct sLC_UTVALG_ELEMENT *pForsteUE; /* Fï¿½rste pï¿½ nivï¿½et under */
+   struct sLC_UTVALG_ELEMENT *pSisteUE;  /* Siste pï¿½ nivï¿½et under */
 } LC_UTVALG_ELEMENT;
 
 typedef struct sLC_LAG {
@@ -940,9 +940,9 @@ typedef struct sLC_UTVALG {
    short  sPrioritet;
    short  sOriginalPrioritet;
    short sStatus;
-   short sTegnes;                 // Flagg for å styre om utvalgsregelen skal brukes ved tegning
-   LC_UTVALG_ELEMENT *pForsteUE; /* Første utvalgslinje på øverste nivå */
-   LC_UTVALG_ELEMENT *pSisteUE;  /* Siste utvalgslinje på øverste nivå */
+   short sTegnes;                 // Flagg for ï¿½ styre om utvalgsregelen skal brukes ved tegning
+   LC_UTVALG_ELEMENT *pForsteUE; /* Fï¿½rste utvalgslinje pï¿½ ï¿½verste nivï¿½ */
+   LC_UTVALG_ELEMENT *pSisteUE;  /* Siste utvalgslinje pï¿½ ï¿½verste nivï¿½ */
 
    struct sLC_UTVALG *pForrigeU;  /* Forrige utvalg */
    struct sLC_UTVALG *pNesteU;    /* Neste utvalg */
@@ -953,7 +953,7 @@ typedef struct sLC_UTVALG {
 /* Toppblokk for GRUPPE-, PUNKT- og PINFO-utvalg */
 typedef struct dLC_UTVALG_BLOKK {
    short sHoydeBrukt;
-   short sTestAllePi;    /* "!" er brukt, må sjekke alle punkt */
+   short sTestAllePi;    /* "!" er brukt, mï¿½ sjekke alle punkt */
    LC_UTVALG *pForsteU;
    LC_UTVALG *pSisteU;
    LC_UTVALG *pAktU;
@@ -961,7 +961,7 @@ typedef struct dLC_UTVALG_BLOKK {
 
 /* Administrasjonsblokk for utvalg */
 typedef struct dLC_UT_ADM {
-   short            sMaxPrior;       /* Største prioritet */
+   short            sMaxPrior;       /* Stï¿½rste prioritet */
    LC_UTVALG_BLOKK  Gruppe;
    LC_UTVALG_BLOKK  Punkt;
    LC_UTVALG_BLOKK  Pinfo;
@@ -971,7 +971,7 @@ typedef struct dLC_UT_ADM {
    LC_LAG *pSisteLag;
 } LC_UT_ADM;
 
-/* Administrasjonsblokk for serienummersøk */
+/* Administrasjonsblokk for serienummersï¿½k */
 typedef struct dLC_SNR_ADM {
    LC_FILADM *pFil;
 	long lMinSnr;
@@ -983,7 +983,7 @@ typedef struct dLC_SNR_ADM {
 CH Polygonbeskrivelse                        Strukturer for polygonbeskrivelse.
 CD 
 CD Dette er et sett med strukturer som er kjedet sammen til en komplett
-CD beskrielse av en flate. Eksempel på bruk er gitt under $LENKE<LC_POL_GetRef>.
+CD beskrielse av en flate. Eksempel pï¿½ bruk er gitt under $LENKE<LC_POL_GetRef>.
 CD
 CD
 CD   !-----------------!
@@ -993,13 +993,13 @@ CD   ! !- Omkrets --!  !       !   !-----------------!   !---------------!
 CD   ! !LC_POL_OMKR !  !       ! !-!LC_POL_ELEMENT   ! !-!LC_POL_ELEMENT !
 CD   ! !            !  !       ! ! ! - Bgr           ! ! ! - Bgr         !
 CD   ! !- Siste     !--!-------! ! ! - Snr           ! ! ! - Snr         !
-CD   ! !- Første    !--!---------! ! - Retning       ! ! ! - Retning     !
+CD   ! !- Fï¿½rste    !--!---------! ! - Retning       ! ! ! - Retning     !
 CD   ! !------------!  !           ! - Forrige (NULL)! ! ! - Forrige     !
 CD   ! !- Hull ------! !           ! - Neste         !-! ! - Neste (NULL)!
 CD   ! !LC_OY_ADM    ! !           !-----------------!   !---------------!
 CD   ! !             ! !
-CD   ! !- Første øy  !-!-!
-CD !-!-!- Siste øy   ! ! !
+CD   ! !- Fï¿½rste ï¿½y  !-!-!
+CD !-!-!- Siste ï¿½y   ! ! !
 CD ! ! !-------------! ! !
 CD ! !-----------------! !
 CD !   !-----------------!
@@ -1008,7 +1008,7 @@ CD !   !                  !------------! !   !-----------------! !--------------
 CD !  !--------------!  !-!LC_POL_OMKR ! ! !-!LC_POL_ELEMENT   !!!LC_POL_ELEMENT !
 CD !  !LC_OY_ELEMENT !  ! !            ! ! ! ! - Bgr           !!! - Bgr         !
 CD !  !- Omkrets     !--! !- Siste     !-! ! ! - Snr           !!! - Snr         !
-CD !  !- Neste       !-!  !- Første    !---! ! - Retning       !!! - Retning     !
+CD !  !- Neste       !-!  !- Fï¿½rste    !---! ! - Retning       !!! - Retning     !
 CD !  !--------------! !  !------------!     ! - Forrige (NULL)!!! - Forrige     !
 CD !                   !                     ! - Neste         !!! - Neste (NULL)!
 CD !                   !                     !-----------------! !---------------!
@@ -1018,7 +1018,7 @@ CD !   !                  !------------! !   !-----------------!   !------------
 CD !  !--------------!  !-!LC_POL_OMKR ! ! !-!LC_POL_ELEMENT   ! !-!LC_POL_ELEMENT !
 CD !--!LC_OY_ELEMENT !  ! !            ! ! ! ! - Bgr           ! ! ! - Bgr         !
 CD    !- Omkrets     !--! !- Siste     !-! ! ! - Snr           ! ! ! - Snr         !
-CD    !- Neste (NULL)!    !- Første    !---! ! - Retning       ! ! ! - Retning     !
+CD    !- Neste (NULL)!    !- Fï¿½rste    !---! ! - Retning       ! ! ! - Retning     !
 CD    !--------------!    !------------!     ! - Forrige (NULL)! ! ! - Forrige     !
 CD                                           ! - Neste         !-! ! - Neste (NULL)!
 CD                                           !-----------------!   !---------------!
@@ -1034,14 +1034,14 @@ typedef struct dLC_POL_ELEMENT {
    LC_BGR Bgr;       /* Gruppenummer */
    short  sRetning;  /* LC_MED_DIG eller LC_MOT_DIG */
    long   lSnr;      /* Serienummer */
-   LC_KOORD_2D Pkt;     /* (ø,n) Representasjonspunkt (Brukes ikke av FYBA. Til disp.) */
+   LC_KOORD_2D Pkt;     /* (ï¿½,n) Representasjonspunkt (Brukes ikke av FYBA. Til disp.) */
    struct dLC_POL_ELEMENT *pNestePE;  /* Peker til neste element i polygonet */
    struct dLC_POL_ELEMENT *pForrigePE;  /* Peker til forrige element i polygonet */
 } LC_POL_ELEMENT;
 
 /*
  *!----------------------------------------------------------------------!
- *! Adm. blokk for polygon (en for hver lukket "del", omkrets eller øy)  !
+ *! Adm. blokk for polygon (en for hver lukket "del", omkrets eller ï¿½y)  !
  *!----------------------------------------------------------------------!
  */
 typedef struct dLC_POL_OMKR {
@@ -1051,28 +1051,28 @@ typedef struct dLC_POL_OMKR {
 
 /*
  *!--------------------------------------------------------------!
- *! ¯y (i polygon) element  (en for hver øy)                    !
+ *! ï¿½y (i polygon) element  (en for hver ï¿½y)                    !
  *!--------------------------------------------------------------!
  */
 typedef struct dLC_OY_ELEMENT{
-	LC_POL_OMKR PO;  /* Administrasjonsblokk til kjede som beskriv øyavgrensinga */
-   struct dLC_OY_ELEMENT *pNesteOE;  /* Peker til neste øyelement i polygonet */
-   struct dLC_OY_ELEMENT *pForrigeOE;  /* Peker til forrige øyelement i polygonet */
+	LC_POL_OMKR PO;  /* Administrasjonsblokk til kjede som beskriv ï¿½yavgrensinga */
+   struct dLC_OY_ELEMENT *pNesteOE;  /* Peker til neste ï¿½yelement i polygonet */
+   struct dLC_OY_ELEMENT *pForrigeOE;  /* Peker til forrige ï¿½yelement i polygonet */
 } LC_OY_ELEMENT;
 
 /*
  *!------------------------------------------------------------------------!
- *! Adm. blokk for øy (i polygon) element (en for alle øyene i en flate)  !
+ *! Adm. blokk for ï¿½y (i polygon) element (en for alle ï¿½yene i en flate)  !
  *!------------------------------------------------------------------------!
  */
 typedef struct dLC_OY_ADM{
-   LC_OY_ELEMENT *pForsteOE;   /* Første øy (hull) */
-   LC_OY_ELEMENT *pSisteOE;    /* Siste øy  (hull) */
+   LC_OY_ELEMENT *pForsteOE;   /* Fï¿½rste ï¿½y (hull) */
+   LC_OY_ELEMENT *pSisteOE;    /* Siste ï¿½y  (hull) */
 } LC_OY_ADM;
 
 /*
  *!--------------------------------------------------------------!
- *! Adm blokk for Polygon  (En for hver flate, inkl øyer)        !
+ *! Adm blokk for Polygon  (En for hver flate, inkl ï¿½yer)        !
  *!--------------------------------------------------------------!
  */
 
@@ -1161,11 +1161,11 @@ SK_EntPnt_FYBA const char* LC_GetIdxPath(void);
 /*  Funksjonsdefinisjoner for fylx.c                       */
 /* ======================================================= */
 #define GRF_YTRE   0x01  /* Ytre avgrensing */
-#define GRF_INDRE   0x02  /* Indre avgrensing, øyer */
+#define GRF_INDRE   0x02  /* Indre avgrensing, ï¿½yer */
 #define LC_MED_DIG 0x01  /* Brukes MED dig retning */
 #define LC_MOT_DIG 0x02  /* Brukes MOT dig retning */
-#define GRF_START_OY    0x04  /* Første gruppe i øy */
-#define GRF_SLUTT_OY    0x08  /* Siste gruppe i øy */
+#define GRF_START_OY    0x04  /* Fï¿½rste gruppe i ï¿½y */
+#define GRF_SLUTT_OY    0x08  /* Siste gruppe i ï¿½y */
 
 SK_EntPnt_FYBA long   LC_InqAntRef(void);
 SK_EntPnt_FYBA void   LC_InitGetRefFlate(LC_GRF_STATUS *pGrfStat);
@@ -1272,10 +1272,10 @@ SK_EntPnt_FYBA void   LC_ErstattReferanse (LC_FILADM *pFil,long lGmlSnr,long lNy
 
 
    /* Konstanter for SammenfoyGr() */
-#define LC_SG_FORRAN 1   /* Heng den andre gruppen inn forran første koordinat */
+#define LC_SG_FORRAN 1   /* Heng den andre gruppen inn forran fï¿½rste koordinat */
 #define LC_SG_BAK    2   /* Heng den andre gruppen inn etter siste koordinat */
-#define LC_SG_BEHOLD 3   /* Begge sammenføyings-punktene beholdes */
-#define LC_SG_FJERN  4   /* Bare det ene av sammenføyings-punktene beholdes */
+#define LC_SG_BEHOLD 3   /* Begge sammenfï¿½yings-punktene beholdes */
+#define LC_SG_FJERN  4   /* Bare det ene av sammenfï¿½yings-punktene beholdes */
 
 
 SK_EntPnt_FYBA short  LC_InsGiL (short linje, short antall);
@@ -1350,12 +1350,12 @@ SK_EntPnt_FYBA short  LC_FLSnBt(LC_SNR_ADM *pSnrAdm,short kolonne,LC_BGR *pBgr);
 /*  Funksjonsdefinisjoner for fylr.c                       */
 /* ======================================================= */
 SK_EntPnt_FYBA short  LC_GetGrWin(LC_BGR *pBgr,double *nva,double *nvn,double *oha,double *ohn);
-/* Flate-søk */
+/* Flate-sï¿½k */
 SK_EntPnt_FYBA void   LC_SBFlate(LC_GEO_STATUS *pGeoStat,unsigned short usLag,
                                  double nv_a,double nv_n,double oh_a,double oh_n);
 SK_EntPnt_FYBA short  LC_FFFlate(LC_GEO_STATUS *pGeoStat,LC_BGR * pBgr);
 SK_EntPnt_FYBA short  LC_FNFlate(LC_GEO_STATUS *pGeoStat,LC_BGR * pBgr);
-/* Geografisk søk primær gruppe */
+/* Geografisk sï¿½k primï¿½r gruppe */
 SK_EntPnt_FYBA void   LC_SBGeo(LC_GEO_STATUS *pGeoStat,unsigned short usLag,
                                double nv_a,double nv_n,double oh_a,double oh_n);
 SK_EntPnt_FYBA short  LC_FFGeo(LC_GEO_STATUS *pGeoStat,LC_BGR *pBgr);
@@ -1370,7 +1370,7 @@ SK_EntPnt_FYBA short  LC_WTst(double nva,double nvn,double oha,double ohn);
 SK_EntPnt_FYBA short  LC_PTst(double a,double n);
 SK_EntPnt_FYBA short  LC_PTstOmkrets(double a,double n);
 
-/* Debugformål */
+/* Debugformï¿½l */
 SK_EntPnt_FYBA void LC_DumpGeoRtre(LC_FILADM *pFil);
 
 
@@ -1458,7 +1458,7 @@ SK_EntPnt_FYBA void LC_SetCancelHandler(short (*f)(void));
 
 //////////////////////////////////////////////////////////////////////////
 //
-// Når FYBA brukes som LIB må følgende funksjoner finnes definert
+// Nï¿½r FYBA brukes som LIB mï¿½ fï¿½lgende funksjoner finnes definert
 //
 //////////////////////////////////////////////////////////////////////////
 void  LC_Error (short ifeilnr, const char logtx[], const char vartx[]);
@@ -1469,7 +1469,7 @@ short LC_Cancel(void);
 
 //////////////////////////////////////////////////////////////////////////
 //
-// Når FYBA brukes som DLL må følgende funksjoner finnes definert.
+// Nï¿½r FYBA brukes som DLL mï¿½ fï¿½lgende funksjoner finnes definert.
 // Eksempel finnes i filen Fyba_Callback.cpp
 // Funksjonene aktiveres med LC_SetXxxxxHandler rutinene.
 // Hvis disse ikke blir aktivert brukes enkle rutiner som ligger i DLL-en.
